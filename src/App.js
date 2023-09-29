@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from 'styled-components'
+import StyledText from './components/fonts/desktop/text'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+
+    const Wrapper = styled.div`
+        height: 900px;
+        width: 800px;
+        display: flex;
+        flex-direction: column;
+        background-color: #cfcfcf;;
+    `
+
+    return(
+        <Wrapper>
+            <StyledText>h1 1920  (85, 100%) Высокий уровень английского без стресса</StyledText>
+        </Wrapper>
+    )
 }
-
-export default App;
