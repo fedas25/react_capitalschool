@@ -3,12 +3,12 @@ import styled from 'styled-components'
 
 export default function StyledText({ children }) {
     const SpanStyled = styled.span`
-        font-family: "Montserrat";
-        font-size: 85px;
+        font-family: "Montserrat-Medium-500";
+        font-size: 28px;
         font-style: normal;
         font-weight: 500;
-        line-height: 100%;
-        color: #FFF;
+        line-height: 120%;
+        color: #1C1C1C;
     `
 
     return (
