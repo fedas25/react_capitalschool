@@ -3,14 +3,13 @@ import styled from 'styled-components';
 import logo from './../../../../assets/logo.svg';
 import Menu from "./menuItems";
 
-export default function Button({ props }) {
+export default function NavBar({ props }) {
     const NavBar = styled.div`
         display: flex;
         max-width: 1920px;
         padding: 16px 128px;
         align-items: center;
         justify-content: space-between;
-        /* gap: 10px; */
     `;
 
     function Logo({className}) {
