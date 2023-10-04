@@ -18,9 +18,9 @@ export default createGlobalStyle`
     src: url(${MontserratSemiBold600}) format('truetype');
   }
 
-  body{
-    background-color: #6B73C2;;
-  }
+html {
+  overflow-x: hidden;
+}
 
 /*minireset*/
 html,

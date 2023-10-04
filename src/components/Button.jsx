@@ -10,14 +10,14 @@ export default function Button({ title, color }) {
         align-items: center;
         gap: 10px;
         border-radius: 50px;
+        cursor: pointer;
         background: ${() => {
                 return (color === "violet" ? "#6B73C2" :
                         color === "gray" ? "#BCBCC5" : "#000")
                 }};
         color:  #ffffff;
         font-size: 24px;
-        margin-left: 128px;
-    `;
+        `;
 
     return (
         <Button>

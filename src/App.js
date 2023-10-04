@@ -1,10 +1,10 @@
 import React from "react"
-import NavBar from "./components/layout/navigation/NavBar"
+import MainPager from "./pages/main"
 
 export default function App() {
     return (
         <>
-            <NavBar />
+            <MainPager />
         </>
     )
 }

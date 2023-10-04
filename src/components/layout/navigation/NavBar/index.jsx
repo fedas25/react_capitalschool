@@ -6,10 +6,11 @@ import Menu from "./menuItems";
 export default function NavBar({ props }) {
     const NavBar = styled.div`
         display: flex;
-        max-width: 1920px;
+        max-width: 100%;
         padding: 16px 128px;
         align-items: center;
         justify-content: space-between;
+        background-color: #6B73C2;
     `;
 
     function Logo({className}) {
