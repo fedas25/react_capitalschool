@@ -1,12 +1,11 @@
 import React from "react"
-import NavBar from "./../../components/layout/navigation/NavBar"
 import styled from "styled-components"
 import Button from "../../components/Button";
 import Font1920_h1 from "./../../components/fonts/desktop/1920_h1"
 import Font1920_p1 from "./../../components/fonts/desktop/1920_p1"
 import vetka from "./../../assets/vetka.png"
 
-export default function Main() {
+export default function Header() {
     const Div = styled.div`
         display: flex;
         width: 100%;
@@ -35,7 +34,6 @@ export default function Main() {
 
     return (
         <>
-            <NavBar />
             <Div>
                 <StyledVetka />
                 <Font1920_h1>
