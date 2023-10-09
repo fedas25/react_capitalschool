@@ -50,7 +50,8 @@ export default function Header() {
     }
 
     const FeatureCardStyled = styled(featureCard)`
-        max-width: 524px;
+        max-width: 526
+        px;
         display: flex;
         padding: 40px 0px;
         flex-direction: column;

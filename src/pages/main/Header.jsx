@@ -7,6 +7,7 @@ import vetka from "./../../assets/vetka.png"
 
 export default function Header() {
     const Div = styled.div`
+        position: relative;
         display: flex;
         width: 100%;
         padding: 132px 128px;
@@ -14,7 +15,8 @@ export default function Header() {
         align-items: flex-start;
         gap: 48px;
         background-color: #6B73C2;
-        overflow: hidden;
+        overflow-x: clip;
+        
     `;
 
     function Vetka({ className }) {
@@ -35,7 +37,6 @@ export default function Header() {
     return (
         <>
             <Div>
-                <StyledVetka />
                 <Font1920_h1>
                     Высокий уровень английского<br />
                     без стресса и неудобств
@@ -47,6 +48,7 @@ export default function Header() {
                     другом в любой ситуации.<br />
                 </Font1920_p1>
                 <Button title="Записаться на пробное занятие" />
+                <StyledVetka />
             </Div>
         </>
     )

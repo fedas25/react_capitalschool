@@ -17,11 +17,11 @@ export default function Main() {
 
     return (
         <>
-                <NavBar />
-                <Header />
+            <NavBar />
+            <Header />
             <Container>
                 <MakesUsSpecial />
-                <AdvantagesOnlineClasses/>
+                <AdvantagesOnlineClasses />
             </Container>
         </>
     )

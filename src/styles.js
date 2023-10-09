@@ -19,7 +19,7 @@ export default createGlobalStyle`
   }
 
 
-html, body { overflow-x: hidden; }
+/* html, body { overflow-x: hidden; } */
 
 /*minireset*/
 html,
