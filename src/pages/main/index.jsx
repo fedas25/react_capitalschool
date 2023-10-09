@@ -3,6 +3,7 @@ import styled from "styled-components";
 import NavBar from "./../../components/layout/navigation/NavBar"
 import Header from "./Header"
 import MakesUsSpecial from "./MakesUsSpecial"
+import AdvantagesOnlineClasses from "./AdvantagesOnlineClasses";
 
 export default function Main() {
 
@@ -20,6 +21,7 @@ export default function Main() {
                 <Header />
             <Container>
                 <MakesUsSpecial />
+                <AdvantagesOnlineClasses/>
             </Container>
         </>
     )
