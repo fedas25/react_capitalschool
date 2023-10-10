@@ -30,13 +30,14 @@ export default function Header() {
         width: 720px;
         height: 1008px;
         right: -120px;
-        bottom: -162px;
+        bottom: -276px;
         transform: rotate(1deg);
     `;
 
     return (
         <>
             <Div>
+                <StyledVetka />
                 <Font1920_h1>
                     Высокий уровень английского<br />
                     без стресса и неудобств
@@ -48,7 +49,6 @@ export default function Header() {
                     другом в любой ситуации.<br />
                 </Font1920_p1>
                 <Button title="Записаться на пробное занятие" />
-                <StyledVetka />
             </Div>
         </>
     )

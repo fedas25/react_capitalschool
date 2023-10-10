@@ -7,7 +7,7 @@ import calendar from "./../../assets/advantages/calendar.svg"
 import watch from "./../../assets/advantages/watch.svg"
 import sofa from "./../../assets/advantages/sofa.svg"
 
-export default function Header() {
+export default function AdvantagesOnlineClasses() {
     const Container = styled.div`
         width: 100%;
         display: flex;
@@ -50,8 +50,7 @@ export default function Header() {
     }
 
     const FeatureCardStyled = styled(featureCard)`
-        max-width: 526
-        px;
+        max-width: 526px;
         display: flex;
         padding: 40px 0px;
         flex-direction: column;

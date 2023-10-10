@@ -4,15 +4,16 @@ import NavBar from "./../../components/layout/navigation/NavBar"
 import Header from "./Header"
 import MakesUsSpecial from "./MakesUsSpecial"
 import AdvantagesOnlineClasses from "./AdvantagesOnlineClasses";
+import ListCourses from "./ListCourses";
 
 export default function Main() {
 
     const Container = styled.div`
         display: flex;
-        padding: 168px 0px;
+        padding: 168px 0 0 0;
         flex-direction: column;
         align-items: flex-start;
-        gap: 168px;
+        row-gap: 168px;
     `;
 
     return (
@@ -22,6 +23,7 @@ export default function Main() {
             <Container>
                 <MakesUsSpecial />
                 <AdvantagesOnlineClasses />
+                <ListCourses />
             </Container>
         </>
     )
