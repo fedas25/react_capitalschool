@@ -20,6 +20,7 @@ export default function ListCourses() {
     `;
 
     const Description = styled.p`
+        max-width: 1664px;
         font-size: 65px;
         color: black;
     `;
@@ -27,8 +28,9 @@ export default function ListCourses() {
     const Content = styled.div`
         display: flex;
         flex-direction: column;
-        width: 1664px;
+        width: 100%;
         justify-content: center;
+        align-items: center;
         gap: 96px;
     `;
 
@@ -40,9 +42,6 @@ export default function ListCourses() {
         align-items: flex-start;
         gap: 24px;
     `;
-
-
-
 
     function MainText({ className }) {
         return (
