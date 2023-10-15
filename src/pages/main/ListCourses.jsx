@@ -8,6 +8,7 @@ import Font1920price from "./../../components/fonts/desktop/1920_price"
 import Font1920aboute from "./../../components/fonts/desktop/1920_about"
 import jackdaw from "./../../assets/jackdaw.png"
 import time from "./../../assets/time.svg"
+import rightArrow from "./../../assets/rightArrow.png"
 
 export default function ListCourses() {
     const Container = styled.div`
@@ -34,9 +35,32 @@ export default function ListCourses() {
         gap: 96px;
     `;
 
-    const Slider = styled.div`
+    const Arrow = styled.img`
+        width: 96px;
+        height: 96px;
+        position: absolute;
+        top:50%;
+        margin-top: -48px;
+        cursor: pointer;
+        ${ (props) => (props.left ? `right: 0px;
+                                     transform: rotate(180deg);`
+                                     : null) }
+    `
+
+    function Slider({ className, children }){
+        return(
+            <div className={className}>
+                <Arrow src={rightArrow} alt="Arrow"/>
+                <Arrow src={rightArrow} alt="Arrow" left/>
+                {children}
+            </div>
+        )
+    }
+
+    const StyledSlider = styled(Slider)`
         min-height: 700px;
         width: 100%;
+        position: relative;
         overflow: clip;
         display: flex;
         align-items: flex-start;
@@ -179,11 +203,11 @@ export default function ListCourses() {
                     <Description>
                         <Font1920_h2>Погрузитесь в потрясающий мир спокойного обучения</Font1920_h2>
                     </Description>
-                    <Slider>
+                    <StyledSlider>
                         <CourseCardStyled />
                         <CourseCardStyled />
                         <CourseCardStyled />
-                    </Slider>
+                    </StyledSlider>
                 </Content>
             </Container>
         </>
