@@ -8,7 +8,7 @@ import Font1920price from "./../../components/fonts/desktop/1920_price"
 import Font1920aboute from "./../../components/fonts/desktop/1920_about"
 import jackdaw from "./../../assets/jackdaw.png"
 import time from "./../../assets/time.svg"
-import rightArrow from "./../../assets/rightArrow.png"
+import Arrow from "../../components/Arrow"
 
 export default function ListCourses() {
     const Container = styled.div`
@@ -35,23 +35,24 @@ export default function ListCourses() {
         gap: 96px;
     `;
 
-    const Arrow = styled.img`
-        width: 96px;
-        height: 96px;
+    const StyledArrovLeft = styled(Arrow)`
         position: absolute;
         top:50%;
         margin-top: -48px;
-        cursor: pointer;
-        ${ (props) => (props.left ? `right: 0px;
-                                     transform: rotate(180deg);`
-                                     : null) }
+    `;
+
+    const StyledArrovRight = styled(Arrow)`
+        position: absolute;
+        top:50%;
+        margin-top: -48px;
+        right: 0px;
     `
 
     function Slider({ className, children }){
         return(
             <div className={className}>
-                <Arrow src={rightArrow} alt="Arrow"/>
-                <Arrow src={rightArrow} alt="Arrow" left/>
+                <StyledArrovLeft/>
+                <StyledArrovRight right/>
                 {children}
             </div>
         )
