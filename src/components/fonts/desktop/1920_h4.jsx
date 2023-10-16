@@ -9,6 +9,8 @@ export default function StyledText({ children }) {
         font-weight: 500;
         line-height: 120%;
         color: #757575;
+        font-variant-numeric: lining-nums tabular-nums;
+        font-feature-settings: 'case' on;
     `
 
     return (
