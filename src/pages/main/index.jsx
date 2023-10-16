@@ -5,6 +5,7 @@ import Header from "./Header"
 import MakesUsSpecial from "./MakesUsSpecial"
 import AdvantagesOnlineClasses from "./AdvantagesOnlineClasses";
 import ListCourses from "./ListCourses";
+import ListTeacher from "./ListTeacher";
 
 export default function Main() {
 
@@ -24,6 +25,7 @@ export default function Main() {
                 <MakesUsSpecial />
                 <AdvantagesOnlineClasses />
                 <ListCourses />
+                <ListTeacher />
             </Container>
         </>
     )
