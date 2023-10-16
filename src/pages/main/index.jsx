@@ -6,6 +6,7 @@ import MakesUsSpecial from "./MakesUsSpecial"
 import AdvantagesOnlineClasses from "./AdvantagesOnlineClasses";
 import ListCourses from "./ListCourses";
 import ListTeacher from "./ListTeacher";
+import EnglishLevelTest from "./EnglishLevelTest";
 
 export default function Main() {
 
@@ -26,6 +27,7 @@ export default function Main() {
                 <AdvantagesOnlineClasses />
                 <ListCourses />
                 <ListTeacher />
+                <EnglishLevelTest />
             </Container>
         </>
     )
