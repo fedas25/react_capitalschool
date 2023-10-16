@@ -7,6 +7,7 @@ import AdvantagesOnlineClasses from "./AdvantagesOnlineClasses";
 import ListCourses from "./ListCourses";
 import ListTeacher from "./ListTeacher";
 import EnglishLevelTest from "./EnglishLevelTest";
+import HowStartLearning from "./HowStartLearning";
 
 export default function Main() {
 
@@ -28,6 +29,7 @@ export default function Main() {
                 <ListCourses />
                 <ListTeacher />
                 <EnglishLevelTest />
+                <HowStartLearning />
             </Container>
         </>
     )
