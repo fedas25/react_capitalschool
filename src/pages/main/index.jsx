@@ -9,6 +9,7 @@ import ListTeacher from "./ListTeacher";
 import EnglishLevelTest from "./EnglishLevelTest";
 import HowStartLearning from "./HowStartLearning";
 import QuestionAnswer from "./QuestionAnswer";
+import Footer from "./Footer";
 
 export default function Main() {
 
@@ -32,6 +33,7 @@ export default function Main() {
                 <EnglishLevelTest />
                 <HowStartLearning />
                 <QuestionAnswer />
+                <Footer />
             </Container>
         </>
     )
