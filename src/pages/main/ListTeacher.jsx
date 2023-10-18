@@ -184,7 +184,7 @@ export default function ListTeacher() {
         <>
             <Container>
                 <Description>
-                    <Font1920_h2>Погрузитесь в потрясающий мир спокойного обучения</Font1920_h2>
+                    <Font1920_h2>Наши преподаватели сделают обучение английским интересным и захватывающим</Font1920_h2>
                 </Description>
                 <Card>
                     <Photo src={teacher} />
