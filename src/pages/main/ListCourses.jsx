@@ -48,11 +48,11 @@ export default function ListCourses() {
         right: 0px;
     `
 
-    function Slider({ className, children }){
-        return(
+    function Slider({ className, children }) {
+        return (
             <div className={className}>
-                <StyledArrovLeft/>
-                <StyledArrovRight right/>
+                <StyledArrovLeft />
+                <StyledArrovRight right />
                 {children}
             </div>
         )
@@ -130,17 +130,78 @@ export default function ListCourses() {
         )
     }
 
-    const StyledperHour = styled(perHour)`
+    const StyledPerHour = styled(perHour)`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     `
 
+    const DiscountQuantity = styled.div`
+        width: 72px;
+        height: 34px;
+        display: flex;
+        padding: 8px 12px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 30px;
+        border: 2px solid var(--srt, #E4E4E7);
+    `;
+
+    function PriceNotDiscount({ className }) {
+        return (
+            <div className={className}>
+                <Font1920aboute strikeout>72 000 ₽</Font1920aboute>
+
+                <DiscountQuantity>
+                    <Font1920aboute discount>-40%</Font1920aboute>
+                </DiscountQuantity>
+            </div>
+        )
+    }
+
+    const StyledPriceNotDiscount = styled(PriceNotDiscount)`
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    `;
+
+    const ContainerPriceAllCource = styled.div`
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    `;
+
+    function PerCourse({ className }) {
+        return (
+            <div className={className}>
+                <Font1920_h6>полный курс</Font1920_h6>
+
+                <ContainerPriceAllCource>
+                    <StyledPriceNotDiscount />
+                    <Div>
+                        <Font1920price>112 000 ₽</Font1920price>
+                        <SDiv>
+                            <img src={time} alt="time" />
+                            <Font1920aboute>72 часа</Font1920aboute>
+                        </SDiv>
+                    </Div>
+                </ContainerPriceAllCource>
+
+            </div>
+        )
+    }
+
+    const StyledPerCourse = styled(PerCourse)`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    `
+
     function Prices({ className }) {
         return (
             <div className={className}>
-                <StyledperHour />
-                {/* <PerCourse /> */}
+                <StyledPerHour />
+                <StyledPerCourse />
             </div>
         )
     }
@@ -148,7 +209,7 @@ export default function ListCourses() {
     const StyledPrices = styled(Prices)`
         height: 147px;
         display: flex;
-        gap: 24px;
+        gap: 42px;
     `;
 
 
