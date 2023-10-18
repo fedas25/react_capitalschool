@@ -9,7 +9,7 @@ import ListTeacher from "./ListTeacher";
 import EnglishLevelTest from "./EnglishLevelTest";
 import HowStartLearning from "./HowStartLearning";
 import QuestionAnswer from "./QuestionAnswer";
-import Footer from "./Footer";
+import Footer from "./../../components/Footer.jsx";
 
 export default function Main() {
 

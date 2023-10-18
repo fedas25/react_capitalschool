@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 import Button from "../../components/Button";
-import Font1920_h1 from "./../../components/fonts/desktop/1920_h1"
-import Font1920_p1 from "./../../components/fonts/desktop/1920_p1"
+import Font1920_h1 from "../../components/fonts/desktop/1920_h1"
+import Font1920_p1 from "../../components/fonts/desktop/1920_p1"
 import vetka from "./../../assets/vetka.png"
 
 export default function Header() {

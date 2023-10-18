@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Font1920_p1 from "./../../components/fonts/desktop/1920_p1"
-import telegramm from "./../../assets/telegramm.png"
-import whatsapp from "./../../assets/whatsapp.png"
-import vk from "./../../assets/vk.png"
+import Font1920_p1 from "./fonts/desktop/1920_p1"
+import telegramm from "./../assets/telegramm.png"
+import whatsapp from "./../assets/whatsapp.png"
+import vk from "./../assets/vk.png"
 
 const Container = styled.div`
   width: 100%;
