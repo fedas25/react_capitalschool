@@ -1,6 +1,8 @@
 import React from "react"
-import MainPager from "./pages/main"
 import styled from "styled-components"
+import MainPager from "./pages/main"
+import Course from "./pages/course"
+import StudentAccount from "./pages/studentAccount"
 
 export default function App() {
     const container = styled.div`
@@ -13,7 +15,9 @@ export default function App() {
     `
     return (
         <>
-            <MainPager />
+            {/* <MainPager /> */}
+            {/* <Course /> */}
+            <StudentAccount />
         </>
     )
 }

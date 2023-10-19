@@ -13,11 +13,6 @@ import Font1920_h4 from "./../../components/fonts/desktop/1920_h4"
 import H5 from "./../../components/fonts/desktop/1920_h5"
 import openingCross from "../../assets/openingCross.png"
 import Button from '../../components/Button'
-import Font1920_h2 from "./../../components/fonts/desktop/1920_h2"
-import Font1920_h5 from "./../../components/fonts/desktop/1920_h5"
-import teacher from "./../../assets/teacher.jpg"
-import Arrow from "../../components/Arrow"
-
 
 const Container = styled.div`
     width: 100%;
