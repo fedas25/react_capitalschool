@@ -4,6 +4,7 @@ import NavBar from "./../../components/layout/navigation/NavBar"
 import Footer from "../../components/Footer";
 import Header from "./Header";
 import CourseDescription from "./CourseDescription";
+import ListTeacher from "../../components/widget/ListTeacher";
 
 export default function Course() {
 
@@ -21,6 +22,7 @@ export default function Course() {
             <Header />
             <Container>
                 <CourseDescription />
+                <ListTeacher/>
                 <Footer />
             </Container>
         </>
