@@ -5,7 +5,7 @@ import Header from "./Header"
 import MakesUsSpecial from "./MakesUsSpecial"
 import AdvantagesOnlineClasses from "./AdvantagesOnlineClasses";
 import ListCourses from "./ListCourses";
-import ListTeacher from "./ListTeacher";
+import ListTeacher from "../../components/widget/ListTeacher";
 import EnglishLevelTest from "./EnglishLevelTest";
 import HowStartLearning from "./HowStartLearning";
 import QuestionAnswer from "./QuestionAnswer";

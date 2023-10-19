@@ -1,13 +1,14 @@
 import React from "react"
 import styled from "styled-components"
-import Font1920_h2 from "./../../components/fonts/desktop/1920_h2"
-import Font1920_h5 from "./../../components/fonts/desktop/1920_h5"
-import Font1920_h4 from "./../../components/fonts/desktop/1920_h4"
-import Font1920_h6 from "./../../components/fonts/desktop/1920_h6"
-import Font1920_p1 from "./../../components/fonts/desktop/1920_p1"
+import Font1920_h2 from "../fonts/desktop/1920_h2"
+import Font1920_h5 from "../fonts/desktop/1920_h5"
+import Font1920_h4 from "../fonts/desktop/1920_h4"
+import Font1920_h6 from "../fonts/desktop/1920_h6"
+import Font1920_p1 from "../fonts/desktop/1920_p1"
 import jackdaw from "./../../assets/jackdaw.png"
 import teacher from "./../../assets/teacher.jpg"
-import Arrow from "../../components/Arrow"
+import Arrow from "../Arrow"
+import Button from "./../Button.jsx"
 
 const Container = styled.div`
     width: 100%;
@@ -121,7 +122,9 @@ const Course = styled.div`
 const Greeting = styled.div`
     width: 100%;
     min-height: 40px;
-    margin-bottom: 32px;
+    /* margin-bottom: 32px; */
+    /* margin-bottom: 48px; */
+    margin-bottom: ${(props) => (props.course == true) ? "48px" : "32px"} ;
     `;
 
 
@@ -179,7 +182,7 @@ const StyledQualifications = styled(qualifications)`
     margin-top: 32px;
 `;
 
-export default function ListTeacher() {
+export default function ListTeacher({ course }) {
     return (
         <>
             <Container>
@@ -206,7 +209,7 @@ export default function ListTeacher() {
                                     <Font1920_h6 white>ОГЭ</Font1920_h6>
                                 </Course>
                             </Courses>
-                            <Greeting>
+                            <Greeting course = {+course}>
                                 <Font1920_p1 gray>
                                     Hello! Im Anastasia, nice to meet you!
                                     Ещё в школе я влюбилась в английский язык, и с тех пор он стал неотъемлемой частью моей жизни.
@@ -215,6 +218,7 @@ export default function ListTeacher() {
                                 </Font1920_p1>
                                 <StyledQualifications />
                             </Greeting>
+                            {course && <Button title="Записаться на пробное занятие" />}
                         </Info>
                     </MainPart>
                 </Card>
