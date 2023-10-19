@@ -18,6 +18,10 @@ export default createGlobalStyle`
     src: url(${MontserratSemiBold600}) format('truetype');
   }
 
+  ::placeholder { 
+    color: #BCBCC5; 
+  }
+
 /*minireset*/
 html,
 body,
