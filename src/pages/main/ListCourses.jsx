@@ -103,6 +103,9 @@ export default function ListCourses() {
         gap: 12px;
     `;
 
+
+
+
     const Div = styled.div`
         display: flex;
         align-items: flex-start;
@@ -129,6 +132,9 @@ export default function ListCourses() {
             </div>
         )
     }
+
+
+
 
     const StyledPerHour = styled(perHour)`
         display: flex;
