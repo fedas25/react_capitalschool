@@ -11,7 +11,7 @@ gap: 24px;
 export default function Index() {
   return (
     <Container>
-        <Button title="Мои запssssиси" textColor="violet" color="gray"/>
+        <Button title="Мои записи" textColor="violet" color="gray"/>
         <Button title="Мои курсы" textColor="violet" color="gray"/>
         <Button title="Пройденное" textColor="violet" color="gray"/>
     </Container>
