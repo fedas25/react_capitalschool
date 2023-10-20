@@ -17,5 +17,5 @@ outline:none;
 `;
 
 export default function InputText({placeholder, password, value }) {
-  return <Input placeholder={placeholder} value={value} type={(+password) ? "password" : "text"} />
+  return <Input placeholder={placeholder} value={value} type={(+password) ? "password" : "text"} onChange={(event)=>this.inputChangedHandler(event)} />
 }

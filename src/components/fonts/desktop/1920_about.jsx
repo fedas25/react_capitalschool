@@ -10,8 +10,7 @@ export default function StyledText({ children, discount = null, strikeout = null
         font-weight: 500;
         line-height: normal;
         color: ${() => (discount === true) ? "#DC5846" :
-                        (strikeout === true) ? "#BCBCC5" :
-                        "#757575"};
+                        (strikeout === true) ? "#BCBCC5" : "#757575"};
         ${() => (strikeout === true) ? "text-decoration: line-through;" : null};
     `;
 
