@@ -8,9 +8,9 @@ export default function StyledText({ children, color }) {
         font-style: normal;
         font-weight: 500;
         line-height: normal;
-        /* color: ${() => color === "violet" ? "#6B73C2" : "#FFF"}; */
         color: ${() => (color === "gray") ? "#757575" :
-                        (color === "violet") ? "#6B73C2" : "#FFF"};
+                        (color === "violet") ? "#6B73C2" :
+                        (color === "black") ? "#1C1C1C" : "#FFF"};
     `
 
     return (
