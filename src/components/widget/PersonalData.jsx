@@ -2,8 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import H2 from "../fonts/desktop/1920_h2"
 import H5 from "../fonts/desktop/1920_h5"
+import Font1920_h6 from "../fonts/desktop/1920_h6"
 import avatar from "./../../assets/avatar.svg"
 import InputText from '../Form/InputText'
+import BadgeCource from '../BadgeCource'
 
 const Container = styled.div`
     width: 100%;
@@ -31,6 +33,7 @@ const Data = styled.div`
     padding: 64px 0px;
     align-items: flex-start;
     align-content: flex-start;
+
 `;
 
 function Avatar({ className }) {
@@ -63,8 +66,8 @@ function Authentication({ className }) {
         <div className={className}>
             <H5>Личные данные</H5>
             <ContainerAuthentication>
-                <InputText password value="123456"/>
-                <InputText value="uasily.lol@yandex.ru"/>
+                <InputText password value="123456" />
+                <InputText value="uasily.lol@yandex.ru" />
             </ContainerAuthentication>
         </div>
     )
@@ -108,7 +111,48 @@ gap: 32px;
 margin-left: 48px;
 `;
 
-export default function PersonalData() {
+const DivFlexColum = styled.div`
+   display: flex;
+   flex-direction: column;
+   gap: 64px;
+   `
+
+const DivFlex = styled.div`
+   display: flex;
+`
+
+const ListСourses = styled.div`
+   display: flex;
+   gap: 12px;
+`
+
+function MyСourses({ className }) {
+    return (
+        <div className={className}>
+            <H5>Курсы</H5>
+            <ListСourses>
+                <BadgeCource>
+                    <Font1920_h6 white>ООО</Font1920_h6>
+                </BadgeCource>
+                <BadgeCource>
+                    <Font1920_h6 white>ОГО</Font1920_h6>
+                </BadgeCource>
+                <BadgeCource>
+                    <Font1920_h6 white>АГА</Font1920_h6>
+                </BadgeCource>
+            </ListСourses>
+        </div>
+    )
+};
+
+const StyledMyСourses = styled(MyСourses)`
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-left: 48px;
+`
+
+export default function PersonalData({teacher}) {
     return (
         <Container>
             <Content>
@@ -117,8 +161,13 @@ export default function PersonalData() {
                 </Description>
                 <Data>
                     <StyledAvatar />
-                    <StyledFullName />
-                    <StyledAuthentication />
+                    <DivFlexColum>
+                        <DivFlex>
+                            <StyledFullName />
+                            <StyledAuthentication />
+                        </DivFlex>
+                        {teacher && <StyledMyСourses/>}
+                    </DivFlexColum>
                 </Data>
             </Content>
         </Container>
