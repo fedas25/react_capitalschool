@@ -6,7 +6,7 @@ import BadgeCource from '../../components/BadgeCource'
 
 const Container = styled.div`
     display: flex;
-    gap: 12px;
+    gap: 16px;
 `;
 
 const PhotoTeacher = styled.img`
@@ -27,13 +27,13 @@ function InfoCourse({ className, teacherName, nameCourse, colorCourse }) {
 }
 
 const StyledInfoCourse = styled(InfoCourse)`
-    width: 460px;
+    min-width: 460px;
     height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 24px;
+    gap: 12px;
 `;
 
 export default function InformationAboutCourses({ teacherName, nameCourse, colorCourse, srcTeacher }) {
