@@ -33,7 +33,8 @@ const Data = styled.div`
     padding: 64px 0px;
     align-items: flex-start;
     align-content: flex-start;
-
+    border-top: 2px solid #E4E4E7;
+    border-bottom: 2px solid #E4E4E7;
 `;
 
 function Avatar({ className }) {
