@@ -22,8 +22,8 @@ export default function Main() {
             <Container>
                 <PersonalData />
                 <WorkingAreaCourse />
-                {/* <WorkingAreaRecord /> */}
-                {/* <WorkingAreaPassed /> */}
+                <WorkingAreaRecord />
+                <WorkingAreaPassed />
                 <Footer />
             </Container>
         </>

@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import NavBarUserAccount from "../../components/layout/navigation/NavBarUserAccount"
-import Calendar from './Calendar'
+import Calendar from '../../components/Calendar'
 import AddCourse from './AddCourse'
-import CardMyCourse from './CardMyCourse'
+import CardMyCourse from './CardAccount'
 
 const Container = styled.div`
     width: 100%;

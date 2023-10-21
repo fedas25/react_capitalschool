@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import H5 from "./../../components/fonts/desktop/1920_h5"
-import Font1920_h6 from "./../../components/fonts/desktop/1920_h6"
+import H5 from "../../components/fonts/desktop/1920_h5"
+import Font1920_h6 from "../../components/fonts/desktop/1920_h6"
 import BadgeCource from '../../components/BadgeCource'
 
 const Container = styled.div`

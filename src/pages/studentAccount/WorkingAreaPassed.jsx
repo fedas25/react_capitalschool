@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import NavBarUserAccount from "../../../components/layout/navigation/NavBarUserAccount"
-import Calendar from '../Calendar'
-import CardMyCourse from '../CardMyCourse'
-import sorting from "../../../assets/sorting.svg"
-import FontButton from "./../../../components/fonts/desktop/1920_button"
+import NavBarUserAccount from "../../components/layout/navigation/NavBarUserAccount"
+import Calendar from '../../components/Calendar'
+import CardMyCourse from './CardAccount'
+import sorting from "../../assets/sorting.svg"
+import FontButton from "../../components/fonts/desktop/1920_button"
 
 
 const Container = styled.div`
@@ -111,8 +111,8 @@ export default function PersonalData() {
                     <ListCardAccount>
                         <StyledManagingCourses />
                         <ListCard>
-                            <CardMyCourse type="record"/>
-                            <CardMyCourse type="record"/>
+                            <CardMyCourse type="passed"/>
+                            <CardMyCourse type="passed"/>
                         </ListCard>
                     </ListCardAccount>
                     <Calendar />
