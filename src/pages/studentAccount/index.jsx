@@ -3,8 +3,9 @@ import styled from "styled-components";
 import NavBar from "../../components/layout/navigation/NavBar"
 import Footer from "../../components/Footer.jsx";
 import PersonalData from "../../components/widget/PersonalData";
-// import WorkingAreaCourse from "./WorkingAreaCourse.jsx"
+import WorkingAreaCourse from "./WorkingAreaCourse.jsx"
 import WorkingAreaRecord from "./WorkingAreaRecord"
+import WorkingAreaPassed from "./WorkingAreaPassed"
 
 export default function Main() {
     const Container = styled.div`
@@ -20,8 +21,9 @@ export default function Main() {
             <NavBar />
             <Container>
                 <PersonalData />
-                {/* <WorkingAreaCourse /> */}
-                <WorkingAreaRecord />
+                <WorkingAreaCourse />
+                {/* <WorkingAreaRecord /> */}
+                {/* <WorkingAreaPassed /> */}
                 <Footer />
             </Container>
         </>

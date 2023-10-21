@@ -111,7 +111,8 @@ export default function PersonalData() {
                     <ListCardAccount>
                         <StyledManagingCourses />
                         <ListCard>
-                            <CardMyCourse />
+                            <CardMyCourse type="record"/>
+                            <CardMyCourse type="record"/>
                         </ListCard>
                     </ListCardAccount>
                     <Calendar />
