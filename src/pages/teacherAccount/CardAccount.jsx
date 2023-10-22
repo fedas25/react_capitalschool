@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import H4 from "../../components/fonts/desktop/1920_h4"
 import H5 from "../../components/fonts/desktop/1920_h5"
 import H6 from "../../components/fonts/desktop/1920_h6"
-import BTN from "../../components/fonts/desktop/1920_button"
 import teacher from "./../../assets/teacher.jpg";
 import Button from '../../components/Button'
 import PricePerHour from '../../components/PricePerHour'
@@ -42,15 +41,13 @@ const StyledPassingStatistics = styled(PassingStatistics)`
 
 const Action = styled.div`
     display: flex;
-    align-self: center;
+    align-self: ${(props) => (props.below) ? "flex-end" : "center"};
     gap: 12px;
 `
 const Main = styled.div`
     width: 100%;
     display: flex;
-    ${(props) => props.type === "record" ? "justify-content: space-between;" : null}
-    /* ${(props) => props.type != "passed" ? "gap: 12px;" : null} */
-    /* gap: 12px; */
+    justify-content: space-between;
 `;
 
 const Secondary = styled.div`
@@ -110,15 +107,48 @@ const StyledInformationAboutRecord = styled(InformationAboutRecord)`
     align-items: center;
 `;
 
+const StudentStatistics = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+`
+
+function Property({ className, description, value }) {
+    return (
+        <div className={className}>
+            <H6>{description}</H6>
+            <H5 violet>{value}</H5>
+        </div>
+    )
+}
+
+const StyledProperty = styled(Property)`
+    display: flex;
+    align-items: center;
+    gap: 32px;
+`
+
+function Status({ marked, status }) {
+    return (
+        <>
+            {marked ? (
+                <H5 gray>{status}</H5>
+            ):(
+                <Button title="Отметить посещение" />
+            )}
+        </>
+    )
+}
+
 export default function CardMyCourse({ type = null }) {
     return (
         <ContainerCardCourse>
-            {type === "record" ? <StyledInformationAboutRecord record={+true}/> :
-            type === "passed" ? <StyledInformationAboutRecord passed /> :
-            null}
+            {type === "record" ? <StyledInformationAboutRecord record={+true} /> :
+                type === "passed" ? <StyledInformationAboutRecord passed /> :
+                    null}
             <Main type={type}>
                 <InformationAboutCourses
-                    teacherName="Куликова"
+                    teacherName="Куликова Анастасия"
                     nameCourse="Losos"
                     colorCourse="#59C4E5"
                     srcTeacher={teacher}
@@ -129,9 +159,27 @@ export default function CardMyCourse({ type = null }) {
                         <Button title="Перенести" />
                     </Action>
                 ) : null}
+
+
                 {type === "passed" ? (
+                    <Action below="+1">
+                        <Status marked status="был" />
+                    </Action>
+                ) : null}
+
+
+                {type === "student" ? (
                     <Action>
-                        <Button title="Записаться" />
+                        <StudentStatistics>
+                            <StyledProperty
+                                description="Пройденные"
+                                value="12 / 72"
+                            />
+                            <StyledProperty
+                                description="Оплаченные"
+                                value="12"
+                            />
+                        </StudentStatistics>
                     </Action>
                 ) : null}
 
