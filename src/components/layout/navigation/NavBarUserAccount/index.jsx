@@ -8,11 +8,11 @@ align-items: center;
 gap: 24px;
 `;
 
-export default function Index() {
+export default function Index({teacher}) {
   return (
     <Container>
         <Button title="Мои записи" textColor="violet" color="gray"/>
-        <Button title="Мои курсы" textColor="violet" color="gray"/>
+        <Button title={teacher ? "Мои ученики" : "Мои курсы"} textColor="violet" color="gray"/>
         <Button title="Пройденное" textColor="violet" color="gray"/>
     </Container>
   )
