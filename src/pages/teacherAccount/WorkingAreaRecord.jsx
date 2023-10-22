@@ -106,7 +106,7 @@ export default function PersonalData() {
     return (
         <Container>
             <Content>
-                <NavBarUserAccount />
+                <NavBarUserAccount  teacher/>
                 <ContainerContent>
                     <ListCardAccount>
                         <StyledManagingCourses />
