@@ -1,26 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import NavBarUserAccount from "../../components/layout/navigation/NavBarUserAccount"
 import Calendar from '../../components/Calendar'
 import CardMyCourse from './CardAccount'
 import sorting from "../../assets/sorting.svg"
 import FontButton from "../../components/fonts/desktop/1920_button"
-
-
-const Container = styled.div`
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-`;
-
-const Content = styled.div`
-    width: 1664px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 96px;
-`;
 
 const ContainerContent = styled.div`
     width: 100%;
@@ -82,11 +65,11 @@ function ManagingCourses({ className }) {
             </SortTime>
             <Type>
                 <Radiocell>
-                    <Radio type="checkbox"/>
+                    <Radio type="checkbox" />
                     <FontButton color="black">Учебное занятие</FontButton>
                 </Radiocell>
                 <Radiocell>
-                    <Radio  type="checkbox"/>
+                    <Radio type="checkbox" />
                     <FontButton color="black">Пробное занятие</FontButton>
                 </Radiocell>
             </Type>
@@ -104,21 +87,18 @@ const StyledManagingCourses = styled(ManagingCourses)`
 
 export default function PersonalData() {
     return (
-        <Container>
-            <Content>
-                <NavBarUserAccount teacher/>
-                <ContainerContent>
-                    <ListCardAccount>
-                        <StyledManagingCourses />
-                        <ListCard>
-                            <CardMyCourse type="passed"/>
-                            <CardMyCourse type="passed"/>
-                            <CardMyCourse type="passed"/>
-                        </ListCard>
-                    </ListCardAccount>
-                    <Calendar />
-                </ContainerContent>
-            </Content>
-        </Container>
+        <>
+            <ContainerContent>
+                <ListCardAccount>
+                    <StyledManagingCourses />
+                    <ListCard>
+                        <CardMyCourse type="passed" />
+                        <CardMyCourse type="passed" />
+                        <CardMyCourse type="passed" />
+                    </ListCard>
+                </ListCardAccount>
+                <Calendar />
+            </ContainerContent>
+        </>
     )
 }

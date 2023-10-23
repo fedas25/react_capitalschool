@@ -5,21 +5,6 @@ import Calendar from '../../components/Calendar'
 import AddCourse from './AddCourse'
 import CardMyCourse from './CardAccount'
 
-const Container = styled.div`
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-`;
-
-const Content = styled.div`
-    width: 1664px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 96px;
-`;
-
 const ContainerContent = styled.div`
     width: 100%;
     display: flex;
@@ -42,21 +27,14 @@ const ListCard = styled.div`
 
 export default function PersonalData() {
     return (
-        <Container>
-            <Content>
-                <NavBarUserAccount teacher />
-                <ContainerContent>
-                    <ListCardAccount>
-                        <ListCard>
-                            <CardMyCourse type="students"/>
-                            <CardMyCourse type="students"/>
-                            <CardMyCourse type="students"/>
-                            <CardMyCourse type="students"/>
-                        </ListCard>
-                    </ListCardAccount>
-                    <Calendar />
-                </ContainerContent>
-            </Content>
-        </Container>
+        <ContainerContent>
+            <ListCardAccount>
+                <ListCard>
+                    <CardMyCourse type="student" />
+                    <CardMyCourse type="student" />
+                </ListCard>
+            </ListCardAccount>
+            <Calendar />
+        </ContainerContent>
     )
 }
