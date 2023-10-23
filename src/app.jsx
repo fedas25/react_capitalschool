@@ -3,6 +3,8 @@ import styled from "styled-components"
 import MainPager from "./pages/main"
 import Course from "./pages/course"
 import StudentAccount from "./pages/studentAccount"
+import TeacherAccount from "./pages/teacherAccount"
+import Calendar from "./components/Calendar"
 
 export default function App() {
     const container = styled.div`
@@ -15,9 +17,11 @@ export default function App() {
     `
     return (
         <>
+            <Calendar />
             {/* <MainPager /> */}
             {/* <Course /> */}
-            <StudentAccount />
+            {/* <StudentAccount /> */}
+            {/* <TeacherAccount /> */}
         </>
     )
 }

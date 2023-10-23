@@ -11,6 +11,7 @@ export default function NavBar({ props }) {
         align-items: center;
         justify-content: space-between;
         background-color: #6B73C2;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.50);
     `;
 
     function Logo({className}) {

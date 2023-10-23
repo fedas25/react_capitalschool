@@ -10,6 +10,7 @@ import EnglishLevelTest from "./EnglishLevelTest";
 import HowStartLearning from "./HowStartLearning";
 import QuestionAnswer from "./QuestionAnswer";
 import Footer from "./../../components/Footer.jsx";
+import DropDownListCourses from "../../components/DropDownListCourses";
 
 export default function Main() {
 
@@ -24,6 +25,7 @@ export default function Main() {
     return (
         <>
             <NavBar />
+            <DropDownListCourses />
             <Header />
             <Container>
                 <MakesUsSpecial />
