@@ -3,9 +3,12 @@ import styled from "styled-components";
 import NavBar from "../../components/layout/navigation/NavBar"
 import Footer from "../../components/Footer.jsx";
 import PersonalData from "../../components/widget/PersonalData";
+import NavBarUserAccount from "../../components/layout/navigation/NavBarUserAccount";
 import WorkingAreaCourse from "./WorkingAreaCourse.jsx"
 import WorkingAreaRecord from "./WorkingAreaRecord"
 import WorkingAreaPassed from "./WorkingAreaPassed"
+import { Route, Routes } from "react-router-dom"
+import ContainerWorkingArea from "./ContainerWorkingArea";
 
 export default function Main() {
     const Container = styled.div`
@@ -21,9 +24,14 @@ export default function Main() {
             <NavBar />
             <Container>
                 <PersonalData />
-                <WorkingAreaCourse />
-                <WorkingAreaRecord />
-                <WorkingAreaPassed />
+                <ContainerWorkingArea>
+                    <NavBarUserAccount />
+                    <Routes>
+                        <Route path="/" element={<WorkingAreaCourse />} />
+                        <Route path="/record" element={<WorkingAreaRecord />} />
+                        <Route path="/passed" element={<WorkingAreaPassed />} />
+                    </Routes>
+                </ContainerWorkingArea>
                 <Footer />
             </Container>
         </>
