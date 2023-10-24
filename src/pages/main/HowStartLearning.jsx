@@ -6,6 +6,7 @@ import Font1920_h4 from "./../../components/fonts/desktop/1920_h4"
 import Font1920_p1 from "./../../components/fonts/desktop/1920_p1"
 import Arrow from "../../components/Arrow"
 import Button from "../../components/Button"
+import map from "./../../assets/map.jpg"
 
 const Container = styled.div`
     width: 100%;
@@ -94,7 +95,7 @@ export default function HowStartLearning() {
                     <Font1920_h2>Как начать обучение?</Font1920_h2>
                 </Description>
                 <Content>
-                    <Image />
+                    <Image src={map}/>
                     <Information>
                         <StyledNavigation />
                         <Heading>

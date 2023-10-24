@@ -4,6 +4,7 @@ import Font1920_p1 from "./fonts/desktop/1920_p1"
 import telegramm from "./../assets/telegramm.png"
 import whatsapp from "./../assets/whatsapp.png"
 import vk from "./../assets/vk.png"
+import word from "./../assets/word.jpg"
 
 const Container = styled.div`
   width: 100%;
@@ -22,10 +23,16 @@ const Content = styled.div`
   gap: 64px;
 `;
 
-const Words = styled.div`
+const Wordsimg = styled.img`
   height: 807px;
+  width: 1664px;
   border-bottom: 2px solid rgba(255, 255, 255, 0.50);
 `;
+
+// const Words = styled.div`
+//   height: 807px;
+//   border-bottom: 2px solid rgba(255, 255, 255, 0.50);
+// `;
 
 const Info = styled.div`
   display: flex;
@@ -62,7 +69,7 @@ export default function Footer() {
   return (
     <Container>
       <Content>
-        <Words />
+        <Wordsimg src={word} />
         <Info>
           <CompanyInformation>
             <Font1920_p1>ООО «Lorem ipsum»</Font1920_p1>

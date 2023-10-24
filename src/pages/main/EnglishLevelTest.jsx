@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Font1920_h2 from "./../../components/fonts/desktop/1920_h2"
 import Font1920_p1 from "./../../components/fonts/desktop/1920_p1"
 import Button from "../../components/Button"
+import level from "../../assets/lavel.jpg";
 
 export default function EnglishLevelTest() {
     const Container = styled.div`
@@ -30,6 +31,7 @@ export default function EnglishLevelTest() {
     const Image = styled.img`
         width: 400px;
         height: 600px;
+        border-radius: 50px;
     `;
 
     const Description = styled.span`
@@ -61,7 +63,7 @@ export default function EnglishLevelTest() {
                         </Text>
                         <Button title="пройти тест" />
                     </Information>
-                    <Image />
+                    <Image src={level}/>
                 </Content>
             </Container>
         </>
