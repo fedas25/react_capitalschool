@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import Font1920_h2 from "./../../components/fonts/desktop/1920_h2"
 import Font1920_h5 from "./../../components/fonts/desktop/1920_h5"
@@ -35,39 +35,6 @@ export default function ListCourses() {
         gap: 96px;
     `;
 
-    const StyledArrovLeft = styled(Arrow)`
-        position: absolute;
-        top:50%;
-        margin-top: -48px;
-    `;
-
-    const StyledArrovRight = styled(Arrow)`
-        position: absolute;
-        top:50%;
-        margin-top: -48px;
-        right: 0px;
-    `
-
-    function Slider({ className, children }) {
-        return (
-            <div className={className}>
-                <StyledArrovLeft />
-                <StyledArrovRight right />
-                {children}
-            </div>
-        )
-    }
-
-    const StyledSlider = styled(Slider)`
-        min-height: 700px;
-        width: 100%;
-        position: relative;
-        overflow: clip;
-        display: flex;
-        align-items: flex-start;
-        gap: 24px;
-    `;
-
     function MainText({ className }) {
         return (
             <div className={className}>
@@ -101,22 +68,19 @@ export default function ListCourses() {
         display: flex;
         align-items: center;
         gap: 12px;
-    `;
-
-
-
+        `;
 
     const Div = styled.div`
         display: flex;
         align-items: flex-start;
         gap: 12px;
-    `;
+        `;
 
     const SDiv = styled.div`
         display: flex;
         align-items: center;
         gap: 8px;
-    `;
+        `;
 
     function perHour({ className }) {
         return (
@@ -133,14 +97,11 @@ export default function ListCourses() {
         )
     }
 
-
-
-
     const StyledPerHour = styled(perHour)`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-    `
+        `
 
     const DiscountQuantity = styled.div`
         width: 72px;
@@ -151,7 +112,7 @@ export default function ListCourses() {
         align-items: center;
         border-radius: 30px;
         border: 2px solid var(--srt, #E4E4E7);
-    `;
+        `;
 
     function PriceNotDiscount({ className }) {
         return (
@@ -169,13 +130,13 @@ export default function ListCourses() {
         display: flex;
         gap: 12px;
         align-items: center;
-    `;
+        `;
 
     const ContainerPriceAllCource = styled.div`
         display: flex;
         flex-direction: column;
         gap: 12px;
-    `;
+        `;
 
     function PerCourse({ className }) {
         return (
@@ -216,7 +177,7 @@ export default function ListCourses() {
         height: 147px;
         display: flex;
         gap: 42px;
-    `;
+        `;
 
 
     function DescriptionCource({ className }) {
@@ -240,7 +201,7 @@ export default function ListCourses() {
         flex-direction: column;
         align-items: flex-start;
         gap: 32px;
-    `;
+        `;
 
     function CourseCard({ className }) {
         return (
@@ -253,7 +214,7 @@ export default function ListCourses() {
     const CourseCardStyled = styled(CourseCard)`
         background-color: #FFF;
         width: 680px;
-
+        
         min-height: 750px;
         
         border-radius: 50px;
@@ -262,7 +223,79 @@ export default function ListCourses() {
         flex-direction: column;
         align-items: flex-end;
         gap: 64px;
-    `;
+        `;
+
+    const StyledArrovLeft = styled(Arrow)`
+position: absolute;
+top:50%;
+margin-top: -48px;
+z-index: 1;
+`;
+
+    const StyledArrovRight = styled(Arrow)`
+position: absolute;
+top:50%;
+margin-top: -48px;
+right: 0px;
+z-index: 1;
+`
+
+
+
+    const PageContainer = styled.div`
+display: flex;
+gap: 24px;
+
+transition: translate;
+transition-property: transform;
+transition-duration: 500ms;
+transition-timing-function: ease-in-out;
+${(props) => {
+    return `transform: translateX(${props.translatex}px);`
+}}
+`;
+
+    function Slider({ className, children }) {
+        const [offset, setOffset] = useState(0);
+        
+        function handleLeft() {
+            setOffset((currentOfset) => {
+                const newOfset = currentOfset + 760;
+                console.log(Math.min(newOfset, 0));
+                return Math.min(newOfset, 0)
+            })
+        }
+        
+        function handleRight() {
+            setOffset((currentOfset) => {
+                const newOfset = currentOfset - 760;
+                console.log(newOfset);
+                const maxOfset = -2280 //(6 * 760)  кол-во курсов/ ширина + отступы
+                return Math.max(newOfset, maxOfset)
+            })
+        }
+
+        return (
+            <div className={className}>
+                <StyledArrovLeft handle={handleLeft} />
+                <StyledArrovRight right handle={handleRight} />
+                <PageContainer translatex={offset}>
+                    {children}
+                </PageContainer>
+            </div>
+        )
+    }
+
+    const StyledSlider = styled(Slider)`
+            /* min-height: 700px; */
+            width: 100%;
+            position: relative;
+            overflow: clip;
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+        `;
+
 
     return (
         <>
@@ -272,6 +305,9 @@ export default function ListCourses() {
                         <Font1920_h2>Погрузитесь в потрясающий мир спокойного обучения</Font1920_h2>
                     </Description>
                     <StyledSlider>
+                        <CourseCardStyled />
+                        <CourseCardStyled />
+                        <CourseCardStyled />
                         <CourseCardStyled />
                         <CourseCardStyled />
                         <CourseCardStyled />
