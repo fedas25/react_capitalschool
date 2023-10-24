@@ -28,8 +28,8 @@ export default function DropDownListCourses() {
                 <H4 white>B2 (Upper-Intermediate Level)</H4>
                 <H4 white>B1 (Intermediate Level)</H4>
                 <H4 white>B2 (Upper-Intermediate Level)</H4>
-                <H4 white>B1 (Intermediate Level)</H4>
-                <H4 white>B2 (Upper-Intermediate Level)</H4>
+                <H4 white>C1 (Intermediate Level)</H4>
+                <H4 white>C2 (Upper-Intermediate Level)</H4>
             </List>
         </ContainerlistCourses>
     )

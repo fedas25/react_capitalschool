@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import logo from './../../../../assets/logo.svg';
 import Menu from "./menuItems";
 
-export default function NavBar({ props }) {
+export default function NavBar({ handle }) {
     const NavBar = styled.div`
         display: flex;
         max-width: 100%;
@@ -27,8 +27,8 @@ export default function NavBar({ props }) {
 
     return (
         <NavBar>
-            <StyledLogo/>
-            <Menu/>
+            <StyledLogo />
+            <Menu handle={handle}/>
         </NavBar>
     );
 }
