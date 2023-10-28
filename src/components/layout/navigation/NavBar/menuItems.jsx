@@ -5,16 +5,16 @@ import Courses from './Сourses';
 import Contacts from "./Contacts";
 import LoginRegistration from "./LoginRegistration"
 
-export default function Button({ handle }) {
-    const NavBar = styled.div`
-        display: flex;
-        width: 736px;
-        height: 100%;
-        justify-content: end;
-        align-items: center;
-        gap: 48px;
-    `;
+const NavBar = styled.div`
+    display: flex;
+    width: 736px;
+    height: 100%;
+    justify-content: end;
+    align-items: center;
+    gap: 48px;
+`;
 
+export default function Button({ handle }) {
     return (
         <NavBar>
             <AboutUs/>
