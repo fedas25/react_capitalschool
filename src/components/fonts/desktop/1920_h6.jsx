@@ -12,7 +12,7 @@ const SpanStyled = styled.span`
 
 export default function StyledText({ children, white = null }) {
     return (
-        <SpanStyled  white={+white}>
+        <SpanStyled white={+white}>
             {children}
         </SpanStyled>
     );
