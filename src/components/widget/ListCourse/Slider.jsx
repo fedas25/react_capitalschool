@@ -29,8 +29,8 @@ export default function Slider({ children }) {
 
     return (
         <Container>
-            <StyledArrovLeft handle={handlerRight}/>
-            <StyledArrovRight handle={handlerLeft} right />
+            <StyledArrovLeft handle={handlerLeft}/>
+            <StyledArrovRight handle={handlerRight} right />
             <AnimatedPageContainer style={springs}>
                 {children}
             </AnimatedPageContainer>
