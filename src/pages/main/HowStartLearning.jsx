@@ -1,5 +1,6 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
+import { useSpring, animated } from '@react-spring/web';
 import Font1920_h2 from "./../../components/fonts/desktop/1920_h2"
 import Font1920_h3 from "./../../components/fonts/desktop/1920_h3"
 import Font1920_h4 from "./../../components/fonts/desktop/1920_h4"
@@ -27,6 +28,8 @@ const Content = styled.div`
     display: flex;
     width: 1664px;
     justify-content: space-between;
+    position: relative;
+    overflow: hidden;
 `;
 
 function cardNumber({ className, cardNumber, numberOfCards }) {
@@ -54,16 +57,13 @@ function Navigation({ className }) {
     return (
         <div className={className}>
             <StyledCardNumber cardNumber="1" numberOfCards="12" />
-            <div>
-                <Arrow />
-                <Arrow right />
-            </div>
         </div>
     )
 }
 
 const StyledNavigation = styled(Navigation)`
     width: 100%;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -71,7 +71,7 @@ const StyledNavigation = styled(Navigation)`
 `;
 
 const Information = styled.div`
-    width: 1101px;
+    width: 1100px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -87,7 +87,86 @@ const Text = styled.span`
     width: 820px;
 `;
 
+function NavigationButton({ className, handler }) {
+    return (
+        <div className={className}>
+            <Arrow handle={handler.left} />
+            <Arrow handle={handler.right} right />
+        </div>
+    )
+}
+
+const StyledNavigationButton = styled(NavigationButton)`
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    right: 0px;
+`;
+
+const Stages = styled.div`
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    position: relative;
+    /* transform: translateX(100px); */
+    /* transition-duration: 200ms; */
+`;
+
+const AnimatedStages = animated(Stages);
+
+const StageContainer = styled.div`
+display: flex;
+justify-content: space-between;
+width: 1668px;
+`;
+
+function Stage() {
+    return (
+        <StageContainer>
+            <Image src={map} />
+            <Information>
+                <StyledNavigation />
+                <Heading>
+                    <Font1920_h3>
+                        Узнайте свой уровень английского
+                    </Font1920_h3>
+                </Heading>
+                <Text>
+                    <Font1920_p1 gray>
+                        Мы заботимся о том, чтобы каждый студент обучался на своём уровне, поэтому рекомендуем пройти наш тест на определение уровня.
+                        Это поможет нам точно определить ваш стартовый уровень и предложить наиболее подходящую программу обучения.
+                        ляляляляляля
+                    </Font1920_p1>
+                </Text>
+                <Button title="пройти тест" />
+            </Information>
+        </StageContainer>
+    )
+}
+
 export default function HowStartLearning() {
+    const [from, setFrom] = useState(0);
+    const [to, setTo] = useState(0);
+
+    const [springs, api] = useSpring(() => ({}))
+
+    api.start({
+        from: {
+            x: from,
+        },
+        to: {
+            x: to,
+        },
+    })
+
+    function handlerLeft() {
+        setFrom(to);
+        setTo(to + 1668);
+    }
+    function handlerRight() {
+        setFrom(to);
+        setTo(to - 1668);
+    }
     return (
         <>
             <Container>
@@ -95,23 +174,15 @@ export default function HowStartLearning() {
                     <Font1920_h2>Как начать обучение?</Font1920_h2>
                 </Description>
                 <Content>
-                    <Image src={map}/>
-                    <Information>
-                        <StyledNavigation />
-                        <Heading>
-                            <Font1920_h3>
-                                Узнайте свой уровень английского
-                            </Font1920_h3>
-                        </Heading>
-                        <Text>
-                            <Font1920_p1 gray>
-                            Мы заботимся о том, чтобы каждый студент обучался на своём уровне, поэтому рекомендуем пройти наш тест на определение уровня.
-                            Это поможет нам точно определить ваш стартовый уровень и предложить наиболее подходящую программу обучения.
-                            ляляляляляля
-                            </Font1920_p1>
-                        </Text>
-                        <Button title="пройти тест" />
-                    </Information>
+                    <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
+                    <AnimatedStages style={springs}>
+                        <Stage />
+                        <Stage />
+                        <Stage />
+                        <Stage />
+                        <Stage />
+                        <Stage />
+                    </AnimatedStages>
                 </Content>
             </Container>
         </>
