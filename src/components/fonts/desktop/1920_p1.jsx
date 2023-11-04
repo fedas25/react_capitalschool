@@ -11,7 +11,7 @@ const SpanStyled = styled.span`
     color: ${(props) => (props.gray === true) ? "#757575" : "#FFF"};
 `
 
-export default function StyledText({ children, gray }) {
+export default function StyledText({ children, gray = null }) {
     return (
         <SpanStyled gray={gray}>
             {children}
