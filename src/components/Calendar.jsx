@@ -183,17 +183,40 @@ color: #757575;
 .react-calendar__month-view__days__day{
   padding: 25.5px 28px;
 }
+
+.losos {
+    background-color: #477ed0;
+    border-radius: 40%;
+}
+
+.karp {
+    background-color: #51be93;
+    border-radius: 40%;
+}
+
+.okyn {
+    background-color: #845589;
+    border-radius: 40%;
+}
 `;
 
 export default function App() {
   const [value, onChange] = useState(new Date());
 
   function formatSelectedDate({ activeStartDate, date, view }) {
-    if (view === "month" && date.toDateString() == new Date().toDateString()) {
-      return "losos"
-    }
+    const dateSessions = [{date: "2023-11-04", color: "losos"},
+                          {date: "2023-11-08", color: "karp"},
+                          {date: "2023-11-12", color: "okyn"}];
+    const formatDateSessions = dateSessions.map((dateSessions) => new Date(dateSessions.date).toDateString());
 
-    return null;
+    //  console.log(dateSessions); new Date(date).toDateString()
+    //  в date "Wed Jul 28 1993 14:39:07 GMT+0200 (CEST)" это toString()
+
+    const indexDay = formatDateSessions.indexOf(date.toDateString());
+
+    if (indexDay === -1 || view != "month") return
+    
+    return dateSessions[indexDay].color;
   }
 
   return (
