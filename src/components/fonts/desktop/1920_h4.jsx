@@ -9,15 +9,16 @@ import styled from 'styled-components'
         line-height: 120%;
         color: ${(props) => (props.black == true) ? "#1C1C1C" :
                             (props.violet == true) ? "#6B73C2" :
+                            (props.gray == true) ? "#BCBCC5" :
                             (props.white == true) ? "#FFF" : "#757575"};
         font-variant-numeric: lining-nums tabular-nums;
         font-feature-settings: 'case' on;
     `
 
-export default function StyledText({ children, black = null, violet = null, white = null }) {
+export default function StyledText({ children, black = null, violet = null, white = null, gray = null }) {
     
     return (
-        <SpanStyled black={+black} violet={+violet} white={+white}>
+        <SpanStyled black={+black} violet={+violet} white={+white} gray={+gray}>
             {children}
         </SpanStyled>
     );

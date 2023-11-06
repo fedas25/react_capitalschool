@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Input = styled.input`
-width: 455px;
+width: ${(props) => props.width == 0 ? "455px" : props.width};
 padding: 14px 28px 16px 28px;
 border-radius: 30px;
 border: none;
@@ -12,10 +12,12 @@ font-size: 24px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
-color: #BCBCC5;
+/* color: #BCBCC5; ??? */
 outline:none;
 `;
 
-export default function InputText({placeholder, password, value }) {
-  return <Input placeholder={placeholder} value={value} type={(+password) ? "password" : "text"} onChange={(event)=>this.inputChangedHandler(event)} />
+export default function InputText({placeholder = null, password = null, value = null, width = null }) {
+  // value={value} как то добавить надо
+  // onChange={(event)=>this.inputChangedHandler(event)}
+  return <Input width={width} placeholder={placeholder} type={(+password) ? "password" : "text"}  />
 }
