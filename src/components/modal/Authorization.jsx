@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from "styled-components"
 import crossExit from "./../../assets/CrossExit.svg"
-import H4 from "../fonts/desktop/1920_h4"
-import H5 from "../fonts/desktop/1920_h5"
+import H4 from "./../fonts/desktop/1920_h4"
+import H5 from "./../fonts/desktop/1920_h5"
 import InputText from '../Form/InputText';
-import Button from "../Button"
+import Button from "./../Button"
 
 const Containerr = styled.div`
   width: 100%;
@@ -15,10 +15,6 @@ const Containerr = styled.div`
   border-bottom: 2px solid var(--srt, #E4E4E7);
 `;
 
-
-
-
-// вынести
 const Pointer = styled.span`
 cursor: pointer;
 `;
@@ -26,16 +22,11 @@ cursor: pointer;
 function TypeSelection({handlerNav}) {
   return (
     <Containerr>
-      <Pointer> <H4 violet handler={handlerNav.SetRegistrition}>Регистрация</H4> </Pointer>
-      <Pointer> <H4 gray handler={handlerNav.SetAutorisition}>Авторизация</H4> </Pointer>
+      <Pointer> <H4 gray handler={handlerNav.SetRegistrition}>Регистрация</H4> </Pointer>
+      <Pointer> <H4 violet handler={handlerNav.SetAutorisition}>Авторизация</H4> </Pointer>
     </Containerr>
   )
 }
-
-
-
-
-
 
 const Container = styled.div`
   position: fixed;
@@ -66,20 +57,28 @@ width: 100%;
 display: flex;
 flex-direction: column;
 gap: 12px;
-margin-bottom: 47px;
+margin-bottom: 40px;
+/* margin-bottom: 47px; */
 `;
 
-export default function Registration( {handlerButton, handlerNav} ) {
+const ForgotPassword = styled.p`
+  margin-top: 40px;
+  cursor: pointer;
+`
+
+export default function Authoris({ handlerButton, handlerNav }) {
   return (
     <Container>
       <CrossExit src={crossExit} />
       <TypeSelection handlerNav={handlerNav}/>
       <ContainerInputs>
-        <InputText placeholder="Имя" width="100%" />
-        <InputText placeholder="Фамилия" width="100%" />
-        <InputText placeholder="Отчество" width="100%" />
+        <InputText placeholder="Email" width="100%" />
+        <InputText placeholder="Password" width="100%" />
       </ContainerInputs>
-      <Button handler={handlerButton} title="Зарегестрироваться"/>
+      <Button handler={handlerButton} title="Войти" />
+      <ForgotPassword>
+        <H5 violet handler={handlerButton}>Забыли пароль ?</H5>
+      </ForgotPassword>
     </Container>
   )
 }

@@ -15,10 +15,10 @@ import styled from 'styled-components'
         font-feature-settings: 'case' on;
     `
 
-export default function StyledText({ children, black = null, violet = null, white = null, gray = null }) {
+export default function StyledText({ children, black = null, violet = null, white = null, gray = null, handler = null }) {
     
     return (
-        <SpanStyled black={+black} violet={+violet} white={+white} gray={+gray}>
+        <SpanStyled onClick={handler} black={+black} violet={+violet} white={+white} gray={+gray}>
             {children}
         </SpanStyled>
     );

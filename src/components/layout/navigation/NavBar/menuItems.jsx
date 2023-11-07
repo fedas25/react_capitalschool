@@ -14,7 +14,7 @@ const NavBar = styled.div`
     gap: 48px;
 `;
 
-export default function Button({ handle }) {
+export default function MenuItems({ handle }) {
     return (
         <NavBar>
             <AboutUs/>

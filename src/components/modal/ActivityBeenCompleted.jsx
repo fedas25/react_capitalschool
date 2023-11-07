@@ -24,10 +24,10 @@ const CrossExit = styled.img`
     cursor: pointer;
 `;
 
-export default function ActivityBeenCompleted({ title }) {
+export default function ActivityBeenCompleted({ title, handlerButton }) {
     return (
         <Container>
-            <CrossExit src={crossExit} />
+            <CrossExit src={crossExit} onClick={handlerButton}/>
             <H5 gray>{title}</H5>
         </Container>
     )
