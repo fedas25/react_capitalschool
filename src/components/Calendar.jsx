@@ -200,13 +200,14 @@ color: #757575;
 }
 `;
 
-export default function App() {
+export default function App({student, handlerDay}) {
   const [value, onChange] = useState(new Date());
 
   function formatSelectedDate({ activeStartDate, date, view }) {
     const dateSessions = [{date: "2023-11-04", color: "losos"},
                           {date: "2023-11-08", color: "karp"},
                           {date: "2023-11-12", color: "okyn"}];
+
     const formatDateSessions = dateSessions.map((dateSessions) => new Date(dateSessions.date).toDateString());
 
     //  console.log(dateSessions); new Date(date).toDateString()
@@ -219,13 +220,20 @@ export default function App() {
     return dateSessions[indexDay].color;
   }
 
+  function ViewMoreDetails(value, event) {
+    const dateDay = new Date(value)
+    if (new Date().toDateString() === dateDay.toDateString()) {
+      handlerDay();
+    }
+  }
+
   return (
     <CalendarContainer>
       <Calendar
         onChange={onChange}
         value={value}
         tileContent={({ date, view }) => ('')}
-        onClickDay={(value, event) => { new Date(value).getDate() == 23 ? console.log(new Date(value).getDate()) : null }}
+        onClickDay={ViewMoreDetails}
         tileClassName={formatSelectedDate}
         // formatYear={(locale, date) => ""}
         view="month"

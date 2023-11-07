@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import styled from "styled-components";
 import NavBar from "../../components/layout/navigation/NavBar"
 import Footer from "../../components/Footer.jsx";
@@ -9,8 +9,8 @@ import WorkingAreaRecord from "./WorkingAreaRecord"
 import WorkingAreaPassed from "./WorkingAreaPassed"
 import { Route, Routes } from "react-router-dom"
 import ContainerWorkingArea from "./ContainerWorkingArea";
+import InformationAboutDay from "./../../components/modal/informationAboutDay"
 
-export default function Main() {
     const Container = styled.div`
         display: flex;
         padding: 168px 0 0 0;
@@ -19,21 +19,38 @@ export default function Main() {
         row-gap: 168px;
     `;
 
+    const Div = styled.div`
+    height: 100px;
+    width: 100px;
+    background-color: #33abab;
+    `;
+
+export default function Main() {
+    const [IsDisplayRecordInformation, setIsDisplayRecordInformation] = useState(false)
+
+    function hideFullRecordInformation() {
+        setIsDisplayRecordInformation(false)
+    }
+    function ShowFullRecordInformation() {
+        setIsDisplayRecordInformation(true)
+    }
+
     return (
         <>
-            <NavBar />
+            {/* <NavBar />
             <Container>
-                <PersonalData />
-                <ContainerWorkingArea>
+                <PersonalData /> */}
+                {/* <ContainerWorkingArea> */}
+                {IsDisplayRecordInformation ? <InformationAboutDay handlerClick={hideFullRecordInformation}/> : null}
                     <NavBarUserAccount />
                     <Routes>
-                        <Route path="/" element={<WorkingAreaCourse />} />
+                        <Route path="/" element={<WorkingAreaCourse handlerDay={ShowFullRecordInformation}/>} />
                         <Route path="/record" element={<WorkingAreaRecord />} />
                         <Route path="/passed" element={<WorkingAreaPassed />} />
                     </Routes>
-                </ContainerWorkingArea>
+                {/* </ContainerWorkingArea>
                 <Footer />
-            </Container>
+            </Container> */}
         </>
     )
 }
