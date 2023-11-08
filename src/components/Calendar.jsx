@@ -199,7 +199,7 @@ color: #757575;
     border-radius: 40%;
 }
 `;
-
+// разные календари для отображения записей/отображения свободных дней
 export default function App({student, handlerDay}) {
   const [value, onChange] = useState(new Date());
 

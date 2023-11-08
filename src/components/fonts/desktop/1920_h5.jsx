@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
     const SpanStyled = styled.span`
         font-family: "Montserrat-Medium-500";
-        font-size: 28px;
+        font-size: ${(props) => props.test ? "32px" : "28px"} ;
         font-style: normal;
         font-weight: 500;
         line-height: 120%;
@@ -13,9 +13,9 @@ import styled from 'styled-components'
         font-feature-settings: 'case' on;
     `
 
-export default function StyledText({ children, gray = null, violet = null, handler = null }) {
+export default function StyledText({ children, gray = null, violet = null, handler = null, test = null }) {
     return (
-        <SpanStyled onClick={handler} gray={+gray} violet={+violet}>
+        <SpanStyled onClick={handler} gray={+gray} violet={+violet} test={+test}>
             {children}
         </SpanStyled>
     );

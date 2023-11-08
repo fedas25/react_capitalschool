@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { useSpring, animated } from '@react-spring/web';
 import Font1920_h2 from "./../../fonts/desktop/1920_h2"
 import Arrow from "./../../Arrow"
-
 import CardTeacher from "./cardTeacher.jsx"
 
 const Container = styled.div`
