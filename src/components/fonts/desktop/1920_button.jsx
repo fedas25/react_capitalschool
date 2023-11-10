@@ -12,7 +12,7 @@ import styled from 'styled-components'
                             (props.color === "black") ? "#1C1C1C" : "#FFF"};
     `
 
-export default function StyledText({ children, color }) {
+export default function StyledText({ children, color = null }) {
 
     return (
         <SpanStyled color={color}>
