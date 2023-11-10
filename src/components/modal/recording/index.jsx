@@ -6,6 +6,7 @@ import H4 from "./../../fonts/desktop/1920_h4"
 import FontButton from "./../../fonts/desktop/1920_button"
 import InfoTeacherCource from "./../../InfoTeacherCource"
 import photo from "./../../../assets/teacher.jpg"
+import crossExit from "./../../../assets/CrossExit.svg"
 import Button from "./../../Button"
 import Calendar from "./../../Calendar"
 
@@ -23,16 +24,19 @@ import Calendar from "./../../Calendar"
                 grid-template-columns: auto auto;
                 grid-template-rows: auto auto auto auto auto;
                 grid-template-areas:
-                /* "InformationRecording Calendar"
-                "InfoTeacherCource Calendar"
-                "LinkToBroadcast Calendar"
-                ". Calendar"
-                ". Calendar"; */
-                "InformationRecording Calendar"
-                "InfoTeacherCource Calendar"
-                "TimeRecording Calendar"
-                "Button Calendar"
-                ". Calendar";
+                ${(props) => props.type === "resultRecord" ?
+                    `"InformationRecording Calendar"
+                    "InfoTeacherCource Calendar"
+                    "LinkToBroadcast Calendar"
+                    ". Calendar"
+                    ". Calendar"` :
+
+                    `"InformationRecording Calendar"
+                    "InfoTeacherCource Calendar"
+                    "TimeRecording Calendar"
+                    "Button Calendar"
+                    ". Calendar"`
+                } ;
             `;
             
             const StyledCalendar = styled(Calendar)`
@@ -86,42 +90,90 @@ import Calendar from "./../../Calendar"
                 align-items: center;
             `;
 
-export default function Recording() {
-    // const [stage, setStage] = useState(0);
-    
-    // function SetNextStage() {
-    //     setStage(stage != 2 ? stage + 1 : 0)
-    // }
 
-    const time = ["13:00", "14:00", "15:00"]
-    const listTime = time.map((time, index) => <H5 key={index} gray>{time}</H5>)
-  
+
+
+
+
+// вынести в компонент
+const CrossExit = styled.img`
+width: 80px;
+height: 80px;
+position: absolute;
+right: -40px;
+top: -80px;
+cursor: pointer;
+`;
+
+
+
+
+
+
+export default function Recording() {
+    const [stage, setStage] = useState(0);
+    
+    function SetNextStage() {
+        setStage(stage != 4 ? (stage + 1) : 0)
+    }
+
+    // const time = ["13:00", "14:00", "15:00"]
+    // const listTime = time.map((time, index) => <H5 key={index} gray>{time}</H5>)
+    
+    // сделать, чтобы в компоненте данные собирались для записи
+    // а после нажатия кнопки записаться делался 1 запрос на сервер
+    // изменятся визуал должен сам
+
     return (
     <>
-      {
-        <Container>
+        <Container type={stage === 3 ? "resultRecord" : ""}>
+        <CrossExit src={crossExit} />
             <InformationRecording>
+            
             <DateTimeRecord>
-            <H4 violet>13 марта</H4>
-            <H4 violet>16:00</H4>
+                {stage === 1 || stage === 2 || stage === 3 ? (
+                <H4 violet>13 марта</H4>
+                ) : null}
+
+                {stage === 2 || stage === 3 ? (
+                <H4 violet>16:00</H4>
+                ) : null}            
             </DateTimeRecord>
-                <H6>Учёбное занятие</H6>
+
+            <H6>Учёбное занятие</H6>
             </InformationRecording>
             <StyledInfoTeacherCource teacherName="Зубенко Михаил Петрович" nameCourse="Пивоварение" srcTeacher={photo} />
-            <TimeRecording>
-                {listTime}
-            </TimeRecording>
-            <ContainerButton>
-                <Button title="Записаться"/>
-            </ContainerButton>
             
-            {/* <LinkToBroadcast>
-                <FontButton color="violet">ссылка на трансляцию</FontButton>
-            </LinkToBroadcast> */}
+            {(stage === 1 || stage === 2) ? (
+            <TimeRecording>
+                <H5 gray>13:00</H5>
+                <H5 gray>14:00</H5>
 
-            <StyledCalendar />
+                {stage === 2 ? (
+                <H5>15:00</H5>
+                ) : stage === 1 ? (
+                <H5 gray>16:00</H5>
+                ) : null}
+
+            </TimeRecording>
+            ) : null }
+
+            {stage === 2 ? (
+            <ContainerButton>
+            <Button title="Записаться"/>
+            </ContainerButton>
+            ) : null }
+
+            {stage === 3 ? (
+            <LinkToBroadcast>
+            <FontButton color="violet">ссылка на трансляцию</FontButton>
+            </LinkToBroadcast>
+            ) : null }
+
+
+            <StyledCalendar type="record"/>
         </Container>
-      }
+      <button onClick={SetNextStage}>losos</button>
     </>
   )
 }

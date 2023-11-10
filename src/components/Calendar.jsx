@@ -198,9 +198,14 @@ color: #757575;
     background-color: #845589;
     border-radius: 40%;
 }
+
+.locked {
+  color: #D4D3D3
+}
+
 `;
 // разные календари для отображения записей/отображения свободных дней
-export default function App({student, handlerDay, className}) {
+export default function App({student, type = null, handlerDay, className}) {
   const [value, onChange] = useState(new Date());
 
   function formatSelectedDate({ activeStartDate, date, view }) {
@@ -220,6 +225,21 @@ export default function App({student, handlerDay, className}) {
     return dateSessions[indexDay].color;
   }
 
+  function formatSelectedDateTeacher({ activeStartDate, date, view }) {
+    const dateSessions = ["2023-11-04", "2023-11-08", "2023-11-12"];
+
+    const formatDateSessions = dateSessions.map((date) => new Date(date).toDateString());
+
+    //  console.log(dateSessions); new Date(date).toDateString()
+    //  в date "Wed Jul 28 1993 14:39:07 GMT+0200 (CEST)" это toString()
+
+    const indexDay = formatDateSessions.indexOf(date.toDateString());
+
+    if (indexDay === -1 || view != "month") return
+    
+    return "locked"
+  }
+
   function ViewMoreDetails(value, event) {
     const dateDay = new Date(value)
     if (new Date().toDateString() === dateDay.toDateString()) {
@@ -234,7 +254,7 @@ export default function App({student, handlerDay, className}) {
         value={value}
         tileContent={({ date, view }) => ('')}
         onClickDay={ViewMoreDetails}
-        tileClassName={formatSelectedDate}
+        tileClassName={formatSelectedDateTeacher}
         // formatYear={(locale, date) => ""}
         view="month"
         prev2Label={null}
