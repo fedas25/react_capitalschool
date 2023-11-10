@@ -200,7 +200,7 @@ color: #757575;
 }
 `;
 // разные календари для отображения записей/отображения свободных дней
-export default function App({student, handlerDay}) {
+export default function App({student, handlerDay, className}) {
   const [value, onChange] = useState(new Date());
 
   function formatSelectedDate({ activeStartDate, date, view }) {
@@ -228,7 +228,7 @@ export default function App({student, handlerDay}) {
   }
 
   return (
-    <CalendarContainer>
+    <CalendarContainer className={className}>
       <Calendar
         onChange={onChange}
         value={value}
