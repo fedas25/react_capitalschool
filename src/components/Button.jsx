@@ -16,9 +16,9 @@ const Button = styled.div`
             }};
     `;
 
-export default function Main({ title, color = null, textColor, handler = null}) {
+export default function Main({ title, color = null, textColor, handler = null, className = null}) {
     return (
-        <Button onClick={handler}>
+        <Button onClick={handler} className={className}>
             <FontButton color={color}>{title}</FontButton>
         </Button>
     );
