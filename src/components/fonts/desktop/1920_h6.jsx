@@ -10,9 +10,9 @@ const SpanStyled = styled.span`
     color: ${(props) => (props.white == true) ? "#FFF" : "#757575"};
 `
 
-export default function StyledText({ children, white = null }) {
+export default function StyledText({ children, white = null, className = null }) {
     return (
-        <SpanStyled white={+white}>
+        <SpanStyled white={+white} className={className}>
             {children}
         </SpanStyled>
     );

@@ -13,9 +13,9 @@ import styled from 'styled-components'
         font-feature-settings: 'case' on;
     `
 
-export default function StyledText({ children, gray = null, violet = null, handler = null, test = null }) {
+export default function StyledText({ children, gray = null, violet = null, handler = null, test = null, className = null }) {
     return (
-        <SpanStyled onClick={handler} gray={+gray} violet={+violet} test={+test}>
+        <SpanStyled onClick={handler} gray={+gray} violet={+violet} test={+test} className={className}>
             {children}
         </SpanStyled>
     );
