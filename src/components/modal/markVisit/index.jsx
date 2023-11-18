@@ -1,37 +1,66 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-
-import InfoTeacherCource from "./../../InfoTeacherCource"
-import crossExit from "./../../../assets/CrossExit.svg"
-import teacher from "./../../../assets/teacher.jpg"
+import React from 'react'
+import styled from 'styled-components';
 import H6 from "./../../fonts/desktop/1920_h6"
 import H4 from "./../../fonts/desktop/1920_h4"
 import FontButton from "./../../fonts/desktop/1920_button"
+import InfoTeacherCource from "./../../InfoTeacherCource"
+import photo from "./../../../assets/teacher.jpg"
+import crossExit from "./../../../assets/CrossExit.svg"
 import Button from "./../../Button"
 
-const Container = styled.div`
-position: fixed;
-top: 10%;
-left: 50%;
-border: 1px solid gray;
-margin-left: -344px;
-width: 788px;
-border-radius: 50px;
-background: #ffff;
-display: grid;
-padding: 64px 32px;
-grid-template-columns: auto;
-grid-template-rows: auto auto auto auto;
-grid-template-areas:
-    "InformationRecording"
-    "infoTeacherCource"
-    "workingArea"
-    "button"
-    ;
-`;
+            const Container = styled.div`
+                position: fixed;
+                top: 10%;
+                left: 50%;
+                border: 1px solid gray;
+                margin-left: -815px;
+                width: 700px;
+                border-radius: 50px;
+                background: #ffff;
+                display: grid;
+                padding: 64px 32px;
+                grid-template-columns: auto;
+                grid-template-rows: auto auto auto auto auto;
+                grid-template-areas:
+                    "InformationRecording"
+                    "InfoTeacherCource"
+                    "selectionField"
+                    "button";
+            `;
 
-// вынести
-// во всех модалках используется
+            const StyledInfoTeacherCource = styled(InfoTeacherCource)`
+            grid-area: InfoTeacherCource;
+            margin: 48px 0 38px 0;
+            `;
+
+            const InformationRecording = styled.div`
+            grid-area: InformationRecording;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--srt, #E4E4E7);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            `;
+
+            const ContainerButton = styled.div`
+                grid-area: button;
+                align-self: start;
+                margin-top: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            `;
+
+                const DateTimeRecord = styled.div`
+                gap: 12px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            `;
+
+
+
+// вынести в компонент
 const CrossExit = styled.img`
 width: 80px;
 height: 80px;
@@ -41,85 +70,60 @@ top: -80px;
 cursor: pointer;
 `;
 
-const StyledInfoTeacherCource = styled(InfoTeacherCource)`
-grid-area: infoTeacherCource;
-margin-bottom: 32px;
-`;
 
 
-// вынести
-const InformationRecording = styled.div`
-grid-area: InformationRecording;
-padding-bottom: 44px;
-display: flex;
-align-items: center;
-gap: 24px;
-`;
-
-const DateTimeRecord = styled.div`
-gap: 12px;
-display: flex;
-justify-content: center;
-align-items: center;
-`;
-
-
-
-// ну это точно выносить
-// в 3 компонентах по меньшей мере используется
-
-const Type = styled.div`
-    grid-area: workingArea;
+const SelectionField = styled.div`
+    grid-area: selectionField;
+    padding-left: 14px;
     display: flex;
     align-items: center;
-    padding-left: 15.6px;
-    margin-bottom: 48px;
-    gap: 35px;
-    
+    gap: 38px;
 `;
 
 const Radio = styled.input`
-    transform: scale(2.4);
+    transform: scale(2.85);
 `;
 
 const Radiocell = styled.div`
-    /* width: 220px; */
     display: flex;
     align-items: center;
     gap: 28px;
+    
 `;
 
-const StyledButton = styled(Button)`
-    grid-area: button;
-    justify-self: center;
-`;
 
 export default function MarkVisit() {
     return (
+    <>
         <Container>
-            <CrossExit src={crossExit} />
+        <CrossExit src={crossExit} />
 
             <InformationRecording>
                 <DateTimeRecord>
                     <H4 violet>13 марта</H4>
                     <H4 violet>16:00</H4>
+                    <H6>Учёбное занятие</H6>
                 </DateTimeRecord>
-                <H6>Учёбное занятие</H6>
             </InformationRecording>
 
-            <StyledInfoTeacherCource teacherName="Гай Юлий Цезарь" nameCourse="Военное дело" srcTeacher={teacher} />
-
-            <Type>
+            <StyledInfoTeacherCource teacherName="Зубенко Михаил Петрович" nameCourse="Пивоварение" srcTeacher={photo} />
+            
+            <SelectionField>
                 <Radiocell>
                     <Radio type="checkbox" />
                     <FontButton color="black">Был</FontButton>
                 </Radiocell>
                 <Radiocell>
                     <Radio type="checkbox" />
-                    <FontButton color="black">Пропустил</FontButton>
+                    <FontButton color="black">Не был</FontButton>
                 </Radiocell>
-            </Type>
-                <StyledButton title="Отметить" />
+            </SelectionField>
+
+            <ContainerButton>
+                <Button title="Перенести"/>
+            </ContainerButton>
+
         </Container>
-    )
+    </>
+  )
 }
