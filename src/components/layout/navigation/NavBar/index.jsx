@@ -46,7 +46,7 @@ const StyledLogo = styled(Logo)`
     width: 118px;
 `;
 
-export default function NavBar({ courses }) {
+export default function NavBar({ courses, handlerEntry }) {
 
     const [show, setShow] = useState(1);
     const [springs, api] = useSpring(() => ({}))
@@ -76,7 +76,7 @@ export default function NavBar({ courses }) {
         <>
             <Contaier>
                 <StyledLogo />
-                <Menu handle={animationHandler} />
+                <Menu handle={animationHandler} handlerEntry={handlerEntry}/>
             </Contaier>
             <AnimatedContainerlistCourses style={springs}>
                 <List>

@@ -10,9 +10,9 @@ const Container = styled.div`
     gap: 12px;
 `;
 
-function ProfileIcon({className}) {
-    return(
-        <img className={className} src={profileIcon} alt='logo'/>
+function ProfileIcon({ className }) {
+    return (
+        <img className={className} src={profileIcon} alt='logo' />
     )
 };
 
@@ -21,11 +21,17 @@ const ProfileIconStyled = styled(ProfileIcon)`
     width: 64px;
 `;
 
-export default function Сourses({ props }) {
+const Pointer = styled.span`
+cursor: pointer;
+`;
+
+export default function Сourses({ handlerEntry, props }) {
     return (
-        <Container>
-            <ProfileIconStyled/>
-            <Font1920h6 white={+true}>Вход / регистрация</Font1920h6>
+        <Container onClick={handlerEntry}>
+            <ProfileIconStyled />
+            <Pointer>
+                <Font1920h6 white={+true}>Вход / регистрация</Font1920h6>
+            </Pointer>
         </Container>
     );
 }

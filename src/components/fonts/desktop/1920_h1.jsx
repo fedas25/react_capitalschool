@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 
-export default function StyledText({ children }) {
-    const SpanStyled = styled.span`
+const SpanStyled = styled.span`
         font-family: "Montserrat-Medium-500";
         font-size: 85px;
         font-style: normal;
@@ -11,6 +10,7 @@ export default function StyledText({ children }) {
         color: #FFF;
     `
 
+export default function StyledText({ children }) {
     return (
         <SpanStyled>
             {children}

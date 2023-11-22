@@ -14,13 +14,13 @@ const NavBar = styled.div`
     gap: 48px;
 `;
 
-export default function MenuItems({ handle }) {
+export default function MenuItems({ handle, handlerEntry }) {
     return (
         <NavBar>
             <AboutUs/>
             <Courses handle={handle}/>
             <Contacts/>
-            <LoginRegistration/>
+            <LoginRegistration handlerEntry={handlerEntry}/>
         </NavBar>
     );
 }

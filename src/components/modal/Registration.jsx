@@ -37,7 +37,9 @@ function TypeSelection({handlerNav}) {
 
 
 
+// вынести !!!
 const Container = styled.div`
+  background-color: #fff;
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -52,6 +54,11 @@ const Container = styled.div`
   z-index: 1;
 `;
 
+
+
+
+
+// вынести
 const CrossExit = styled.img`
   width: 80px;
   height: 80px;
@@ -61,6 +68,10 @@ const CrossExit = styled.img`
   cursor: pointer;
 `;
 
+
+
+
+
 const ContainerInputs = styled.div`
 width: 100%;
 display: flex;
@@ -69,10 +80,10 @@ gap: 12px;
 margin-bottom: 47px;
 `;
 
-export default function Registration( {handlerButton, handlerNav} ) {
+export default function Registration( {handlerButton, handlerNav, handlerExit} ) {
   return (
     <Container>
-      <CrossExit src={crossExit} />
+      <CrossExit src={crossExit} onClick={handlerExit}/>
       <TypeSelection handlerNav={handlerNav}/>
       <ContainerInputs>
         <InputText placeholder="Имя" width="100%" />

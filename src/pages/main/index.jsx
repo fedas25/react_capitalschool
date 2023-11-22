@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, createContext } from 'react';
 import styled from "styled-components";
 import NavBar from "./../../components/layout/navigation/NavBar"
 import Header from "./Header"
@@ -11,6 +11,7 @@ import HowStartLearning from "./HowStartLearning";
 import QuestionAnswer from "./QuestionAnswer";
 import Footer from "./../../components/Footer.jsx";
 import Test from '../../components/modal/Test.jsx';
+import Entry from '../../components/modal/index.jsx';
 
 const Container = styled.div`
     display: flex;
@@ -21,23 +22,28 @@ const Container = styled.div`
 `;
 
 export default function Main() {
+    const [showTest, setShowTest] = useState(false)
+    const [showEntry, setShowEntry] = useState(false)
 
     return (
         <>
-            {/* <NavBar
+            <Test show={showTest} setShow={setShowTest}/>
+            <Entry show={showEntry} setShow={setShowEntry} />
+
+            <NavBar
+                handlerEntry={() => setShowEntry(true)}
                 courses={["B1 (Intermediate Level)", "B2 (Upper-Intermediate Level)", "C1 (Intermediate Level)", "C2 (Upper-Intermediate Level)"]}
-            /> */}
-            {/* <Header /> */}
+            />
+            <Header />
             <Container>
-            {/* <MakesUsSpecial />
+                <MakesUsSpecial />
                 <AdvantagesOnlineClasses />
-            <ListCourses /> */}
-            {/* <ListTeacher /> */}
-                {/* <EnglishLevelTest /> */}
-                {/* <HowStartLearning /> */}
-                <Test />
-                {/* <QuestionAnswer /> */}
-                {/* <Footer /> */}
+                <ListCourses />
+                <ListTeacher />
+                <EnglishLevelTest setShow={setShowTest} />
+                <HowStartLearning setShow={setShowTest} />
+                <QuestionAnswer />
+                <Footer />
             </Container>
         </>
     )

@@ -24,6 +24,7 @@ function TypeSelection() {
 }
 
 const Container = styled.div`
+  background-color: #fff;
   position: fixed;
   display: flex;
   flex-direction: column;

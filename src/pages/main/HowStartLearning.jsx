@@ -120,7 +120,7 @@ justify-content: space-between;
 width: 1668px;
 `;
 
-function Stage() {
+function Stage({setShow}) {
     return (
         <StageContainer>
             <Image src={map} />
@@ -138,13 +138,13 @@ function Stage() {
                         ляляляляляля
                     </Font1920_p1>
                 </Text>
-                <Button title="пройти тест" />
+                <Button title="пройти тест" handler={() => {setShow(true)}} />
             </Information>
         </StageContainer>
     )
 }
 
-export default function HowStartLearning() {
+export default function HowStartLearning({setShow}) {
     const [from, setFrom] = useState(0);
     const [to, setTo] = useState(0);
 
@@ -176,12 +176,7 @@ export default function HowStartLearning() {
                 <Content>
                     <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
                     <AnimatedStages style={springs}>
-                        <Stage />
-                        <Stage />
-                        <Stage />
-                        <Stage />
-                        <Stage />
-                        <Stage />
+                        <Stage setShow={setShow}/>
                     </AnimatedStages>
                 </Content>
             </Container>

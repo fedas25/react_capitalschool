@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState } from 'react';
 import styled from "styled-components"
 import { useSpring, animated } from '@react-spring/web';
 import Font1920_h4 from "./../fonts/desktop/1920_h4"
@@ -9,13 +9,16 @@ import crossExit from "./../../assets/CrossExit.svg"
 import Button from "../../components/Button"
 
 const Container = styled.div`
+    background-color: #fff;
+    background-color: #e5dede;
     padding: 64px 32px 128px 32px;
-    margin: 0 auto;
+    margin: 5% auto;
     left: 50%;
     margin-left: -400px;
     position: fixed;
-    border: 2px solid gray;
     border-radius: 50px;
+    z-index: 2;
+    display: ${(props) => props.show == false ? "none" : "block"} ;
 `;
 
 const CrossExit = styled.img`
@@ -35,7 +38,17 @@ const Content = styled.div`
     overflow: hidden;
 `;
 
-export default function Test() {
+const StyledFont1920_h5 = styled(Font1920_h5)`
+    margin-bottom: 48px;
+`
+
+
+
+
+
+export default function Test({show, setShow}) {
+
+
     const [from, setFrom] = useState(0);
     const [to, setTo] = useState(0);
 
@@ -49,6 +62,7 @@ export default function Test() {
             x: to,
         },
     })
+
     function handlerLeft() {
         setFrom(to);
         setTo(to + 800);
@@ -59,127 +73,15 @@ export default function Test() {
     }
     return (
         <>
-            <Container>
-                <CrossExit src={crossExit} />
+            <Container show={+show}>
+                <CrossExit src={crossExit} onClick={() => { setShow(false) }} />
                 <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
                 <Content>
 
                     <AnimationListCards style={springs}>
-
                         <CardQuestion>
                             <StyledNavigation />
-                            <Font1920_h5 test>Сколько букв в английском алфавите?</Font1920_h5>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                        </CardQuestion>
-
-                        <CardQuestion>
-                            <StyledNavigation />
-                            <Font1920_h5 test>Сколько букв в английском алфавите?</Font1920_h5>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                        </CardQuestion>
-
-                        <CardQuestion>
-                            <StyledNavigation />
-                            <Font1920_h5 test>Сколько букв в английском алфавите?</Font1920_h5>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                        </CardQuestion>
-
-                        <CardQuestion>
-                            <StyledNavigation />
-                            <Font1920_h5 test>Сколько букв в английском алфавите?</Font1920_h5>
+                            <StyledFont1920_h5 test>Сколько букв в английском алфавите?</StyledFont1920_h5>
                             <ResponseOptions>
                                 <Options>
                                     <StyledInput />
@@ -214,7 +116,7 @@ export default function Test() {
                             </ResponseOptions>
 
                             <ButtonContainer>
-                                <Button title="отправить" />
+                                <Button title="отправить" handler={() => { setShow(false) }} />
                             </ButtonContainer>
                         </CardQuestion>
 
@@ -286,7 +188,7 @@ const StyledNavigation = styled(Navigation)`
 const ResponseOptions = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 48px;
+    margin-bottom: 12px;
 `
 
 const Options = styled.div`

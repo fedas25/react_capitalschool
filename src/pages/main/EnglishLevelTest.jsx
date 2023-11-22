@@ -1,11 +1,10 @@
-import React from "react"
+import React, { useState, useContext, createContext } from 'react';
 import styled from "styled-components"
 import Font1920_h2 from "./../../components/fonts/desktop/1920_h2"
 import Font1920_p1 from "./../../components/fonts/desktop/1920_p1"
 import Button from "../../components/Button"
 import level from "../../assets/lavel.jpg";
 
-export default function EnglishLevelTest() {
     const Container = styled.div`
         width: 100%;
         margin: 0 auto;
@@ -44,6 +43,10 @@ export default function EnglishLevelTest() {
         width: 820px;
     `;
 
+
+export default function EnglishLevelTest( {setShow} ) {
+
+
     return (
         <>
             <Container>
@@ -61,7 +64,7 @@ export default function EnglishLevelTest() {
                                 который сооaтветствует вашим потребностям и целям.
                             </Font1920_p1>
                         </Text>
-                        <Button title="пройти тест" />
+                        <Button title="пройти тест" handler={() => {setShow(true)}}/>
                     </Information>
                     <Image src={level}/>
                 </Content>

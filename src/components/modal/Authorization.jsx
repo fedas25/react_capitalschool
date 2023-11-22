@@ -29,6 +29,7 @@ function TypeSelection({handlerNav}) {
 }
 
 const Container = styled.div`
+  background-color: #fff;
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -66,10 +67,10 @@ const ForgotPassword = styled.p`
   cursor: pointer;
 `
 
-export default function Authoris({ handlerButton, handlerNav }) {
+export default function Authoris({ handlerButton, handlerNav, handlerExit }) {
   return (
     <Container>
-      <CrossExit src={crossExit} />
+      <CrossExit src={crossExit} onClick={handlerExit}/>
       <TypeSelection handlerNav={handlerNav}/>
       <ContainerInputs>
         <InputText placeholder="Email" width="100%" />
