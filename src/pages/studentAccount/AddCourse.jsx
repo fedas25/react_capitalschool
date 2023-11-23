@@ -19,6 +19,7 @@ function ComponentAddCourse({ className }) {
 
 const StyledAddCourse = styled(ComponentAddCourse)`
     width: 100%;
+    cursor: pointer;
     display: flex;
     justify-content: end;
     align-items: center;

@@ -19,7 +19,10 @@ const ListCardAccount = styled.div`
     gap: 32px;
 `;
 
+
+// вынести в отдельный компонент
 const ListCard = styled.div`
+    border-top: 2px solid var(--srt, #E4E4E7);
     width: 100%;
     display: flex;
     flex-direction: column;
