@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import H4 from "../../components/fonts/desktop/1920_h4"
 import H5 from "../../components/fonts/desktop/1920_h5"
@@ -10,6 +10,7 @@ import PricePerHour from '../../components/PricePerHour'
 import InformationAboutCourses from './InformationAboutCourses'
 import ContainerCardCourse from './ContainerCourse'
 import jackdaw from "./../../assets/jackdaw.png";
+import testArrow from "./../../assets/testArrow.svg";
 
 function Statistics({ className, description, count }) {
     return (
@@ -74,9 +75,9 @@ const Date = styled.div`
 function TypeRecord({ trial }) {
     return (
         <>
-            {trial ?
+            {/* {trial ?
                 <H6>пробное занятие</H6> :
-                <H6>учебное занятие</H6>}
+                <H6>учебное занятие</H6>} */}
         </>
     )
 }
@@ -95,7 +96,7 @@ const InfoContainer = styled.div`
     align-items: center;
 `;
 
-function InformationAboutRecord({ className, passed }) {
+function InformationAboutRecord({ className, passed = null }) {
     return (
         <div className={className}>
             {passed ? (
@@ -124,12 +125,35 @@ const StyledInformationAboutRecord = styled(InformationAboutRecord)`
     align-items: center;
 `;
 
-export default function CardMyCourse({ type = null }) {
+
+const PassTest = styled.div`
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    img {
+        height: 64px;
+        width: 64px;
+    }
+`;
+
+
+
+export default function CardMyCourse({ type = null, testOpening = null, testFinal = null, handle = null }) {
+        
     return (
         <ContainerCardCourse>
-            {type === "record" ? <StyledInformationAboutRecord record={+true}/> :
-            type === "passed" ? <StyledInformationAboutRecord passed /> :
-            null}
+            {(testOpening || testFinal) ? (
+                <PassTest onClick={handle}>
+                    <img src={testArrow} alt="arrow right" />
+                    <BTN color="gray">Пройти {testOpening == true ? "вступительный" : "итоговый"} тест</BTN>
+                </PassTest>) :
+                null
+            }
+
+            {type === "record" ? <StyledInformationAboutRecord record={+true} /> :
+                type === "passed" ? <StyledInformationAboutRecord passed /> :
+                    null}
             <Main type={type}>
                 <InformationAboutCourses
                     teacherName="Куликова"
@@ -141,7 +165,7 @@ export default function CardMyCourse({ type = null }) {
                 {type == null ? (
                     <Action>
                         <Button title="Оплатить" />
-                        <Button title="Записаться" color="violet" />
+                        <Button title="Записаться" btnColor="violet" />
                     </Action>
                 ) : null}
                 {type === "passed" ? (
