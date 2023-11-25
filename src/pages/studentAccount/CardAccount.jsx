@@ -82,6 +82,8 @@ function TypeRecord({ trial }) {
     )
 }
 
+
+// вынести
 const LinkToSession = styled.div`
 background: #EFEEF4;
 padding: 16px 28px;
@@ -90,6 +92,8 @@ display: flex;
 align-items: center;
 justify-content: center;
 `;
+
+
 
 const InfoContainer = styled.div`
     display: flex;
@@ -139,7 +143,7 @@ const PassTest = styled.div`
 
 
 
-export default function CardMyCourse({ type = null, testOpening = null, testFinal = null, handle = null }) {
+export default function CardMyCourse({ type = null, testOpening = null, testFinal = null, handle = null, handlerRecord = null }) {
         
     return (
         <ContainerCardCourse>
@@ -165,7 +169,7 @@ export default function CardMyCourse({ type = null, testOpening = null, testFina
                 {type == null ? (
                     <Action>
                         <Button title="Оплатить" />
-                        <Button title="Записаться" btnColor="violet" />
+                        <Button title="Записаться" btnColor="violet" handler={handlerRecord}/>
                     </Action>
                 ) : null}
                 {type === "passed" ? (

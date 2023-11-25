@@ -184,18 +184,28 @@ color: #757575;
   padding: 25.5px 28px;
 }
 
+
 .losos {
-    background-color: #477ed0;
+    background-color: rgba(89, 196, 229, 0.10);
+    color: #59C4E5;
     border-radius: 40%;
 }
 
 .karp {
-    background-color: #51be93;
+    background-color: rgba(107, 115, 194, 0.10);
+    color: #6B73C2;
     border-radius: 40%;
 }
 
 .okyn {
-    background-color: #845589;
+    background-color: rgba(255, 144, 144, 0.10);
+    color: #FF9090;
+    border-radius: 40%;
+}
+
+.pivas {
+    background-color: rgba(215, 147, 227, 0.5); 
+    color: #D793E3;
     border-radius: 40%;
 }
 
@@ -205,7 +215,13 @@ color: #757575;
 
 `;
 // разные календари для отображения записей/отображения свободных дней
-export default function App({student, type = null, handlerDay, className}) {
+export default function App({main = null, handlerDay = null, className}) {
+
+  // сделать чтобы календарь просто получал данные и отображал их в днях
+  // и имел 1 обработчик на нажатие на плитку дня 
+
+  const [isSelectedDay, setIsSelectedDay] = useState(false)
+
   const [value, onChange] = useState(new Date());
 
   function formatSelectedDate({ activeStartDate, date, view }) {
@@ -221,7 +237,7 @@ export default function App({student, type = null, handlerDay, className}) {
     const indexDay = formatDateSessions.indexOf(date.toDateString());
 
     if (indexDay === -1 || view != "month") return
-    
+
     return dateSessions[indexDay].color;
   }
 
@@ -235,16 +251,41 @@ export default function App({student, type = null, handlerDay, className}) {
 
     const indexDay = formatDateSessions.indexOf(date.toDateString());
 
+    if (isSelectedDay && (isSelectedDay.toDateString() == date.toDateString())) {
+      return "pivas"
+    }
+
     if (indexDay === -1 || view != "month") return
-    
     return "locked"
   }
 
   function ViewMoreDetails(value, event) {
-    const dateDay = new Date(value)
-    if (new Date().toDateString() === dateDay.toDateString()) {
-      handlerDay();
-    }
+    const dateDay = new Date(value);
+
+    const dateSessions = ["2023-11-04", "2023-11-08", "2023-11-12"];
+    const formatDateSessions = dateSessions.map((date) => new Date(date).toDateString());
+
+    const indexDay = formatDateSessions.indexOf(dateDay.toDateString());
+    
+    // const dateSessions = ["2023-11-04", "2023-11-08", "2023-11-12"];
+    // const formatDateSessions = dateSessions.map((date) => new Date(date).toDateString());
+
+    if (indexDay === -1) return
+
+    handlerDay();
+
+    // if (new Date().toDateString() === dateDay.toDateString()) {
+    //   handlerDay();
+    // }
+  }
+
+  function record(value, event) {
+    setIsSelectedDay(new Date(value))
+    
+    handlerDay();
+    
+    // setIsSelectedDay(true);
+
   }
 
   return (
@@ -253,8 +294,8 @@ export default function App({student, type = null, handlerDay, className}) {
         onChange={onChange}
         value={value}
         tileContent={({ date, view }) => ('')}
-        onClickDay={ViewMoreDetails}
-        tileClassName={formatSelectedDateTeacher}
+        onClickDay={record}
+        tileClassName={main ? formatSelectedDate : formatSelectedDateTeacher}
         // formatYear={(locale, date) => ""}
         view="month"
         prev2Label={null}

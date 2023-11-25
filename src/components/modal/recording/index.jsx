@@ -11,6 +11,7 @@ import Button from "./../../Button"
 import Calendar from "./../../Calendar"
 
             const Container = styled.div`
+                z-index: 1;
                 position: fixed;
                 top: 10%;
                 left: 50%;
@@ -110,7 +111,7 @@ cursor: pointer;
 
 
 
-export default function Recording() {
+export default function Recording({handlerClick}) {
     const [stage, setStage] = useState(0);
     
     function SetNextStage() {
@@ -127,7 +128,7 @@ export default function Recording() {
     return (
     <>
         <Container type={stage === 3 ? "resultRecord" : ""}>
-        <CrossExit src={crossExit} />
+        <CrossExit src={crossExit} onClick={handlerClick}/>
             <InformationRecording>
             
             <DateTimeRecord>
@@ -150,9 +151,9 @@ export default function Recording() {
                 <H5 gray>14:00</H5>
 
                 {stage === 2 ? (
-                <H5>15:00</H5>
+                <H5>16:00</H5>
                 ) : stage === 1 ? (
-                <H5 gray>16:00</H5>
+                <H5 gray handler={SetNextStage}>16:00</H5>
                 ) : null}
 
             </TimeRecording>
@@ -160,7 +161,7 @@ export default function Recording() {
 
             {stage === 2 ? (
             <ContainerButton>
-            <Button title="Записаться"/>
+            <Button title="Записаться" handler={SetNextStage}/>
             </ContainerButton>
             ) : null }
 
@@ -171,7 +172,7 @@ export default function Recording() {
             ) : null }
 
 
-            <StyledCalendar type="record"/>
+            <StyledCalendar type="record" handlerDay={SetNextStage}/>
         </Container>
       <button onClick={SetNextStage}>losos</button>
     </>

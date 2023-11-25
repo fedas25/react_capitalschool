@@ -26,7 +26,7 @@ const ListCard = styled.div`
     flex-direction: column;
 `;
 
-export default function PersonalData({handlerDay}) {
+export default function PersonalData({handlerDay, handlerRecord}) {
     const [showTest, setShowTest] = useState(false)
 
     return (
@@ -36,7 +36,7 @@ export default function PersonalData({handlerDay}) {
                 <ListCardAccount>
                     <AddCourse />
                     <ListCard>
-                        <CardMyCourse testOpening handle={() => setShowTest(true)}/>
+                        <CardMyCourse testOpening handle={() => setShowTest(true)} handlerRecord={handlerRecord}/>
                         <CardMyCourse testFinal handle={() => setShowTest(true)}/>
                         <CardMyCourse/>
                         <CardMyCourse/>
