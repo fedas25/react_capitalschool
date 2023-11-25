@@ -7,6 +7,7 @@ import jackdaw from "./../../../assets/jackdaw.png";
 import crossExit from "./../../../assets/CrossExit.svg"
 
 import H5 from "../../fonts/desktop/1920_h5"
+import BTN from "../../fonts/desktop/1920_button"
 import Font1920_h6 from "../../fonts/desktop/1920_h6"
 import BadgeCource from '../../BadgeCource'
 
@@ -92,16 +93,25 @@ const Date = styled.div`
     margin-right: 24px;
 `;
 
-function TypeRecord({ trial }) {
+function TypeRecord({ trial = null }) {
     return (
         <>
-            {/* {trial ?
-                <H6>пробное занятие</H6> :
-                <H6>учебное занятие</H6>} */}
+            {trial ?
+                <Font1920_h6>пробное занятие</Font1920_h6> :
+                <Font1920_h6>учебное занятие</Font1920_h6>}
         </>
     )
 }
 
+const LinkToSession = styled.div`
+    background: #EFEEF4;
+    padding: 16px 28px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+`;
 
 const InfoContainer = styled.div`
     display: flex;
@@ -121,6 +131,9 @@ function InformationAboutRecord({ className, passed }) {
                 </Date>
                 <TypeRecord trial />
             </InfoContainer>
+            <LinkToSession>
+                <BTN color="violet">ссылка на трансляцию</BTN>
+            </LinkToSession>
         </div>
     )
 }
@@ -130,6 +143,7 @@ const StyledInformationAboutRecord = styled(InformationAboutRecord)`
     display: flex;
     ${(props) => props.record ? "justify-content: space-between;" : null}
     align-items: center;
+    justify-content: space-between;
 `;
 
 
@@ -155,7 +169,7 @@ const CrossExit = styled.img`
   cursor: pointer;
 `;
 
-export default function InformationAboutDay({ type = null, handlerClick }) {
+export default function InformationAboutDay({ type = null, handlerClick = null }) {
     return (
         <ModalContainer>
             <CrossExit src={crossExit} onClick={handlerClick} />
