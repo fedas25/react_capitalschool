@@ -42,7 +42,7 @@ export default function PersonalData({handlerDay}) {
                         <CardMyCourse/>
                     </ListCard>
                 </ListCardAccount>
-                <Calendar handlerDay={handlerDay}/>
+                <Calendar handlerDay={handlerDay} main/>
             </ContainerContent>
         </>
     )

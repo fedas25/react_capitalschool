@@ -26,7 +26,7 @@ const Div = styled.div`
     `;
 
 export default function Main() {
-    const [IsDisplayRecordInformation, setIsDisplayRecordInformation] = useState(false)
+    const [IsDisplayRecordInformation, setIsDisplayRecordInformation] = useState(true)
 
     function hideFullRecordInformation() {
         setIsDisplayRecordInformation(false)
@@ -41,17 +41,22 @@ export default function Main() {
                 handlerEntry={() => setShowEntry(true)}
                 courses={["B1 (Intermediate Level)", "B2 (Upper-Intermediate Level)", "C1 (Intermediate Level)", "C2 (Upper-Intermediate Level)"]}
             />
+
+            {/* где-то тут должны храниться данные о записях на конкретный день, чтобы календарь мог отобразить
+                данные прдробне при клике на день
+            */}
+
             <Container>
                 <PersonalData />
-            <ContainerWorkingArea>
-            {IsDisplayRecordInformation ? <InformationAboutDay handlerClick={hideFullRecordInformation} /> : null}
-            <NavBarUserAccount />
-            <Routes>
-                <Route path="/" element={<WorkingAreaCourse handlerDay={ShowFullRecordInformation} />} />
-                <Route path="/record" element={<WorkingAreaRecord />} />
-                <Route path="/passed" element={<WorkingAreaPassed />} />
-            </Routes>
-            </ContainerWorkingArea>
+                <ContainerWorkingArea>
+                    {IsDisplayRecordInformation ? <InformationAboutDay handlerClick={hideFullRecordInformation} /> : null}
+                    <NavBarUserAccount />
+                    <Routes>
+                        <Route path="/" element={<WorkingAreaCourse handlerDay={ShowFullRecordInformation} />} />
+                        <Route path="/record" element={<WorkingAreaRecord />} />
+                        <Route path="/passed" element={<WorkingAreaPassed />} />
+                    </Routes>
+                </ContainerWorkingArea>
                 <Footer />
             </Container>
         </>
