@@ -10,15 +10,15 @@ const Button = styled.div`
     gap: 10px;
     border-radius: 50px;
     cursor: pointer;
-    background: ${(props) => {
+    background-color: ${(props) => {
             return (props.color === "violet" ? "#6B73C2" :
             props.color === "gray" ? "rgba(107, 115, 194, 0.10);" : "#000")
             }};
     `;
 
-export default function Main({ title, color = null, textColor, handler = null, className = null}) {
+export default function Main({ title, color = null, btnColor = null, handler = null, className = null}) {
     return (
-        <Button onClick={handler} className={className}>
+        <Button color={btnColor} onClick={handler} className={className}>
             <FontButton color={color}>{title}</FontButton>
         </Button>
     );

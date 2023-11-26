@@ -215,7 +215,7 @@ color: #757575;
 
 `;
 // разные календари для отображения записей/отображения свободных дней
-export default function App({main = null, handlerDay = null, className}) {
+export default function App({main = null, handlerDay = () => {}, className}) {
 
   // сделать чтобы календарь просто получал данные и отображал их в днях
   // и имел 1 обработчик на нажатие на плитку дня 

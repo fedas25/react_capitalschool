@@ -128,13 +128,13 @@ const StyledProperty = styled(Property)`
     gap: 32px;
 `
 
-function Status({ marked, status }) {
+function Status({ marked, status, handler }) {
     return (
         <>
             {marked ? (
                 <H5 gray>{status}</H5>
             ):(
-                <Button title="Отметить посещение" />
+                <Button title="Отметить посещение" handler={handler}/>
             )}
         </>
     )
@@ -156,14 +156,14 @@ export default function CardMyCourse({ type = null, handler = () => {} }) {
 
                 {type === "record" ? (
                     <Action>
-                        <Button handler={handler} title="Перенести" />
+                        <Button handler={handler} title="Перенести"/>
                     </Action>
                 ) : null}
 
 
                 {type === "passed" ? (
                     <Action below="+0">
-                        <Status status="не был" />
+                        <Status status="не был" handler={handler}/>
                     </Action>
                 ) : null}
 

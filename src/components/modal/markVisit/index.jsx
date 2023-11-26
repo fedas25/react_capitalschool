@@ -9,11 +9,12 @@ import crossExit from "./../../../assets/CrossExit.svg"
 import Button from "./../../Button"
 
             const Container = styled.div`
+                z-index: 1;
                 position: fixed;
                 top: 10%;
                 left: 50%;
                 border: 1px solid gray;
-                margin-left: -815px;
+                margin-left: -350px;
                 width: 700px;
                 border-radius: 50px;
                 background: #ffff;
@@ -26,6 +27,7 @@ import Button from "./../../Button"
                     "InfoTeacherCource"
                     "selectionField"
                     "button";
+
             `;
 
             const StyledInfoTeacherCource = styled(InfoTeacherCource)`
@@ -92,11 +94,11 @@ const Radiocell = styled.div`
 `;
 
 
-export default function MarkVisit() {
+export default function MarkVisit({handler}) {
     return (
     <>
         <Container>
-        <CrossExit src={crossExit} />
+        <CrossExit src={crossExit} onClick={handler}/>
 
             <InformationRecording>
                 <DateTimeRecord>
@@ -120,7 +122,7 @@ export default function MarkVisit() {
             </SelectionField>
 
             <ContainerButton>
-                <Button title="Перенести"/>
+                <Button title="Отметить" handler={handler}/>
             </ContainerButton>
 
         </Container>

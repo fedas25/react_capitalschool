@@ -10,6 +10,9 @@ import WorkingAreaPassed from "./WorkingAreaPassed"
 import ContainerWorkingArea from "./../studentAccount/ContainerWorkingArea";
 import NavBarUserAccount from "../../components/layout/navigation/NavBarUserAccount";
 import TransferRecord from "./../../components/modal/transferRecord"
+import MarkVisit from "./../../components/modal/markVisit"
+
+// import { fieldSize } from "tar";
 
 const Container = styled.div`
         display: flex;
@@ -21,9 +24,12 @@ const Container = styled.div`
 
 export default function Main() {
     const [IsDisplayTransferRecord, setIsDisplayTransferRecord] = useState(false)
-
     function hideFullRecordInformation() { setIsDisplayTransferRecord(false) }
     function ShowFullRecordInformation() { setIsDisplayTransferRecord(true) }
+
+    const [IsDisplayMarkVisit, setIsDisplayMarkVisit] = useState(false)
+    function hideMarkVisit() { setIsDisplayMarkVisit(false) }
+    function ShowMarkVisit() { setIsDisplayMarkVisit(true) }
 
     return (
         <>
@@ -31,7 +37,7 @@ export default function Main() {
                 courses={["B1 (Intermediate Level)", "B2 (Upper-Intermediate Level)", "C1 (Intermediate Level)", "C2 (Upper-Intermediate Level)"]}
             />
             {IsDisplayTransferRecord ? <TransferRecord handler={hideFullRecordInformation} /> : null}
-            
+            {IsDisplayMarkVisit ? <MarkVisit handler={hideMarkVisit} /> : null}
             <Container>
                 <PersonalData teacher />
                 <ContainerWorkingArea>
@@ -39,7 +45,7 @@ export default function Main() {
                     <Routes>
                         <Route path="/" element={<WorkingAreaMyStudents />} />
                         <Route path="/record" element={<WorkingAreaRecord handler={ShowFullRecordInformation}/>} />
-                        <Route path="/passed" element={<WorkingAreaPassed />} />
+                        <Route path="/passed" element={<WorkingAreaPassed handler={ShowMarkVisit}/>} />
                     </Routes>
                 </ContainerWorkingArea>
                 <Footer />

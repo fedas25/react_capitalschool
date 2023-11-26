@@ -88,15 +88,16 @@ const StyledManagingCourses = styled(ManagingCourses)`
     gap: 12px;
 `;
 
-export default function PersonalData() {
+export default function PersonalData({handlerShowBuyingClasses}) {
+    
     return (
         <>
             <ContainerContent>
                 <ListCardAccount>
                     <StyledManagingCourses />
                     <ListCard>
-                        <CardMyCourse type="passed" />
-                        <CardMyCourse type="passed" />
+                        <CardMyCourse type="passed" handle={handlerShowBuyingClasses}/>
+                        <CardMyCourse type="passed"/>
                     </ListCard>
                 </ListCardAccount>
                 <Calendar />
