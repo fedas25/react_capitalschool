@@ -143,7 +143,7 @@ const PassTest = styled.div`
 
 
 
-export default function CardMyCourse({ type = null, testOpening = null, testFinal = null, handle = null, handlerRecord = null }) {
+export default function CardMyCourse({ type = null, testOpening = null, testFinal = null, handle = null, handlerRecord = null, handlerShowBuyingClasses }) {
         
     return (
         <ContainerCardCourse>
@@ -168,13 +168,13 @@ export default function CardMyCourse({ type = null, testOpening = null, testFina
 
                 {type == null ? (
                     <Action>
-                        <Button title="Оплатить" />
+                        <Button title="Оплатить" handler={handlerShowBuyingClasses}/>
                         <Button title="Записаться" btnColor="violet" handler={handlerRecord}/>
                     </Action>
                 ) : null}
                 {type === "passed" ? (
                     <Action>
-                        <Button title="Записаться" />
+                        <Button handler={handle} title="Записаться" />
                     </Action>
                 ) : null}
 

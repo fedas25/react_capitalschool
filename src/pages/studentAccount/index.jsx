@@ -11,6 +11,7 @@ import { Route, Routes } from "react-router-dom"
 import ContainerWorkingArea from "./ContainerWorkingArea";
 import InformationAboutDay from "./../../components/modal/informationAboutDay"
 import Recording from "./../../components/modal/recording"
+import BuyingClasses from "./../../components/modal/buyingClasses"
 
 const Container = styled.div`
         display: flex;
@@ -22,22 +23,16 @@ const Container = styled.div`
 
 export default function Main() {
     const [IsDisplayRecordInformation, setIsDisplayRecordInformation] = useState(false)
-
-    function hideFullRecordInformation() {
-        setIsDisplayRecordInformation(false)
-    }
-    function ShowFullRecordInformation() {
-        setIsDisplayRecordInformation(true)
-    }
+    function hideFullRecordInformation() { setIsDisplayRecordInformation(false) }
+    function ShowFullRecordInformation() { setIsDisplayRecordInformation(true) }
 
     const [IsDisplayRecord, setIsDisplayInformation] = useState(false)
+    function hideFullRecord() { setIsDisplayInformation(false) }
+    function ShowFullRecord() { setIsDisplayInformation(true) }
 
-    function hideFullRecord() {
-        setIsDisplayInformation(false)
-    }
-    function ShowFullRecord() {
-        setIsDisplayInformation(true)
-    }
+    const [IsBuyingClasses, setIsBuyingClasses] = useState(false)
+    function hideBuyingClasses() { setIsBuyingClasses(false) }
+    function ShowBuyingClasses() { setIsBuyingClasses(true) }
 
     return (
         <>
@@ -53,14 +48,16 @@ export default function Main() {
             <Container>
                 <PersonalData />
                 <ContainerWorkingArea>
-
+                    {/* модалки */}
                     {IsDisplayRecord ? <Recording handlerClick={hideFullRecord} /> : null}
                     {IsDisplayRecordInformation ? <InformationAboutDay handlerClick={hideFullRecordInformation} /> : null}
+                    {IsBuyingClasses ? <BuyingClasses handlerClick={hideBuyingClasses} /> : null}
+                    {/* модалки */}
                     <NavBarUserAccount />
                     <Routes>
-                        <Route path="/" element={<WorkingAreaCourse handlerDay={ShowFullRecordInformation} handlerRecord={ShowFullRecord} />} />
+                        <Route path="/" element={<WorkingAreaCourse handlerShowBuyingClasses={ShowBuyingClasses} handlerDay={ShowFullRecordInformation} handlerRecord={ShowFullRecord} />} />
                         <Route path="/record" element={<WorkingAreaRecord />} />
-                        <Route path="/passed" element={<WorkingAreaPassed />} />
+                        <Route path="/passed" element={<WorkingAreaPassed handlerShowBuyingClasses={ShowBuyingClasses}/>} />
                     </Routes>
                 </ContainerWorkingArea>
                 <Footer />
