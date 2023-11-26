@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useState } from "react"
+import { Routes, Route } from "react-router-dom"
 import styled from "styled-components";
 import NavBar from "../../components/layout/navigation/NavBar"
 import Footer from "../../components/Footer.jsx";
@@ -8,10 +9,9 @@ import WorkingAreaRecord from "./WorkingAreaRecord"
 import WorkingAreaPassed from "./WorkingAreaPassed"
 import ContainerWorkingArea from "./../studentAccount/ContainerWorkingArea";
 import NavBarUserAccount from "../../components/layout/navigation/NavBarUserAccount";
-import {Routes, Route} from "react-router-dom"
+import TransferRecord from "./../../components/modal/transferRecord"
 
-export default function Main() {
-    const Container = styled.div`
+const Container = styled.div`
         display: flex;
         padding: 168px 0 0 0;
         flex-direction: column;
@@ -19,20 +19,30 @@ export default function Main() {
         row-gap: 168px;
     `;
 
+export default function Main() {
+    const [IsDisplayTransferRecord, setIsDisplayTransferRecord] = useState(false)
+
+    function hideFullRecordInformation() { setIsDisplayTransferRecord(false) }
+    function ShowFullRecordInformation() { setIsDisplayTransferRecord(true) }
+
     return (
         <>
-            {/* <NavBar /> */}
+            <NavBar
+                courses={["B1 (Intermediate Level)", "B2 (Upper-Intermediate Level)", "C1 (Intermediate Level)", "C2 (Upper-Intermediate Level)"]}
+            />
+            {IsDisplayTransferRecord ? <TransferRecord handler={hideFullRecordInformation} /> : null}
+            
             <Container>
                 <PersonalData teacher />
                 <ContainerWorkingArea>
                     <NavBarUserAccount teacher />
                     <Routes>
                         <Route path="/" element={<WorkingAreaMyStudents />} />
-                        <Route path="/record" element={<WorkingAreaRecord />} />
+                        <Route path="/record" element={<WorkingAreaRecord handler={ShowFullRecordInformation}/>} />
                         <Route path="/passed" element={<WorkingAreaPassed />} />
                     </Routes>
                 </ContainerWorkingArea>
-                {/* <Footer /> */}
+                <Footer />
             </Container>
         </>
     )

@@ -15,6 +15,7 @@ import Calendar from "./../../Calendar"
                 top: 10%;
                 left: 50%;
                 border: 1px solid gray;
+                z-index: 1;
                 margin-left: -815px;
                 width: 1630px;
                 width: ${(props) => props.type === "resultRecord" ? "756px" : "1630px" };
@@ -106,7 +107,7 @@ cursor: pointer;
 `;
 
 
-export default function TransferRecord() {
+export default function TransferRecord({handler = () => {}}) {
     const [stage, setStage] = useState(0);
 
     function SetNextStage() {
@@ -116,7 +117,7 @@ export default function TransferRecord() {
     return (
     <>
         <Container type={stage === 3 ? "resultRecord" : ""}>
-        <CrossExit src={crossExit} />
+        <CrossExit src={crossExit} onClick={handler}/>
 
             <TypeRecord>
                 Учёбное занятие
@@ -152,7 +153,7 @@ export default function TransferRecord() {
                 {stage === 2 ? (
                 <H5>15:00</H5>
                 ) : stage === 1 ? (
-                <H5 gray>16:00</H5>
+                <H5 gray handler={SetNextStage}>16:00</H5>
                 ) : null}
 
             </TimeRecording>
@@ -160,7 +161,7 @@ export default function TransferRecord() {
 
             {stage === 2 ? (
             <ContainerButton>
-                <Button title="Перенести"/>
+                <Button handler={SetNextStage} title="Перенести"/>
             </ContainerButton>
             ) : null }
 
@@ -171,11 +172,10 @@ export default function TransferRecord() {
             ) : null }
 
             {stage != 3 ? (
-                <StyledCalendar type="record"/>
+                <StyledCalendar type="record" handlerDay={SetNextStage}/>
             ) : null }
 
         </Container>
-      <button onClick={SetNextStage}>losos</button>
     </>
   )
 }

@@ -140,7 +140,7 @@ function Status({ marked, status }) {
     )
 }
 
-export default function CardMyCourse({ type = null }) {
+export default function CardMyCourse({ type = null, handler = () => {} }) {
     return (
         <ContainerCardCourse>
             {type === "record" ? <StyledInformationAboutRecord record={+true} /> :
@@ -156,14 +156,14 @@ export default function CardMyCourse({ type = null }) {
 
                 {type === "record" ? (
                     <Action>
-                        <Button title="Перенести" />
+                        <Button handler={handler} title="Перенести" />
                     </Action>
                 ) : null}
 
 
                 {type === "passed" ? (
-                    <Action below="+1">
-                        <Status marked status="был" />
+                    <Action below="+0">
+                        <Status status="не был" />
                     </Action>
                 ) : null}
 
