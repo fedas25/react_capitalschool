@@ -1,9 +1,12 @@
-.losos {
-    background-color: #477ed0;
+.ss {
+    position: absolute;
+    width: 100%;
+    padding: 96px 128px 120px 96px;
+    display: flex;
+    justify-content: end;
+    background-color: #6B73C2;
+    z-index: 1;
 }
-
-
-
 
 .my-node-enter {
     transform: translateY(-1500px);
@@ -22,6 +25,10 @@
     transform: translateY(-1500px);
     transition: transform 1s;
 }
+
+
+
+
 
 
 .mquestion-enter {

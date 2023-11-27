@@ -7,12 +7,12 @@ import Font1920_p1 from "./../fonts/desktop/1920_p1"
 import Arrow from "../../components/Arrow"
 import crossExit from "./../../assets/CrossExit.svg"
 import Button from "../../components/Button"
+import DarkenedBackground from '../DarkenedBackground';
 
 const Container = styled.div`
     background-color: #fff;
-    background-color: #e5dede;
     padding: 64px 32px 128px 32px;
-    margin: 5% auto;
+    top: 10%;
     left: 50%;
     margin-left: -400px;
     position: fixed;
@@ -42,11 +42,55 @@ const StyledFont1920_h5 = styled(Font1920_h5)`
     margin-bottom: 48px;
 `
 
+function Question({ handler, btn = false }) {
+    return (
+        <CardQuestion>
+            <StyledNavigation />
+            <StyledFont1920_h5 test>Сколько букв в английском алфавите?</StyledFont1920_h5>
+            <ResponseOptions>
+                <Options>
+                    <StyledInput />
+                    <Font1920_p1 gray>
+                        ESOL (C1)
+                    </Font1920_p1>
+                </Options>
+            </ResponseOptions>
+            <ResponseOptions>
+                <Options>
+                    <StyledInput />
+                    <Font1920_p1 gray>
+                        ESOL (C1)
+                    </Font1920_p1>
+                </Options>
+            </ResponseOptions>
+            <ResponseOptions>
+                <Options>
+                    <StyledInput />
+                    <Font1920_p1 gray>
+                        ESOL (C1)
+                    </Font1920_p1>
+                </Options>
+            </ResponseOptions>
+            <ResponseOptions>
+                <Options>
+                    <StyledInput />
+                    <Font1920_p1 gray>
+                        ESOL (C1)
+                    </Font1920_p1>
+                </Options>
+            </ResponseOptions>
+            {btn ?
+                <ButtonContainer>
+                    <Button title="отправить" handler={handler} />
+                </ButtonContainer>
+                : null}
+        </CardQuestion>
+
+    )
+}
 
 
-
-
-export default function Test({show, setShow}) {
+export default function Test({ show, setShow }) {
 
 
     const [from, setFrom] = useState(0);
@@ -71,60 +115,28 @@ export default function Test({show, setShow}) {
         setFrom(to);
         setTo(to - 800);
     }
+
     return (
         <>
-            <Container show={+show}>
-                <CrossExit src={crossExit} onClick={() => { setShow(false) }} />
-                <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
-                <Content>
+            <DarkenedBackground show={+show}>
+                <Container show={+show}>
+                    <CrossExit src={crossExit} onClick={() => { setShow(false) }} />
+                    <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
+                    <Content>
 
-                    <AnimationListCards style={springs}>
-                        <CardQuestion>
-                            <StyledNavigation />
-                            <StyledFont1920_h5 test>Сколько букв в английском алфавите?</StyledFont1920_h5>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
-                            <ResponseOptions>
-                                <Options>
-                                    <StyledInput />
-                                    <Font1920_p1 gray>
-                                        ESOL (C1)
-                                    </Font1920_p1>
-                                </Options>
-                            </ResponseOptions>
+                        <AnimationListCards style={springs}>
 
-                            <ButtonContainer>
-                                <Button title="отправить" handler={() => { setShow(false) }} />
-                            </ButtonContainer>
-                        </CardQuestion>
+                            <Question handler={() => { setShow(false) }} />
+                            <Question handler={() => { setShow(false) }} />
+                            <Question handler={() => { setShow(false) }} />
+                            <Question handler={() => { setShow(false) }} />
+                            <Question btn handler={() => { setShow(false) }} />
 
+                        </AnimationListCards>
 
-                    </AnimationListCards>
-
-                </Content>
-            </Container>
+                    </Content>
+                </Container>
+            </DarkenedBackground>
         </>
     )
 }

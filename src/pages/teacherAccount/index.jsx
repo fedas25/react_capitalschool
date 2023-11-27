@@ -12,8 +12,6 @@ import NavBarUserAccount from "../../components/layout/navigation/NavBarUserAcco
 import TransferRecord from "./../../components/modal/transferRecord"
 import MarkVisit from "./../../components/modal/markVisit"
 
-// import { fieldSize } from "tar";
-
 const Container = styled.div`
         display: flex;
         padding: 168px 0 0 0;

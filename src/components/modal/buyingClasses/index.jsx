@@ -12,12 +12,12 @@ import Font1920_h6 from "./../../fonts/desktop/1920_h6"
 import Font1920price from "./../../fonts/desktop/1920_price"
 import Font1920aboute from "./../../fonts/desktop/1920_about"
 import Button from "./../../Button"
+import DarkenedBackground from '../../DarkenedBackground'
 
 const Container = styled.div`
 position: fixed;
 top: 10%;
 left: 50%;
-border: 1px solid gray;
 margin-left: -344px;
 width: 788px;
 border-radius: 50px;
@@ -91,12 +91,12 @@ width: 56px;
 cursor: pointer;
 `;
 
-function perHour({ className,  numberHours = 1, handler, handlerActive}) {
+function perHour({ className, numberHours = 1, handler, handlerActive }) {
     return (
         <div className={className} onClick={handlerActive}>
             <CountClasses>
                 <Font1920_h6>{numberHours} занятие</Font1920_h6>
-                <StyledOpenCroos src={openingCross} alt="openingCross" onClick={handler}/>
+                <StyledOpenCroos src={openingCross} alt="openingCross" onClick={handler} />
             </CountClasses>
             <Div>
                 <Font1920price>{numberHours * 1000} ₽</Font1920price>
@@ -114,8 +114,8 @@ grid-area: pricePerHour;
 justify-self: left;
 height: 216px;
 padding: 40px 32px;
-border: ${(promps) => promps.active ?  "2px solid var(--hoverButton, #323232)" : "2px solid var(--srt, #E4E4E7)"};
-cursor: ${(promps) => promps.active ?  "default" : "pointer"};
+border: ${(promps) => promps.active ? "2px solid var(--hoverButton, #323232)" : "2px solid var(--srt, #E4E4E7)"};
+cursor: ${(promps) => promps.active ? "default" : "pointer"};
 border-radius: 50px;
 display: flex;
 flex-direction: column;
@@ -217,31 +217,33 @@ const ContainerButton = styled.div`
 
 
 
-export default function BuyingClasses({handlerClick}) {
+export default function BuyingClasses({ handlerClick }) {
     const [numberClasses, setNumberClasses] = useState(1)
-    function addHourClasses(){
+    function addHourClasses() {
         setNumberClasses(() => numberClasses + 1)
     }
 
     const [isHourActive, setisHourActive] = useState(true)
 
     return (
-        <Container>
-            <CrossExit src={crossExit} onClick={handlerClick}/>
-            <StyledInfoTeacherCource teacherName="Гай Юлий Цезарь" nameCourse="Военное дело" srcTeacher={teacher} />
-            <PaymentType>
-                <H5 gray>Выберете тип оплаты</H5>
-            </PaymentType>
-            <DiscountCondition>
-                <P2>скидка предоставляется только при оплате за полный курс *</P2>
-            </DiscountCondition>
-            
-            <StyledPerHour active={+isHourActive} handlerActive={() => setisHourActive(true)} handler={addHourClasses} numberHours={numberClasses}/>
-            <StyledPerCourse active={+isHourActive} handlerActive={() => setisHourActive(false)} />
+        <DarkenedBackground>
+            <Container>
+                <CrossExit src={crossExit} onClick={handlerClick} />
+                <StyledInfoTeacherCource teacherName="Гай Юлий Цезарь" nameCourse="Военное дело" srcTeacher={teacher} />
+                <PaymentType>
+                    <H5 gray>Выберете тип оплаты</H5>
+                </PaymentType>
+                <DiscountCondition>
+                    <P2>скидка предоставляется только при оплате за полный курс *</P2>
+                </DiscountCondition>
 
-            <ContainerButton>
-                <Button title="Оплатить" handler={handlerClick}/>
-            </ContainerButton>
-        </Container>
+                <StyledPerHour active={+isHourActive} handlerActive={() => setisHourActive(true)} handler={addHourClasses} numberHours={numberClasses} />
+                <StyledPerCourse active={+isHourActive} handlerActive={() => setisHourActive(false)} />
+
+                <ContainerButton>
+                    <Button title="Оплатить" handler={handlerClick} />
+                </ContainerButton>
+            </Container>
+        </DarkenedBackground>
     )
 }

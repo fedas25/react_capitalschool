@@ -24,12 +24,12 @@ function TypeSelection() {
 }
 
 const Container = styled.div`
+  background-color: #fff;
   position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 650px;
-  border: 6px solid #9c9c9c;
   border-radius: 50px;
   top:12%;
   left: 50%;

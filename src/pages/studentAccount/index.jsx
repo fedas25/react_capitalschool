@@ -53,7 +53,7 @@ export default function Main() {
                     {IsDisplayRecordInformation ? <InformationAboutDay handlerClick={hideFullRecordInformation} /> : null}
                     {IsBuyingClasses ? <BuyingClasses handlerClick={hideBuyingClasses} /> : null}
                     {/* модалки */}
-                    <NavBarUserAccount />
+                    <NavBarUserAccount student/>
                     <Routes>
                         <Route path="/" element={<WorkingAreaCourse handlerShowBuyingClasses={ShowBuyingClasses} handlerDay={ShowFullRecordInformation} handlerRecord={ShowFullRecord} />} />
                         <Route path="/record" element={<WorkingAreaRecord />} />

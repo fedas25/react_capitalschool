@@ -100,7 +100,7 @@ export default function PersonalData({handlerShowBuyingClasses}) {
                         <CardMyCourse type="passed"/>
                     </ListCard>
                 </ListCardAccount>
-                <Calendar />
+                <Calendar main/>
             </ContainerContent>
         </>
     )

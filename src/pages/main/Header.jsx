@@ -5,7 +5,6 @@ import Font1920_h1 from "../../components/fonts/desktop/1920_h1"
 import Font1920_p1 from "../../components/fonts/desktop/1920_p1"
 import vetka from "./../../assets/vetka.png"
 
-export default function Header() {
     const Div = styled.div`
         position: relative;
         display: flex;
@@ -19,13 +18,13 @@ export default function Header() {
         
     `;
 
-    function Vetka({ className }) {
-        return (
-            <img className={className} src={vetka} alt="vetka" />
-        )
-    }
+    // function Vetka({ className }) {
+    //     return (
+    //         <img className={className} src={vetka} alt="vetka" />
+    //     )
+    // }
 
-    const StyledVetka = styled(Vetka)`
+    const Vetka = styled.img`
         position: absolute;
         width: 720px;
         height: 1008px;
@@ -34,10 +33,11 @@ export default function Header() {
         transform: rotate(1deg);
     `;
 
+export default function Header() {
     return (
         <>
             <Div>
-                <StyledVetka />
+                <Vetka src={vetka} alt="vetka" />
                 <Font1920_h1>
                     Высокий уровень английского<br />
                     без стресса и неудобств

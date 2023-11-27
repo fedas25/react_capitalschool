@@ -4,9 +4,9 @@ import crossExit from "./../../assets/CrossExit.svg"
 import H5 from "./../fonts/desktop/1920_h5"
 
 const Container = styled.div`
+    background-color: #fff;
     position: fixed;
     width: 650px;
-    border: 2px solid #9c9c9c;
     border-radius: 50px;
     top:12%;
     left: 50%;

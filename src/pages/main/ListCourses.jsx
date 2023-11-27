@@ -311,6 +311,9 @@ ${(props) => {
                         <CourseCardStyled />
                         <CourseCardStyled />
                         <CourseCardStyled />
+                        <CourseCardStyled />
+                        <CourseCardStyled />
+                        <CourseCardStyled />
                     </StyledSlider>
                 </Content>
             </Container>

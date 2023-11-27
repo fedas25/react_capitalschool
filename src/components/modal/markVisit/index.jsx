@@ -7,13 +7,13 @@ import InfoTeacherCource from "./../../InfoTeacherCource"
 import photo from "./../../../assets/teacher.jpg"
 import crossExit from "./../../../assets/CrossExit.svg"
 import Button from "./../../Button"
+import DarkenedBackground from '../../DarkenedBackground';
 
-            const Container = styled.div`
+const Container = styled.div`
                 z-index: 1;
                 position: fixed;
                 top: 10%;
                 left: 50%;
-                border: 1px solid gray;
                 margin-left: -350px;
                 width: 700px;
                 border-radius: 50px;
@@ -30,12 +30,12 @@ import Button from "./../../Button"
 
             `;
 
-            const StyledInfoTeacherCource = styled(InfoTeacherCource)`
+const StyledInfoTeacherCource = styled(InfoTeacherCource)`
             grid-area: InfoTeacherCource;
             margin: 48px 0 38px 0;
             `;
 
-            const InformationRecording = styled.div`
+const InformationRecording = styled.div`
             grid-area: InformationRecording;
             padding-bottom: 12px;
             border-bottom: 2px solid var(--srt, #E4E4E7);
@@ -44,7 +44,7 @@ import Button from "./../../Button"
             gap: 10px;
             `;
 
-            const ContainerButton = styled.div`
+const ContainerButton = styled.div`
                 grid-area: button;
                 align-self: start;
                 margin-top: 40px;
@@ -53,7 +53,7 @@ import Button from "./../../Button"
                 align-items: center;
             `;
 
-                const DateTimeRecord = styled.div`
+const DateTimeRecord = styled.div`
                 gap: 12px;
                 display: flex;
                 justify-content: center;
@@ -94,38 +94,40 @@ const Radiocell = styled.div`
 `;
 
 
-export default function MarkVisit({handler}) {
+export default function MarkVisit({ handler }) {
     return (
-    <>
-        <Container>
-        <CrossExit src={crossExit} onClick={handler}/>
+        <>
+            <DarkenedBackground>
+                <Container>
+                    <CrossExit src={crossExit} onClick={handler} />
 
-            <InformationRecording>
-                <DateTimeRecord>
-                    <H4 violet>13 марта</H4>
-                    <H4 violet>16:00</H4>
-                    <H6>Учёбное занятие</H6>
-                </DateTimeRecord>
-            </InformationRecording>
+                    <InformationRecording>
+                        <DateTimeRecord>
+                            <H4 violet>13 марта</H4>
+                            <H4 violet>16:00</H4>
+                            <H6>Учёбное занятие</H6>
+                        </DateTimeRecord>
+                    </InformationRecording>
 
-            <StyledInfoTeacherCource teacherName="Зубенко Михаил Петрович" nameCourse="Пивоварение" srcTeacher={photo} />
-            
-            <SelectionField>
-                <Radiocell>
-                    <Radio type="checkbox" />
-                    <FontButton color="black">Был</FontButton>
-                </Radiocell>
-                <Radiocell>
-                    <Radio type="checkbox" />
-                    <FontButton color="black">Не был</FontButton>
-                </Radiocell>
-            </SelectionField>
+                    <StyledInfoTeacherCource teacherName="Зубенко Михаил Петрович" nameCourse="Пивоварение" srcTeacher={photo} />
 
-            <ContainerButton>
-                <Button title="Отметить" handler={handler}/>
-            </ContainerButton>
+                    <SelectionField>
+                        <Radiocell>
+                            <Radio type="checkbox" />
+                            <FontButton color="black">Был</FontButton>
+                        </Radiocell>
+                        <Radiocell>
+                            <Radio type="checkbox" />
+                            <FontButton color="black">Не был</FontButton>
+                        </Radiocell>
+                    </SelectionField>
 
-        </Container>
-    </>
-  )
+                    <ContainerButton>
+                        <Button title="Отметить" handler={handler} />
+                    </ContainerButton>
+
+                </Container>
+            </DarkenedBackground>
+        </>
+    )
 }

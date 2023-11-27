@@ -94,6 +94,13 @@ export default function ListTeacher({ course }) {
                         <CardTeacher course={course} />
                         <CardTeacher course={course} />
                         <CardTeacher course={course} />
+                        <CardTeacher course={course} />
+                        <CardTeacher course={course} />
+                        <CardTeacher course={course} />
+                        <CardTeacher course={course} />
+                        <CardTeacher course={course} />
+                        <CardTeacher course={course} />
+                        <CardTeacher course={course} />
                     </AnimatedCards>
                 </List>
             </Container>

@@ -9,49 +9,49 @@ import crossExit from "./../../../assets/CrossExit.svg"
 import Button from "./../../Button"
 import longArrow from "./../../../assets/longArrow.svg"
 import Calendar from "./../../Calendar"
+import DarkenedBackground from '../../DarkenedBackground';
 
-            const Container = styled.div`
+const Container = styled.div`
                 position: fixed;
                 top: 10%;
                 left: 50%;
-                border: 1px solid gray;
                 z-index: 1;
                 margin-left: -815px;
                 width: 1630px;
-                width: ${(props) => props.type === "resultRecord" ? "756px" : "1630px" };
+                width: ${(props) => props.type === "resultRecord" ? "756px" : "1630px"};
                 border-radius: 50px;
                 background: #ffff;
                 display: grid;
                 padding: 64px 32px;
-                grid-template-columns: ${(props) => props.type === "resultRecord" ? "auto" : "auto auto" };
+                grid-template-columns: ${(props) => props.type === "resultRecord" ? "auto" : "auto auto"};
                 grid-template-rows: auto auto auto auto auto;
                 grid-template-areas:
                 ${(props) => props.type === "resultRecord" ?
-                    `"typeRecord"
+        `"typeRecord"
                     "InformationRecording"
                     "InfoTeacherCource"
                     "notification"` :
 
-                    `"typeRecord Calendar"
+        `"typeRecord Calendar"
                     "InformationRecording Calendar"
                     "InfoTeacherCource Calendar"
                     "TimeRecording Calendar"
                     "Button Calendar"
                     ". Calendar"`
-                } ;
+    } ;
             `;
-            
-            const StyledCalendar = styled(Calendar)`
+
+const StyledCalendar = styled(Calendar)`
             grid-area: Calendar;
             justify-self: end;
             `;
 
-            const StyledInfoTeacherCource = styled(InfoTeacherCource)`
+const StyledInfoTeacherCource = styled(InfoTeacherCource)`
             grid-area: InfoTeacherCource;
             margin: 48px 0 21px 0;
             `;
 
-            const InformationRecording = styled.div`
+const InformationRecording = styled.div`
             grid-area: InformationRecording;
             padding-bottom: 12px;
             border-bottom: 2px solid var(--srt, #E4E4E7);
@@ -60,14 +60,14 @@ import Calendar from "./../../Calendar"
             gap: 10px;
             `;
 
-            const TimeRecording = styled.div`
+const TimeRecording = styled.div`
             padding-top: 21px;
             grid-area: TimeRecording;
             display: flex;
             gap: 12px;
             `;
 
-            const ContainerButton = styled.div`
+const ContainerButton = styled.div`
                 grid-area: Button;
                 align-self: start;
                 margin-top: 40px;
@@ -76,19 +76,19 @@ import Calendar from "./../../Calendar"
                 align-items: center;
             `;
 
-                const DateTimeRecord = styled.div`
+const DateTimeRecord = styled.div`
                 gap: 12px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
             `;
 
-            const TypeRecord = styled(H6)`
+const TypeRecord = styled(H6)`
             grid-area: typeRecord;
             margin-bottom: 32px;
             `
 
-            const Notification = styled(H5)`
+const Notification = styled(H5)`
             
             grid-area: notification;
             display: block;
@@ -107,7 +107,7 @@ cursor: pointer;
 `;
 
 
-export default function TransferRecord({handler = () => {}}) {
+export default function TransferRecord({ handler = () => { } }) {
     const [stage, setStage] = useState(0);
 
     function SetNextStage() {
@@ -115,67 +115,69 @@ export default function TransferRecord({handler = () => {}}) {
     }
 
     return (
-    <>
-        <Container type={stage === 3 ? "resultRecord" : ""}>
-        <CrossExit src={crossExit} onClick={handler}/>
+        <>
+            <DarkenedBackground>
+                <Container type={stage === 3 ? "resultRecord" : ""}>
+                    <CrossExit src={crossExit} onClick={handler} />
 
-            <TypeRecord>
-                Учёбное занятие
-            </TypeRecord>
+                    <TypeRecord>
+                        Учёбное занятие
+                    </TypeRecord>
 
-            <InformationRecording>
-                <DateTimeRecord>
-                    <H4 violet>13 марта</H4>
-                    <H4 violet>16:00</H4>          
-                </DateTimeRecord>
+                    <InformationRecording>
+                        <DateTimeRecord>
+                            <H4 violet>13 марта</H4>
+                            <H4 violet>16:00</H4>
+                        </DateTimeRecord>
 
-                <img src={longArrow} alt="longArrow" />
+                        <img src={longArrow} alt="longArrow" />
 
-                <DateTimeRecord>
-                    {stage === 2 || stage === 3 ? (
-                    <H4 violet>13 марта</H4>
+                        <DateTimeRecord>
+                            {stage === 2 || stage === 3 ? (
+                                <H4 violet>13 марта</H4>
+                            ) : null}
+
+                            {stage === 2 || stage === 3 ? (
+                                <H4 violet>16:00</H4>
+                            ) : null}
+                        </DateTimeRecord>
+
+                    </InformationRecording>
+
+                    <StyledInfoTeacherCource teacherName="Зубенко Михаил Петрович" nameCourse="Пивоварение" srcTeacher={photo} />
+
+                    {(stage === 1 || stage === 2) ? (
+                        <TimeRecording>
+                            <H5 gray>13:00</H5>
+                            <H5 gray>14:00</H5>
+
+                            {stage === 2 ? (
+                                <H5>15:00</H5>
+                            ) : stage === 1 ? (
+                                <H5 gray handler={SetNextStage}>16:00</H5>
+                            ) : null}
+
+                        </TimeRecording>
                     ) : null}
 
-                    {stage === 2 || stage === 3 ? (
-                        <H4 violet>16:00</H4>
-                        ) : null}            
-                </DateTimeRecord>
+                    {stage === 2 ? (
+                        <ContainerButton>
+                            <Button handler={SetNextStage} title="Перенести" />
+                        </ContainerButton>
+                    ) : null}
 
-            </InformationRecording>
+                    {stage === 3 ? (
+                        <Notification gray>
+                            Запись успешно перенесена
+                        </Notification>
+                    ) : null}
 
-            <StyledInfoTeacherCource teacherName="Зубенко Михаил Петрович" nameCourse="Пивоварение" srcTeacher={photo} />
-            
-            {(stage === 1 || stage === 2) ? (
-            <TimeRecording>
-                <H5 gray>13:00</H5>
-                <H5 gray>14:00</H5>
+                    {stage != 3 ? (
+                        <StyledCalendar type="record" handlerDay={SetNextStage} />
+                    ) : null}
 
-                {stage === 2 ? (
-                <H5>15:00</H5>
-                ) : stage === 1 ? (
-                <H5 gray handler={SetNextStage}>16:00</H5>
-                ) : null}
-
-            </TimeRecording>
-            ) : null }
-
-            {stage === 2 ? (
-            <ContainerButton>
-                <Button handler={SetNextStage} title="Перенести"/>
-            </ContainerButton>
-            ) : null }
-
-            {stage === 3 ? (
-            <Notification gray>
-                Запись успешно перенесена
-            </Notification>
-            ) : null }
-
-            {stage != 3 ? (
-                <StyledCalendar type="record" handlerDay={SetNextStage}/>
-            ) : null }
-
-        </Container>
-    </>
-  )
+                </Container>
+            </DarkenedBackground>
+        </>
+    )
 }

@@ -177,6 +177,13 @@ export default function HowStartLearning({setShow}) {
                     <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
                     <AnimatedStages style={springs}>
                         <Stage setShow={setShow}/>
+                        <Stage setShow={setShow}/>
+                        <Stage setShow={setShow}/>
+                        <Stage setShow={setShow}/>
+                        <Stage setShow={setShow}/>
+                        <Stage setShow={setShow}/>
+                        <Stage setShow={setShow}/>
+                        <Stage setShow={setShow}/>
                     </AnimatedStages>
                 </Content>
             </Container>

@@ -25,7 +25,7 @@ const ListCard = styled.div`
     flex-direction: column;
 `;
 
-export default function PersonalData() {
+export default function PersonalData({handlerDay}) {
     return (
         <ContainerContent>
             <ListCardAccount>
@@ -34,7 +34,8 @@ export default function PersonalData() {
                     <CardMyCourse type="student" />
                 </ListCard>
             </ListCardAccount>
-            <Calendar />
+            {/* <Calendar /> */}
+            <Calendar handlerDay={handlerDay} main/>
         </ContainerContent>
     )
 }

@@ -18,7 +18,9 @@ export default function Course() {
 
     return (
         <>
-            <NavBar />
+            <NavBar
+            courses={["B1 (Intermediate Level)", "B2 (Upper-Intermediate Level)", "C1 (Intermediate Level)", "C2 (Upper-Intermediate Level)"]}
+            />
             <Header />
             <Container>
                 <CourseDescription />

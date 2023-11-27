@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Calendar from '../../components/Calendar'
 import CardMyCourse from './CardAccount'
@@ -19,11 +19,18 @@ const ListCardAccount = styled.div`
     gap: 32px;
 `;
 
+
+
+
+// вынести в отдельный компонент 
 const ListCard = styled.div`
+    border-top: 2px solid var(--srt, #E4E4E7);
     width: 100%;
     display: flex;
     flex-direction: column;
 `;
+
+
 
 
 
@@ -86,6 +93,7 @@ const StyledManagingCourses = styled(ManagingCourses)`
 `;
 
 export default function PersonalData() {
+    
     return (
         <>
             <ContainerContent>
@@ -94,9 +102,19 @@ export default function PersonalData() {
                     <ListCard>
                         <CardMyCourse type="record" />
                         <CardMyCourse type="record" />
+                        <CardMyCourse type="record" />
+                        <CardMyCourse type="record" />
+                        <CardMyCourse type="record" />
+                        <CardMyCourse type="record" />
+                        <CardMyCourse type="record" />
+                        <CardMyCourse type="record" />
+                        <CardMyCourse type="record" />
+                        <CardMyCourse type="record" />
+                        <CardMyCourse type="record" />
+                        <CardMyCourse type="record" />
                     </ListCard>
                 </ListCardAccount>
-                <Calendar />
+                <Calendar main/>
             </ContainerContent>
         </>
     )

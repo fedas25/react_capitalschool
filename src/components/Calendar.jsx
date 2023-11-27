@@ -203,11 +203,21 @@ color: #757575;
     border-radius: 40%;
 }
 
+
+
+/* чтобы при нажатии цвет не исчезал */
 .pivas {
-    background-color: rgba(215, 147, 227, 0.5); 
+  background-color: rgba(215, 147, 227, 0.5); 
+  color: #D793E3;
+  border-radius: 40%;
+}
+
+.pivas:enabled:focus {
+    background-color: rgba(215, 147, 227, 0.5) !important; 
     color: #D793E3;
     border-radius: 40%;
 }
+/* чтобы при нажатии цвет не исчезал */
 
 .locked {
   color: #D4D3D3
