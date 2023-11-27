@@ -33,6 +33,8 @@ const OpeningCross = styled.img`
     width: 96px;
     height: 96px;
     cursor: pointer;
+    transform: ${(props) => props.show == false ? "rotate(0)" : "rotate(-45deg)"};
+    transition: transform 200ms linear;
 `;
 
 const Text = styled.p`
@@ -42,7 +44,7 @@ const Text = styled.p`
     align-items: center;
 `
 
-function Question({ handler, className, children }) {
+function Question({ handler, className, children, show }) {
     return (
         <div className={className}>
             <Text>
@@ -50,7 +52,7 @@ function Question({ handler, className, children }) {
                     {children}
                 </Font1920_h4>
             </Text>
-            <OpeningCross src={openingCross} onClick={handler} />
+            <OpeningCross src={openingCross} onClick={handler} show={show}/>
         </div>
     )
 }
@@ -88,7 +90,7 @@ function QuestionCell({ question, answer }) {
 
     return (
         <Cell>
-            <StyledQuestion handler={handler}>
+            <StyledQuestion handler={handler} show={+show}>
                 {question}
             </StyledQuestion>
             <Answer show={+show}>
@@ -101,7 +103,7 @@ function QuestionCell({ question, answer }) {
 }
 
 export default function QuestionAnswer({ map }) {
-    {/* ПОСМОТРЕТЬ УРОКИ STYLED-COMPONENT
+    {/* ПОСМОТРЕТЬ УРОКИ по STYLED-COMPONENT
     ДЛЯ ПОНИМАНИЯ КАК работать с синтаксисом sass */}
     const list = [
         {
