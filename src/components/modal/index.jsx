@@ -6,13 +6,14 @@ import GetCode from './GetCode'
 import GetMail from './GetMail'
 import ActivityBeenCompleted from './ActivityBeenCompleted'
 import SetPassword from './SetPassword'
+import DarkenedBackground from '../DarkenedBackground'
 
 const Container = styled.div`
     z-index: 2;
     display: ${(props) => props.show == false ? "none" : "block"} ;
 `;
 
-export default function Entry({show, setShow}) {
+export default function Entry({ show, setShow }) {
   // stage:
   // 0 - set personal data name email password
   // 1 - set confirmation code
@@ -47,11 +48,11 @@ export default function Entry({show, setShow}) {
   const formRegistration = (stage) => {
     switch (stage) {
       case 0:
-        return <Registration handlerNav={{ SetAutorisition: SetAutorisition, SetRegistrition: SetRegistrition }} handlerButton={SetNextStage} handlerExit={() => {setShow(false)}}/>;
+        return <Registration handlerNav={{ SetAutorisition: SetAutorisition, SetRegistrition: SetRegistrition }} handlerButton={SetNextStage} handlerExit={() => { setShow(false) }} />;
       case 1:
         return <GetCode handlerButton={SetNextStage} />;
       case 2: // close handler
-        return <ActivityBeenCompleted title="Регистрация прошла успешно" handlerButton={() => {SetNextStage(); setShow(false)}} />;
+        return <ActivityBeenCompleted title="Регистрация прошла успешно" handlerButton={() => { SetNextStage(); setShow(false) }} />;
       default:
         return <Registration handlerButton={SetNextStage} />;
     }
@@ -60,7 +61,7 @@ export default function Entry({show, setShow}) {
   const formAuthorization = (stage) => {
     switch (stage) {
       case 0:
-        return <Authoris handlerNav={{ SetAutorisition: SetAutorisition, SetRegistrition: SetRegistrition }} handlerButton={SetNextStage} handlerExit={() => setShow(false)}/>;
+        return <Authoris handlerNav={{ SetAutorisition: SetAutorisition, SetRegistrition: SetRegistrition }} handlerButton={SetNextStage} handlerExit={() => setShow(false)} />;
       case 1:
         return <GetMail handlerButton={SetNextStage} />;
       case 2:
@@ -73,11 +74,13 @@ export default function Entry({show, setShow}) {
   return (
     <>
       <Container show={+show}>
-        {
-          type === 0 ?
-            formRegistration(stage) :
-            formAuthorization(stage)
-        }
+        <DarkenedBackground>
+          {
+            type === 0 ?
+              formRegistration(stage) :
+              formAuthorization(stage)
+          }
+        </DarkenedBackground>
       </Container>
     </>
   )
