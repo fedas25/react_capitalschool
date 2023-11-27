@@ -21,13 +21,15 @@ function DownArrow({className}) {
 const DownArrowStyled = styled(DownArrow)`
     height: 48px;
     width: 48px;
+    transform: ${({showCourses}) => showCourses == false ? "rotate(180deg)" : "rotate(0deg)"};
+    transition: transform 300ms linear;
 `;
 
-export default function Сourses({ handle }) {
+export default function Сourses({ handle, showCourses = 1 }) {
     return (
         <Container onClick={handle}>
             <Font1920h6 white>Курсы</Font1920h6>
-            <DownArrowStyled/>
+            <DownArrowStyled showCourses={+showCourses}/>
         </Container>
     );
 }

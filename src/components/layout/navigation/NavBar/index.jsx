@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
-import { useSpring, animated } from '@react-spring/web';
 import logo from './../../../../assets/logo.svg';
 import Menu from "./menuItems";
 import H4 from "./../../../fonts/desktop/1920_h4"
@@ -24,6 +23,8 @@ const ContainerlistCourses = styled.div`
     background-color: #6B73C2;
     z-index: 1;
     top: -1400px;
+    transform: ${({ showCourses }) => showCourses == false ? "translateY(1552px)" : "translateY(0)"};
+    transition: transform 300ms;
 `;
 
 const List = styled.div`
@@ -32,8 +33,6 @@ const List = styled.div`
     flex-direction: column;
     gap: 24px;
 `;
-
-const AnimatedContainerlistCourses = animated(ContainerlistCourses)
 
 function Logo({ className }) {
     return (
@@ -46,43 +45,38 @@ const StyledLogo = styled(Logo)`
     width: 118px;
 `;
 
+const StyledH4 = styled(H4)`
+    cursor: pointer;
+    &:hover {
+        color: #BCBCC5;
+    }
+`;
+
 export default function NavBar({ courses, handlerEntry }) {
 
-    const [show, setShow] = useState(1);
-    const [springs, api] = useSpring(() => ({}))
-    
-    api.start({
-        from: {
-            y: (show === 1) ? 0 : show ? 0 : 1552,
-        },
-        to: {
-            y: (show === 1) ? 0 : show ? 1552 : 0,
-        },
-    })
-    
+    const [show, setShow] = useState(true);
+
     function animationHandler() {
-        if (show === 1) {
-            setShow(true)
-        } else setShow(!show)
+        setShow(!show)
     }
 
     const listCourses = courses.map((course, i) =>
-        <H4 key={i} white>
+        <StyledH4 key={i} white>
             {course}
-        </H4>
-      );
+        </StyledH4>
+    );
 
     return (
         <>
             <Contaier>
                 <StyledLogo />
-                <Menu handle={animationHandler} handlerEntry={handlerEntry}/>
+                <Menu showCourses={show} handle={animationHandler} handlerEntry={handlerEntry} />
             </Contaier>
-            <AnimatedContainerlistCourses style={springs}>
+            <ContainerlistCourses showCourses={show}>
                 <List>
                     {listCourses}
                 </List>
-            </AnimatedContainerlistCourses>
+            </ContainerlistCourses>
         </>
     );
 }
