@@ -14,6 +14,7 @@ const Button = styled.div`
             return (props.color === "violet" ? "#6B73C2" :
             props.color === "gray" ? "rgba(107, 115, 194, 0.10);" : "#000")
             }};
+    transition: background-color 2000ms;
     `;
 
 export default function Main({ title, color = null, btnColor = null, handler = null, className = null}) {

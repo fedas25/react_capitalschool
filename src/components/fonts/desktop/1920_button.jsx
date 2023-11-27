@@ -10,6 +10,7 @@ import styled from 'styled-components'
         color: ${(props) => (props.color === "gray") ? "#757575" :
                             (props.color === "violet") ? "#6B73C2" :
                             (props.color === "black") ? "#1C1C1C" : "#FFF"};
+        transition: color 200ms;
     `
 
 export default function StyledText({ children, color = null }) {

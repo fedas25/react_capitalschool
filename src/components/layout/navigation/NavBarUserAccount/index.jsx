@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Button from '../../../Button';
-import { Link } from "react-router-dom"
+import { Link, useMatch } from "react-router-dom"
 
 const Container = styled.div`
 display: flex;
@@ -9,18 +9,31 @@ align-items: center;
 gap: 24px;
 `;
 
+
+function CustomLink({ children, to, type }) {
+  const math = useMatch(to);
+  return (
+    <Link to={to}>
+      {math == null ?
+      <Button title={children} btnColor="gray" color="violet" /> :
+      <Button title={children} btnColor="violet" />}
+    </Link>
+  )
+}
+
+
 export default function Index({ teacher }) {
   return (
     <Container>
-      <Link to="/record">
-        <Button title="Мои записи" textColor="violet" color="gray" />
-      </Link>
-      <Link to="/">
-        <Button title={teacher ? "Мои ученики" : "Мои курсы"} textColor="violet" color="gray" />
-      </Link>
-      <Link to="/passed">
-        <Button title="Пройденное" textColor="violet" color="gray" />
-      </Link>
+      <CustomLink to="/record">
+        Мои записи
+      </CustomLink>
+      <CustomLink to="/">
+        Мои ученики
+      </CustomLink>
+      <CustomLink to="/passed">
+        Пройденное
+      </CustomLink>
     </Container>
   )
 }
