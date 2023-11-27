@@ -22,14 +22,14 @@ function CustomLink({ children, to, type }) {
 }
 
 
-export default function Index({ teacher }) {
+export default function Index({ student }) {
   return (
     <Container>
       <CustomLink to="/record">
         Мои записи
       </CustomLink>
       <CustomLink to="/">
-        Мои ученики
+        {student ? "Мои курсы" : "Мои ученики"}
       </CustomLink>
       <CustomLink to="/passed">
         Пройденное
