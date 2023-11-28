@@ -20,7 +20,7 @@ const ContainerlistCourses = styled.div`
     padding: 96px 128px 120px 96px;
     display: flex;
     justify-content: end;
-    background-color: #6B73C2;
+    background-color: #727ACA;
     z-index: 1;
     top: -1400px;
     transform: ${({ showCourses }) => showCourses == false ? "translateY(1552px)" : "translateY(0)"};

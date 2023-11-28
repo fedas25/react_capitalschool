@@ -10,6 +10,7 @@ import H5 from "../../fonts/desktop/1920_h5"
 import BTN from "../../fonts/desktop/1920_button"
 import Font1920_h6 from "../../fonts/desktop/1920_h6"
 import BadgeCource from '../../BadgeCource'
+import DarkenedBackground from '../../DarkenedBackground';
 
 const StyledCardCourseContainer = styled.div`
   width: 100%;
@@ -152,7 +153,6 @@ background-color: white;
 width: 1140px;
 padding: 64px 32px;
 border-radius: 50px;
-border: 2px solid gray;
   position: fixed;
   top:12%;
   left: 50%;
@@ -171,19 +171,21 @@ const CrossExit = styled.img`
 
 export default function InformationAboutDay({ type = null, handlerClick = null }) {
     return (
-        <ModalContainer>
-            <CrossExit src={crossExit} onClick={handlerClick} />
-            <ContainerCardCourse>
-                <StyledInformationAboutRecord record={+true} />
-                <Main type={type}>
-                    <InformationAboutCourses
-                        teacherName="Куликова"
-                        nameCourse="Losos"
-                        colorCourse="#59C4E5"
-                        srcTeacher={teacher}
-                    />
-                </Main>
-            </ContainerCardCourse>
-        </ModalContainer>
+        <DarkenedBackground>
+            <ModalContainer>
+                <CrossExit src={crossExit} onClick={handlerClick} />
+                <ContainerCardCourse>
+                    <StyledInformationAboutRecord record={+true} />
+                    <Main type={type}>
+                        <InformationAboutCourses
+                            teacherName="Куликова"
+                            nameCourse="Losos"
+                            colorCourse="#59C4E5"
+                            srcTeacher={teacher}
+                        />
+                    </Main>
+                </ContainerCardCourse>
+            </ModalContainer>
+        </DarkenedBackground>
     )
 }
