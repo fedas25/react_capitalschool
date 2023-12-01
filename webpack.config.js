@@ -1,6 +1,7 @@
 const path = require("path")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require("html-webpack-plugin")
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 
 module.exports = {
     mode: "development",
@@ -8,7 +9,8 @@ module.exports = {
     entry: ["@babel/polyfill", "./src/index.jsx"],
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "[name].[hash].js"
+        filename: "[name].[hash].js",
+        clean: true,
     },
     devServer: {
         port: 3000
@@ -18,7 +20,7 @@ module.exports = {
     },
     plugins: [
         new HTMLWebpackPlugin({ template: "./src/index.html" }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
     ],
     module: {
         rules: [ // Загрузчики для обработки разных типов файлов
@@ -28,22 +30,12 @@ module.exports = {
             },
             {
                 test: /\.(jpg|jpeg|png|svg)$/,
-                use: ["file-loader"]
+                type: "asset/resource"
             },
             {
                 test: /\.(ttf|woff|woff2)$/,
-                use: ["file-loader"]
+                type: "asset/resource"
             },
-            // {
-            //     test: /\.m?js$/,
-            //     exclude: /node_modules/,
-            //     use: {
-            //         loader: "babel-loader",
-            //         options: {
-            //             presets: ['@babel/preset-env']
-            //         }
-            //     }
-            // },
             {
                 test: /\.(jsx|js)$/,
                 exclude: /node_modules/,
