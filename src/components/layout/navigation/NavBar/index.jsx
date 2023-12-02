@@ -16,6 +16,7 @@ const Contaier = styled.div`
 
 const ContainerlistCourses = styled.div`
     position: absolute;
+    min-height: 738px;
     width: 100%;
     padding: 96px 128px 120px 96px;
     display: flex;
