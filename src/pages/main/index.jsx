@@ -32,7 +32,7 @@ export default function Main() {
 
             <NavBar
                 handlerEntry={() => setShowEntry(true)}
-                courses={["B1 (Intermediate Level)", "B2 (Upper-Intermediate Level)", "C1 (Intermediate Level)", "C2 (Upper-Intermediate Level)"]}
+                courses={["B1 (Intermediate Level)","B1 (Intermediate Level)","B1 (Intermediate Level)", "B2 (Upper-Intermediate Level)", "C1 (Intermediate Level)", "C2 (Upper-Intermediate Level)"]}
             />
             <Header />
             <Container>

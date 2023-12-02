@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { useSpring, animated } from '@react-spring/web';
 import Font1920_h2 from "./../../components/fonts/desktop/1920_h2"
 import Font1920_h3 from "./../../components/fonts/desktop/1920_h3"
 import Font1920_h4 from "./../../components/fonts/desktop/1920_h4"
@@ -108,11 +107,9 @@ const Stages = styled.div`
     align-items: flex-start;
     align-content: flex-start;
     position: relative;
-    /* transform: translateX(100px); */
-    /* transition-duration: 200ms; */
+    transform: ${ ({offset}) => `translateX(${offset}px)` } ;
+    transition: transform 800ms;
 `;
-
-const AnimatedStages = animated(Stages);
 
 const StageContainer = styled.div`
 display: flex;
@@ -145,28 +142,15 @@ function Stage({setShow}) {
 }
 
 export default function HowStartLearning({setShow}) {
-    const [from, setFrom] = useState(0);
-    const [to, setTo] = useState(0);
-
-    const [springs, api] = useSpring(() => ({}))
-
-    api.start({
-        from: {
-            x: from,
-        },
-        to: {
-            x: to,
-        },
-    })
-
+    const [offset, setOffset] = useState(0);
+    
     function handlerLeft() {
-        setFrom(to);
-        setTo(to + 1668);
+        setOffset(offset + 1668);
     }
     function handlerRight() {
-        setFrom(to);
-        setTo(to - 1668);
+        setOffset(offset - 1668);
     }
+
     return (
         <>
             <Container>
@@ -175,7 +159,7 @@ export default function HowStartLearning({setShow}) {
                 </Description>
                 <Content>
                     <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
-                    <AnimatedStages style={springs}>
+                    <Stages offset={offset}>
                         <Stage setShow={setShow}/>
                         <Stage setShow={setShow}/>
                         <Stage setShow={setShow}/>
@@ -184,7 +168,7 @@ export default function HowStartLearning({setShow}) {
                         <Stage setShow={setShow}/>
                         <Stage setShow={setShow}/>
                         <Stage setShow={setShow}/>
-                    </AnimatedStages>
+                    </Stages>
                 </Content>
             </Container>
         </>

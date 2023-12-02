@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { useSpring, animated } from '@react-spring/web';
 import Font1920_h2 from "./../../fonts/desktop/1920_h2"
 import Arrow from "./../../Arrow"
 import CardTeacher from "./cardTeacher.jsx"
@@ -52,34 +51,18 @@ const Cards = styled.div`
     align-items: flex-start;
     align-content: flex-start;
     position: relative;
-    /* transform: translateX(); */
-    /* transition-duration: 200ms; */
+    transform: ${ ({offset}) => `translateX(${offset}px)` } ;
+    transition: transform 400ms;
 `;
 
-const AnimatedCards = animated(Cards);
-
 export default function ListTeacher({ course }) {
-    const [from, setFrom] = useState(0);
-    const [to, setTo] = useState(0);
-
-    const [springs, api] = useSpring(() => ({}))
-
-    api.start({
-        from: {
-            x: from,
-        },
-        to: {
-            x: to,
-        },
-    })
-
+    const [offset, setOffset] = useState(0);
+    
     function handlerLeft() {
-        setFrom(to);
-        setTo(to + 1664);
+        setOffset(offset + 1664);
     }
     function handlerRight() {
-        setFrom(to);
-        setTo(to - 1664);
+        setOffset(offset - 1664);
     }
 
     return (
@@ -90,7 +73,7 @@ export default function ListTeacher({ course }) {
                 </Description>
                 <List>
                     <StyledNavigationButton handler={{left: handlerLeft, right: handlerRight }}/>
-                    <AnimatedCards style={springs}>
+                    <Cards offset={offset}>
                         <CardTeacher course={course} />
                         <CardTeacher course={course} />
                         <CardTeacher course={course} />
@@ -101,7 +84,7 @@ export default function ListTeacher({ course }) {
                         <CardTeacher course={course} />
                         <CardTeacher course={course} />
                         <CardTeacher course={course} />
-                    </AnimatedCards>
+                    </Cards>
                 </List>
             </Container>
         </>

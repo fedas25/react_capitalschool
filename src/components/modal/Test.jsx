@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from "styled-components"
-import { useSpring, animated } from '@react-spring/web';
 import Font1920_h4 from "./../fonts/desktop/1920_h4"
 import Font1920_h5 from "./../fonts/desktop/1920_h5"
 import Font1920_p1 from "./../fonts/desktop/1920_p1"
@@ -90,30 +89,14 @@ function Question({ handler, btn = false }) {
 }
 
 
-export default function Test({ show, setShow }) {
-
-
-    const [from, setFrom] = useState(0);
-    const [to, setTo] = useState(0);
-
-    const [springs, api] = useSpring(() => ({}))
-
-    api.start({
-        from: {
-            x: from,
-        },
-        to: {
-            x: to,
-        },
-    })
-
+export default function Test({ show, setShow }) {    
+    const [offset, setOffset] = useState(0);
+    
     function handlerLeft() {
-        setFrom(to);
-        setTo(to + 800);
+        setOffset(offset + 800);
     }
     function handlerRight() {
-        setFrom(to);
-        setTo(to - 800);
+        setOffset(offset - 800);
     }
 
     return (
@@ -124,7 +107,7 @@ export default function Test({ show, setShow }) {
                     <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
                     <Content>
 
-                        <AnimationListCards style={springs}>
+                        <ListCards offset={offset}>
 
                             <Question handler={() => { setShow(false) }} />
                             <Question handler={() => { setShow(false) }} />
@@ -132,7 +115,7 @@ export default function Test({ show, setShow }) {
                             <Question handler={() => { setShow(false) }} />
                             <Question btn handler={() => { setShow(false) }} />
 
-                        </AnimationListCards>
+                        </ListCards>
 
                     </Content>
                 </Container>
@@ -140,6 +123,15 @@ export default function Test({ show, setShow }) {
         </>
     )
 }
+
+
+const ListCards = styled.div`
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    transform: ${ ({offset}) => `translateX(${offset}px)` } ;
+    transition: transform 400ms;
+`
 
 const ButtonContainer = styled.div`
 margin-top: 48px;
@@ -171,13 +163,7 @@ function Navigation({ className }) {
 }
 
 
-const ListCards = styled.div`
-    display: flex;
-    align-items: flex-start;
-    position: relative;
-`
 
-const AnimationListCards = animated(ListCards);
 
 
 

@@ -1,46 +1,30 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { useSpring, animated } from '@react-spring/web';
 import Arrow from "./../../Arrow.jsx"
 
 export default function Slider({ children }) {
-    const [from, setFrom] = useState(0);
-    const [to, setTo] = useState(0);
-
-    const [springs, api] = useSpring(() => ({}))
-
-    api.start({
-        from: {
-            x: from,
-        },
-        to: {
-            x: to,
-        },
-    })
-
+    const [offset, setOffset] = useState(0);
+    
     function handlerLeft() {
-        setFrom(to);
-        setTo(to + 800);
+        setOffset(offset + 800);
     }
     function handlerRight() {
-        setFrom(to);
-        setTo(to - 800);
+        setOffset(offset - 800);
     }
 
     return (
         <Container>
             <StyledArrovLeft handle={handlerLeft}/>
             <StyledArrovRight handle={handlerRight} right />
-            <AnimatedPageContainer style={springs}>
+            <PageContainer offset={offset}>
                 {children}
-            </AnimatedPageContainer>
+            </PageContainer>
         </Container>
     )
 }
 
 
 const Container = styled.div`
-    /* min-height: 700px; */
     width: 100%;
     position: relative;
     overflow: clip;
@@ -52,13 +36,9 @@ const Container = styled.div`
 const PageContainer = styled.div`
     display: flex;
     gap: 24px;
-    transition: translate;
-    transition-property: transform;
-    transition-timing-function: ease-in-out;
-    /* transition-duration: 500ms; рабатает*/
+    transform: ${ ({offset}) => `translateX(${offset}px)` } ;
+    transition: transform 400ms;
 `;
-
-const AnimatedPageContainer = animated(PageContainer);
 
 const StyledArrovLeft = styled(Arrow)`
     position: absolute;
