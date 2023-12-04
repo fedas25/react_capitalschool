@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from "styled-components"
+import Font1920_h3 from "./../fonts/desktop/1920_h3"
 import Font1920_h4 from "./../fonts/desktop/1920_h4"
 import Font1920_h5 from "./../fonts/desktop/1920_h5"
 import Font1920_p1 from "./../fonts/desktop/1920_p1"
@@ -7,18 +8,8 @@ import Arrow from "../../components/Arrow"
 import crossExit from "./../../assets/CrossExit.svg"
 import Button from "../../components/Button"
 import DarkenedBackground from '../DarkenedBackground';
-
-const Container = styled.div`
-    background-color: #fff;
-    padding: 64px 32px 128px 32px;
-    top: 10%;
-    left: 50%;
-    margin-left: -400px;
-    position: fixed;
-    border-radius: 50px;
-    z-index: 2;
-    display: ${(props) => props.show == false ? "none" : "block"} ;
-`;
+import topStars from "./../../assets/topStars.svg"
+import lowerStars from "./../../assets/lowerStars.svg"
 
 const CrossExit = styled.img`
   width: 80px;
@@ -30,18 +21,11 @@ const CrossExit = styled.img`
   z-index: 12;
 `;
 
-const Content = styled.div`
-    display: flex;
-    width: 800px;
-    position: relative;
-    overflow: hidden;
-`;
-
 const StyledFont1920_h5 = styled(Font1920_h5)`
     margin-bottom: 48px;
 `
 
-function Question({ handler, btn = false }) {
+function Question({ handler, btn = false, handlerResult = null }) {
     return (
         <CardQuestion>
             <StyledNavigation />
@@ -80,7 +64,7 @@ function Question({ handler, btn = false }) {
             </ResponseOptions>
             {btn ?
                 <ButtonContainer>
-                    <Button title="отправить" handler={handler} />
+                    <Button title="отправить" handler={handlerResult} />
                 </ButtonContainer>
                 : null}
         </CardQuestion>
@@ -89,9 +73,42 @@ function Question({ handler, btn = false }) {
 }
 
 
-export default function Test({ show, setShow }) {    
-    const [offset, setOffset] = useState(0);
+const Container = styled.div`
+    background-color: #fff;
+    padding: 64px 32px 128px 32px;
+    top: 10%;
+    left: 50%;
+    margin-left: -400px;
+    position: fixed;
+    border-radius: 50px;
+    z-index: 2;
+    display: ${(props) => props.show == false ? "none" : "block"} ;
     
+    .topStars {
+        pointer-events: none;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        border-radius: 50px;
+    }
+    .lowerStars {
+        pointer-events: none;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        border-radius: 50px;
+    }
+    `;
+
+const Content = styled.div`
+    display: flex;
+    width: ${({ result }) => result ? "746px" : "800px"} ;
+    position: relative;
+    overflow: hidden;
+`;
+
+export default function Test({ show, setShow }) {
+    const [offset, setOffset] = useState(0);
     function handlerLeft() {
         setOffset(offset + 800);
     }
@@ -99,37 +116,76 @@ export default function Test({ show, setShow }) {
         setOffset(offset - 800);
     }
 
+    const [isResult, setisResult] = useState(0);
+
     return (
         <>
             <DarkenedBackground show={+show}>
                 <Container show={+show}>
-                    <CrossExit src={crossExit} onClick={() => { setShow(false) }} />
-                    <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
-                    <Content>
+                    <CrossExit src={crossExit} onClick={() => { setShow(false); setisResult(0); setOffset(0) }} />
+                    {isResult ?
+                        <>
+                            <img src={topStars} className='topStars' alt="topStars" />
+                            <img src={lowerStars} className='lowerStars' alt="lowerStars" />
+                        </>
+                        :
+                        <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
+                    }
 
-                        <ListCards offset={offset}>
-
-                            <Question handler={() => { setShow(false) }} />
-                            <Question handler={() => { setShow(false) }} />
-                            <Question handler={() => { setShow(false) }} />
-                            <Question handler={() => { setShow(false) }} />
-                            <Question btn handler={() => { setShow(false) }} />
-
-                        </ListCards>
-
+                    <Content result={isResult}>
+                        {isResult ?
+                            <Result>
+                                <p>
+                                    <Font1920_h3>
+                                        Ваш уровень английского — B2
+                                    </Font1920_h3>
+                                </p>
+                                <Font1920_p1 gray>
+                                    Развивайте свой англиский вместе с нами. Благодаря нашим онлайн-курсам ваш уровень английского достигнет новых высот. Присоединяйтесь к нам и сделайте английский вашим надежном и верным другом в любой ситуации.
+                                </Font1920_p1>
+                                <div>
+                                    <Button title="Записаться на пробное занятие" />
+                                </div>
+                            </Result>
+                            :
+                            <ListCards offset={offset}>
+                                <Question handler={() => { setShow(false) }} />
+                                <Question handler={() => { setShow(false) }} />
+                                <Question handler={() => { setShow(false) }} />
+                                <Question handler={() => { setShow(false) }} />
+                                <Question btn handlerResult={() => { setisResult(1) }} handler={() => { setShow(false); setOffset(0) }} />
+                            </ListCards>
+                        }
                     </Content>
+
                 </Container>
             </DarkenedBackground>
         </>
     )
 }
 
+const Result = styled.div`
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: center;
+gap: 48px;
+    p {
+        width: 622px; 
+    }
+    div {
+        display: flex;
+        justify-content: center;
+    }
+`;
+
+
 
 const ListCards = styled.div`
     display: flex;
     align-items: flex-start;
     position: relative;
-    transform: ${ ({offset}) => `translateX(${offset}px)` } ;
+    transform: ${({ offset }) => `translateX(${offset}px)`} ;
     transition: transform 400ms;
 `
 
