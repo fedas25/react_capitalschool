@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import styled from "styled-components"
-import Font1920_h3 from "./../fonts/desktop/1920_h3"
-import Font1920_h4 from "./../fonts/desktop/1920_h4"
-import Font1920_h5 from "./../fonts/desktop/1920_h5"
-import Font1920_p1 from "./../fonts/desktop/1920_p1"
-import Arrow from "../../components/Arrow"
-import crossExit from "./../../assets/CrossExit.svg"
-import Button from "../../components/Button"
-import DarkenedBackground from '../DarkenedBackground';
-import topStars from "./../../assets/topStars.svg"
-import lowerStars from "./../../assets/lowerStars.svg"
+import Font1920_h3 from "../../fonts/desktop/1920_h3"
+import Font1920_h4 from "../../fonts/desktop/1920_h4"
+import Font1920_h5 from "../../fonts/desktop/1920_h5"
+import Font1920_p1 from "../../fonts/desktop/1920_p1"
+import Arrow from "../../Arrow"
+import crossExit from "./../../../assets/CrossExit.svg"
+import Button from "../../Button"
+import DarkenedBackground from '../../DarkenedBackground';
+import topStars from "./../../../assets/topStars.svg"
+import lowerStars from "./../../../assets/lowerStars.svg"
 
 const CrossExit = styled.img`
   width: 80px;
