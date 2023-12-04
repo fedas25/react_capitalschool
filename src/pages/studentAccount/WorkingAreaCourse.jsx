@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Calendar from '../../components/Calendar'
 import AddCourse from './AddCourse'
 import CardMyCourse from './CardAccount'
-import Test from '../../components/modal/Test.jsx';
+import Test from '../../components/modal/test';
 
 const ContainerContent = styled.div`
     width: 100%;

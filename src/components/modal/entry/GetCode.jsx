@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from "styled-components"
-import crossExit from "./../../assets/CrossExit.svg"
-import H4 from "./../fonts/desktop/1920_h4"
-import InputText from '../Form/InputText';
-import Button from "./../Button"
+import crossExit from "./../../../assets/CrossExit.svg"
+import H4 from "../../fonts/desktop/1920_h4"
+import InputText from '../../Form/InputText';
+import Button from "../../Button"
 
 const Containerr = styled.div`
   width: 100%;
@@ -17,8 +17,8 @@ const Containerr = styled.div`
 function TypeSelection() {
   return (
     <Containerr>
-      <H4 gray>Регистрация</H4>
-      <H4 violet>Авторизация</H4>
+      <H4 violet>Регистрация</H4>
+      <H4 gray>Авторизация</H4>
     </Containerr>
   )
 }
@@ -55,15 +55,15 @@ gap: 12px;
 margin-bottom: 47px;
 `;
 
-export default function SetPassword({handlerButton}) {
+export default function GetCode({handlerButton}) {
   return (
     <Container>
       <CrossExit src={crossExit} />
       <TypeSelection />
       <ContainerInputs>
-        <InputText placeholder="Введите новый пароль" width="100%" />
+        <InputText placeholder="Введите код подтверждения" width="100%" />
       </ContainerInputs>
-      <Button title="Изменить пароль" handler={handlerButton}/>
+      <Button title="Отправить" handler={handlerButton}/>
     </Container>
   )
 }

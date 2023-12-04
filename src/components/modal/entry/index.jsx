@@ -6,7 +6,7 @@ import GetCode from './GetCode'
 import GetMail from './GetMail'
 import ActivityBeenCompleted from './ActivityBeenCompleted'
 import SetPassword from './SetPassword'
-import DarkenedBackground from '../DarkenedBackground'
+import DarkenedBackground from '../../DarkenedBackground'
 
 const Container = styled.div`
     z-index: 2;

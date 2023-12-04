@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components"
-import crossExit from "./../../assets/CrossExit.svg"
-import H5 from "./../fonts/desktop/1920_h5"
+import crossExit from "./../../../assets/CrossExit.svg"
+import H5 from "../../fonts/desktop/1920_h5"
 
 const Container = styled.div`
     background-color: #fff;

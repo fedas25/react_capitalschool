@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from "styled-components"
-import crossExit from "./../../assets/CrossExit.svg"
-import H4 from "./../fonts/desktop/1920_h4"
-import InputText from '../Form/InputText';
-import Button from "./../Button"
+import crossExit from "./../../../assets/CrossExit.svg"
+import H4 from "../../fonts/desktop/1920_h4"
+import InputText from '../../Form/InputText';
+import Button from "../../Button"
 
 const Containerr = styled.div`
   width: 100%;

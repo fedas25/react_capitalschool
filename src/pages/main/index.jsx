@@ -10,8 +10,8 @@ import EnglishLevelTest from "./EnglishLevelTest";
 import HowStartLearning from "./HowStartLearning";
 import QuestionAnswer from "./QuestionAnswer";
 import Footer from "./../../components/Footer.jsx";
-import Test from '../../components/modal/Test.jsx';
-import Entry from '../../components/modal/index.jsx';
+import Test from '../../components/modal/test';
+import Entry from '../../components/modal/entry/index.jsx';
 
 const Container = styled.div`
     display: flex;
@@ -30,20 +30,20 @@ export default function Main() {
             <Test show={showTest} setShow={setShowTest}/>
             <Entry show={showEntry} setShow={setShowEntry} />
 
-            <NavBar
+            {/* <NavBar
                 handlerEntry={() => setShowEntry(true)}
                 courses={["B1 (Intermediate Level)","B1 (Intermediate Level)","B1 (Intermediate Level)", "B2 (Upper-Intermediate Level)", "C1 (Intermediate Level)", "C2 (Upper-Intermediate Level)"]}
             />
-            <Header />
+            <Header /> */}
             <Container>
-                <MakesUsSpecial />
+                {/* <MakesUsSpecial />
                 <AdvantagesOnlineClasses />
                 <ListCourses />
-                <ListTeacher />
+                <ListTeacher /> */}
                 <EnglishLevelTest setShow={setShowTest} />
-                <HowStartLearning setShow={setShowTest} />
+                {/* <HowStartLearning setShow={setShowTest} />
                 <QuestionAnswer />
-                <Footer />
+                <Footer /> */}
             </Container>
         </>
     )
