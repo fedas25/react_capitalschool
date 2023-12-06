@@ -8,6 +8,9 @@ const Contaier = styled.div`
     display: flex;
     max-width: 100%;
     padding: 16px 128px;
+    @media (max-width: 768px) {
+        padding: 16px 4px 16px 16px;
+    }
     align-items: center;
     justify-content: space-between;
     background-color: #6B73C2;
@@ -44,6 +47,10 @@ function Logo({ className }) {
 const StyledLogo = styled(Logo)`
     height: 118px;
     width: 118px;
+    @media (max-width: 768px) {
+        width: 80px;
+        height: 80px;
+    }
 `;
 
 const StyledH4 = styled(H4)`
@@ -71,13 +78,13 @@ export default function NavBar({ courses, handlerEntry }) {
         <>
             <Contaier>
                 <StyledLogo />
-                <Menu showCourses={show} handle={animationHandler} handlerEntry={handlerEntry} />
+                {/* <Menu showCourses={show} handle={animationHandler} handlerEntry={handlerEntry} /> */}
             </Contaier>
-            <ContainerlistCourses showCourses={show}>
+            {/* <ContainerlistCourses showCourses={show}>
                 <List>
                     {listCourses}
                 </List>
-            </ContainerlistCourses>
+            </ContainerlistCourses> */}
         </>
     );
 }
