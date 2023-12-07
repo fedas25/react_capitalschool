@@ -5,6 +5,9 @@ import FontButton from './fonts/desktop/1920_button'
 const Button = styled.div`
     display: inline-flex;
     padding: 18px 28px 20px 28px;
+    @media (max-width: 768px) {
+        padding: 14px 12px 16px 12px;
+    }
     justify-content: center;
     align-items: center;
     gap: 10px;
