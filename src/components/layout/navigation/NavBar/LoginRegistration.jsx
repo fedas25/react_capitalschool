@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components'
 import profileIcon from './../../../../assets/profileIcon.png';
+import burger from './../../../../assets/burger.svg';
 import Font1920h6 from "./../../../fonts/desktop/1920_h6";
+import { useMediaQuery } from 'react-responsive'
 
 const Container = styled.div`
     display: flex;
@@ -19,6 +21,17 @@ function ProfileIcon({ className }) {
 const ProfileIconStyled = styled(ProfileIcon)`
     height: 64px;
     width: 64px;
+    cursor: pointer;
+    @media (max-width: 768px) {
+        width: 56px;
+        height: 56px;
+    }
+`;
+
+const Burger = styled.img`
+        cursor: pointer;
+        width: 56px;
+        height: 56px;
 `;
 
 const Pointer = styled.span`
@@ -26,12 +39,17 @@ cursor: pointer;
 `;
 
 export default function Сourses({ handlerEntry, props }) {
+    const isMobile = useMediaQuery({query: '(max-width: 768px)'})
+
     return (
         <Container onClick={handlerEntry}>
             <ProfileIconStyled />
+            {isMobile && <Burger src={burger} alt='drop-down menu' />}
+            {!isMobile &&
             <Pointer>
                 <Font1920h6 white={+true}>Вход / регистрация</Font1920h6>
             </Pointer>
+            }
         </Container>
     );
 }
