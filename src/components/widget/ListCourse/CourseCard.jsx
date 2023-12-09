@@ -19,12 +19,26 @@ const StyledPrices = styled(Prices)`
     height: 147px;
     display: flex;
     gap: 42px;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 32px;
+        height: auto;
+    }
+    `;
+
+const Img = styled.img`
+    height: 48px;
+    width: 48px;
+    @media (max-width: 768px) {
+        width: 32px;
+        height: 32px;
+    }
     `;
 
 function Characteristic({ className }) {
     return (
         <div className={className}>
-            <img src={jackdaw} alt="jackdaw" />
+            <Img src={jackdaw} alt="jackdaw" />
             <Font1920_p2>9 месяцев</Font1920_p2>
         </div>
     )
@@ -39,14 +53,21 @@ const StyledCharacteristic = styled(Characteristic)`
 function MainText({ className }) {
     return (
         <div className={className}>
-            <Font1920_p2>Онлайн-курс предназначены для абсолютных начинающих. Мир английского языка через базовые фразы, простые диалоги и повседневную лексику. Онлайн-курс предназначены для абсолютных начин</Font1920_p2>
+            <Font1920_p2>
+                Онлайн-курс предназначены для абсолютных начинающих.
+                Онлайн-курс предназначены для абсолютных начинающих.
+                Онлайн-курс предназначены для абсолютнх.
+            </Font1920_p2>
         </div>
     )
 }
 
 const MainTextStyled = styled(MainText)`
     width: 626px;
-    height: 115px;
+    @media (max-width: 768px) {
+        width: 100%;
+        margin-top: 8px;
+    }
 `;
 
 const Specifications = styled.div`
@@ -54,14 +75,17 @@ const Specifications = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
+    @media (max-width: 768px) {
+        gap: 12px;
+    }
 `;
 
 function DescriptionCource({ className }) {
     return (
         <div className={className}>
-            <Font1920_h5>A1 (Beginner Level)</Font1920_h5>
+            <Font1920_h5 course>A1 (Beginner Level)</Font1920_h5>
+            <MainTextStyled />
             <Specifications>
-                <MainTextStyled />
                 <StyledCharacteristic />
                 <StyledCharacteristic />
                 <StyledCharacteristic />
@@ -77,6 +101,9 @@ const DescriptionCourceStyled = styled(DescriptionCource)`
     flex-direction: column;
     align-items: flex-start;
     gap: 32px;
+    @media (max-width: 768px) {
+        gap: 24px;
+    }
     `;
 
 function CourseCard({ className }) {
@@ -90,11 +117,14 @@ function CourseCard({ className }) {
 const CourseCardStyled = styled(CourseCard)`
             background-color: #FFF;
             width: 680px;
-            
-            min-height: 750px;
-            
+            min-height: 550px;
             border-radius: 50px;
             padding: 64px 28px;
+            @media (max-width: 768px) {
+                width: 320px;
+                padding: 48px 12px;
+                border-radius: 40px;
+            }
             display: flex;
             flex-direction: column;
             align-items: flex-end;
@@ -102,7 +132,7 @@ const CourseCardStyled = styled(CourseCard)`
             `;
 
 export default function index() {
-  return (
-    <CourseCardStyled />
-  )
+    return (
+        <CourseCardStyled />
+    )
 }

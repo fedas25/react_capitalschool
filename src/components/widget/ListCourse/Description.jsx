@@ -4,7 +4,9 @@ import Font1920_h2 from "./../../fonts/desktop/1920_h2"
 
 const Description = styled.p`
 max-width: 1664px;
-font-size: 65px;
+@media (max-width: 768px) {
+    max-width: 320px;
+}
 color: black;
 `;
 

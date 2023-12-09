@@ -75,6 +75,9 @@ const StyledPerCourse = styled(PerCourse)`
 display: flex;
 flex-direction: column;
 justify-content: space-between;
+@media (max-width: 768px) {
+    gap: 28px;
+}
 `
 
 export default function index() {

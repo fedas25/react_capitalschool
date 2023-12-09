@@ -4,6 +4,9 @@ import styled from 'styled-components'
 const SpanStyled = styled.span`
     font-family: "Montserrat-Medium-500";
     font-size: 21px;
+    @media (max-width: 768px) {
+        font-size: 18px;
+    }
     font-style: normal;
     font-weight: 500;
     line-height: 100%;

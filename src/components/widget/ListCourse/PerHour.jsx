@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 
 import Font1920_h6 from "./../../fonts/desktop/1920_h6"
@@ -38,6 +38,9 @@ const StyledPerHour = styled(perHour)`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media (max-width: 768px) {
+        gap: 28px;
+    }
     `
 
 
