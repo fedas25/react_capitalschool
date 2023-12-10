@@ -56,15 +56,15 @@ const Container = styled.div`
 `;
 
 
-export default function CaruselMobile({ children }) {
+export default function CaruselMobile({ children, externalShift = 0, noNavigation }) {
     const [cardNumber, setCardNumber] = useState(0);
 
     function handlerLeft() {
-        setCardNumber(cardNumber - 1)
+        setCardNumber(cardNumber - 1 + externalShift)
     }
 
     function handlerRight() {
-        setCardNumber(cardNumber + 1)
+        setCardNumber(cardNumber + 1 + externalShift)
     }
 
 
@@ -105,7 +105,7 @@ export default function CaruselMobile({ children }) {
                         {children}
                     </PageContainer>
                 </Container>
-                <NavigationPoints numberOfCards={children.length} activeCard={cardNumber} />
+                {!noNavigation && <NavigationPoints numberOfCards={children.length} activeCard={cardNumber} />}
             </Center>
         </>
     )

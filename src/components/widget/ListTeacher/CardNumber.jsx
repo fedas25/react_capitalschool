@@ -31,6 +31,10 @@ function Navigation({ className }) {
 
 const StyledNavigation = styled(Navigation)`
         width: 100%;
+        @media (max-width: 768px) {
+            width: auto;
+            align-items: start;
+        }
         display: flex;
         justify-content: space-between;
         align-items: center;

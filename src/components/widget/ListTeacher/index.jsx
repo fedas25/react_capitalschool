@@ -1,7 +1,9 @@
 import React, { useState } from "react"
 import styled from "styled-components"
+import { useMediaQuery } from 'react-responsive';
 import Font1920_h2 from "./../../fonts/desktop/1920_h2"
 import Arrow from "./../../Arrow"
+import CaruselMobile from "./../../CaruselMobile.jsx"
 import CardTeacher from "./cardTeacher.jsx"
 
 const Container = styled.div`
@@ -11,12 +13,18 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 96px;
+    @media (max-width: 768px) {
+        gap: 48px;
+        margin: 80px auto;
+    }
     position: relative;
 `;
 
 const Description = styled.p`
     max-width: 1664px;
-    font-size: 65px;
+    @media (max-width: 768px) {
+        max-width: 320px;
+    }
     color: black;
 `;
 
@@ -33,7 +41,7 @@ const List = styled.div`
 function NavigationButton({ className, handler }) {
     return (
         <div className={className}>
-            <Arrow handle={handler.left}/>
+            <Arrow handle={handler.left} />
             <Arrow handle={handler.right} right />
         </div>
     )
@@ -51,13 +59,14 @@ const Cards = styled.div`
     align-items: flex-start;
     align-content: flex-start;
     position: relative;
-    transform: ${ ({offset}) => `translateX(${offset}px)` } ;
+    transform: ${({ offset }) => `translateX(${offset}px)`} ;
     transition: transform 400ms;
 `;
 
 export default function ListTeacher({ course }) {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
     const [offset, setOffset] = useState(0);
-    
+
     function handlerLeft() {
         setOffset(offset + 1664);
     }
@@ -71,21 +80,26 @@ export default function ListTeacher({ course }) {
                 <Description>
                     <Font1920_h2>Наши преподаватели сделают обучение английским интересным и захватывающим</Font1920_h2>
                 </Description>
-                <List>
-                    <StyledNavigationButton handler={{left: handlerLeft, right: handlerRight }}/>
-                    <Cards offset={offset}>
-                        <CardTeacher course={course} />
-                        <CardTeacher course={course} />
-                        <CardTeacher course={course} />
-                        <CardTeacher course={course} />
-                        <CardTeacher course={course} />
-                        <CardTeacher course={course} />
-                        <CardTeacher course={course} />
-                        <CardTeacher course={course} />
-                        <CardTeacher course={course} />
-                        <CardTeacher course={course} />
-                    </Cards>
-                </List>
+
+                {isMobile ?
+                    <>
+                        <CaruselMobile noNavigation>
+                            <CardTeacher course={course} />
+                            <CardTeacher course={course} />
+                            <CardTeacher course={course} />
+                        </CaruselMobile>
+                    </> :
+                    <>
+                        <List>
+                            <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
+                            <Cards offset={offset}>
+                                <CardTeacher course={course} />
+                                <CardTeacher course={course} />
+                            </Cards>
+                        </List>
+                    </>
+                }
+
             </Container>
         </>
     )

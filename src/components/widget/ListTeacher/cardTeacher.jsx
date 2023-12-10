@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { useMediaQuery } from 'react-responsive';
 import Font1920_h5 from "./../../fonts/desktop/1920_h5"
 import Font1920_h6 from "./../../fonts/desktop/1920_h6"
 import Font1920_p1 from "./../../fonts/desktop/1920_p1"
@@ -7,10 +8,14 @@ import jackdaw from "./../../../assets/jackdaw.png"
 import teacher from "./../../../assets/teacher.jpg"
 import Button from "./../../Button.jsx"
 import CardNumber from "./CardNumber.jsx"
+import Arrow from "./../../Arrow"
 
 const Info = styled.div`
         display: flex;
         width: 820px;
+        @media (max-width: 768px) {
+            width: 320px;
+        }
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
@@ -22,10 +27,18 @@ const AudioPleer = styled.div`
         border-radius: 282.5px;
         border: 3px solid var(--srt, #E4E4E7);
         margin-bottom: 18px;
+        @media (max-width: 768px) {
+            margin-bottom: 12px;
+            height: 38px;
+            width: 86px;
+        }
     `;
 
-const Name = styled.span`
+const Name = styled.div`
         margin-bottom: 40px;
+        @media (max-width: 768px) {
+            margin-bottom: 12px;
+        }
     `;
 
 const Courses = styled.div`
@@ -60,13 +73,17 @@ gap: 12px;
 const Jackdaw = styled.img`
     width: 48px;
     height: 48px;
+    @media (max-width: 768px) {
+        width: 40px;
+        height: 40px;
+    }
 `;
 
 function Qualification({ className, children }) {
     return (
         <div className={className}>
             <Jackdaw src={jackdaw} alt="jackdaw" />
-            <Font1920_p1 gray>{children}</Font1920_p1>
+            <Font1920_p1 gray teacher>{children}</Font1920_p1>
         </div>
     )
 }
@@ -80,7 +97,7 @@ const StyledQualification = styled(Qualification)`
 function qualifications({ className }) {
     return (
         <div className={className}>
-            <Font1920_h5>Квалификации</Font1920_h5>
+            <Font1920_h5 teacher>Квалификации</Font1920_h5>
             <ListQualifications>
                 <StyledQualification>
                     ESOL (C1)
@@ -107,23 +124,35 @@ const StyledQualifications = styled(qualifications)`
 const Card = styled.div`
     min-height: 882px;
     width: 1664px;
+    @media (max-width: 768px) {
+        width: 320px;
+        min-height: 380px;
+    }
     display: flex;
     align-items: flex-start;
     align-content: flex-start;
     gap: 165px;
     position: relative;
-    /* transform: translateX(900px); */
     `;
 
 const Photo = styled.img`
         width: 398px;
         height: 600px;
         border-radius: 50px;
+        @media (max-width: 768px) {
+            width: 150px;
+            height: 130px;
+            border-radius: 25px;
+        }
     `;
 
 const MainPart = styled.div`
         width: 1102px;
         height: 882px;
+        @media (max-width: 768px) {
+            width: 320px;
+            height: auto;
+        }
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -131,26 +160,67 @@ const MainPart = styled.div`
     `;
 
 
+const Orientation = styled.div`
+@media (max-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+}
+`
+
+const Orientation2 = styled.div`
+@media (max-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+`
+
+function NavigationButton({ className, handler = () => {} }) {
+    return (
+        <div className={className}>
+            <Arrow handle={handler.left}/>
+            <Arrow handle={handler.right} right />
+        </div>
+    )
+}
+
+const StyledNavigationButton = styled(NavigationButton)`
+    position: absolute;
+    z-index: 1;
+    top: 50px;
+    right: 0px;
+`;
+
+
+
 export default function Cartochka({ course }) {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+
     return (
         <Card>
-            <Photo src={teacher} />
+            {!isMobile && <Photo src={teacher} />}
             <MainPart>
-                <CardNumber />
+                <Orientation2>
+                    {isMobile && <Photo src={teacher} />}
+                    {/* {isMobile && <StyledNavigationButton /> } */}
+                    <CardNumber />
+                </Orientation2>
                 <Info>
-                    <Name>
-                        <Font1920_h5>Куликова Анастасия Николаевна</Font1920_h5>
-                    </Name>
-                    <AudioPleer />
+                    <Orientation>
+                        <Name>
+                            <Font1920_h5 teacher>Куликова Анастасия Николаевна</Font1920_h5>
+                        </Name>
+                        <AudioPleer />
+                    </Orientation>
                     <Courses>
                         <Course>
-                            <Font1920_h6 white>ОГЭ</Font1920_h6>
+                            <Font1920_h6 white teacher>ОГЭ</Font1920_h6>
                         </Course>
                         <Course color="#59C4E5">
-                            <Font1920_h6 white>ОГЭ</Font1920_h6>
+                            <Font1920_h6 teacher white>ОГЭ</Font1920_h6>
                         </Course>
                         <Course color="#FF9090">
-                            <Font1920_h6 white>ОГЭ</Font1920_h6>
+                            <Font1920_h6 white teacher>ОГЭ</Font1920_h6>
                         </Course>
                     </Courses>
                     <Greeting course={+course}>

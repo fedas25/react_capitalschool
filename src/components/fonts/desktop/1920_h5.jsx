@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
+import { useMediaQuery } from 'react-responsive';
 
     const SpanStyled = styled.span`
         font-family: "Montserrat-Medium-500";
         font-size: ${(props) => props.test ? "32px" : "28px"} ;
         @media (max-width: 768px) {
-            font-size: 25px;
+            font-size: ${(props) => (props.teacher === true && props.isMobile == true) ? "23px" : "25px"} ;
         }
         font-style: normal;
         font-weight: 500;
@@ -16,9 +17,11 @@ import styled from 'styled-components'
         font-feature-settings: 'case' on;
     `
 
-export default function StyledText({ children, gray = null, violet = null, handler = null, test = null, className = null}) {
+export default function StyledText({ children, gray = null, violet = null, handler = null, test = null, className = null, teacher = null}) {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+
     return (
-        <SpanStyled onClick={handler} gray={+gray} violet={+violet} test={+test} className={className}>
+        <SpanStyled isMobile={isMobile} teacher={teacher} onClick={handler} gray={+gray} violet={+violet} test={+test} className={className}>
             {children}
         </SpanStyled>
     );
