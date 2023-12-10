@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
 import H2 from "./../../components/fonts/desktop/1920_h2.jsx"
-import CaruselMobile from './CaruselMobile.jsx';
 import CardMobileAdvantages from './CardMobileAdvantages.jsx';
+import CaruselMobile from "./../../components/CaruselMobile.jsx"
 
 const Discriptionn = styled.div`
     width: 100%;

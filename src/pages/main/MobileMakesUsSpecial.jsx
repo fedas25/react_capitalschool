@@ -2,7 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 import H2 from "./../../components/fonts/desktop/1920_h2.jsx"
 import H4 from "./../../components/fonts/desktop/1920_h4.jsx"
-import CaruselMobile from './CaruselMobile.jsx';
+import CaruselMobile from "./../../components/CaruselMobile.jsx"
 import CardMobileAdvantages from './CardMobileAdvantages.jsx';
 
 const StyledH2 = styled(H2)`
