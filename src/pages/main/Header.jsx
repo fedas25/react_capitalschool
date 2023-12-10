@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { useMediaQuery } from "react-responsive";
 import Button from "../../components/Button";
 import Font1920_h1 from "../../components/fonts/desktop/1920_h1"
 import Font1920_p1 from "../../components/fonts/desktop/1920_p1"
@@ -28,6 +29,7 @@ const Vetka = styled.img`
         position: absolute;
         width: 720px;
         height: 1008px;
+        pointer-events: none;
         @media (max-width: 768px) {
             width: 560px;
             height: 426px;
@@ -48,6 +50,7 @@ justify-content: center;
 `;
 
 export default function Header() {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
     return (
         <>
@@ -63,9 +66,8 @@ export default function Header() {
                     С нами английский станет вашим надёжным и верным<br />
                     другом в любой ситуации.<br />
                 </Font1920_p1>
-                <Center>
-                    <Button title="Записаться на пробное занятие" />
-                </Center>
+                {isMobile && <Center> <Button title="Записаться на пробное занятие" /> </Center>}
+                {!isMobile && <Button title="Записаться на пробное занятие" />}
             </Div>
         </>
     )
