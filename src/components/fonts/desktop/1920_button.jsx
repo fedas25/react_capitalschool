@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
+import { useMediaQuery } from 'react-responsive';
 
     const SpanStyled = styled.span`
         font-family: "Montserrat-Medium-500";
         font-size: 24px;
         @media (max-width: 768px) {
-            font-size: 16px;
+            font-size: ${(props) => (props.test === true && props.isMobile == true) ? "21px" : "16px"};
         }
         font-style: normal;
         font-weight: 500;
@@ -16,10 +17,11 @@ import styled from 'styled-components'
         transition: color 200ms;
     `
 
-export default function StyledText({ children, color = null }) {
+export default function StyledText({ children, color = null, test = null }) {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
     return (
-        <SpanStyled color={color}>
+        <SpanStyled color={color} isMobile={isMobile} test={test}>
             {children}
         </SpanStyled>
     );
