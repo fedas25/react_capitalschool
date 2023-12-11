@@ -7,7 +7,7 @@ import openingCross from "../../assets/openingCross.png"
 
 const Container = styled.div`
     width: 100%;
-    margin: 0 auto;
+    margin: 0 auto 80px auto;
     display: flex;
     flex-direction: column;
     align-items: center;

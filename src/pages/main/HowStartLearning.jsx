@@ -19,7 +19,7 @@ const Container = styled.div`
     gap: 96px;
     @media (max-width: 768px) {
         gap: 48px;
-        margin-top: 80px;
+        margin: 80px 0;
     }
 `;
 
