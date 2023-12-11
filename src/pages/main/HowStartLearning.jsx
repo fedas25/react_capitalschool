@@ -7,6 +7,8 @@ import Font1920_p1 from "./../../components/fonts/desktop/1920_p1"
 import Arrow from "../../components/Arrow"
 import Button from "../../components/Button"
 import map from "./../../assets/map.jpg"
+import CaruselMobile from "../../components/CaruselMobile"
+import { useMediaQuery } from 'react-responsive';
 
 const Container = styled.div`
     width: 100%;
@@ -15,11 +17,18 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 96px;
+    @media (max-width: 768px) {
+        gap: 48px;
+        margin-top: 80px;
+    }
 `;
 
-const Description = styled.p`
+const Description = styled.div`
     width: 1664px;
-    font-size: 65px;
+    position: relative;
+    @media (max-width: 768px) {
+        width: 320px;
+    }
     color: black;
 `;
 
@@ -41,12 +50,6 @@ function cardNumber({ className, cardNumber, numberOfCards }) {
     )
 }
 
-const Image = styled.img`
-    width: 400px;
-    height: 600px;
-    border-radius: 50px;
-`;
-
 const StyledCardNumber = styled(cardNumber)`
     color: #BCBCC5;
     font-feature-settings: 'case' on;
@@ -55,6 +58,7 @@ const StyledCardNumber = styled(cardNumber)`
 function Navigation({ className }) {
     return (
         <div className={className}>
+            <Image src={map} />
             <StyledCardNumber cardNumber="1" numberOfCards="12" />
         </div>
     )
@@ -67,6 +71,11 @@ const StyledNavigation = styled(Navigation)`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 64px;
+    @media (max-width: 768px) {
+        align-items: start;
+        height: auto;
+        margin-bottom: 48px;
+    }
 `;
 
 const Information = styled.div`
@@ -74,23 +83,36 @@ const Information = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    .center{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
 `;
 
 const Heading = styled.span`
     margin-bottom: 40px;
     width: 820px;
+    @media (max-width: 768px) {
+        width: 320px;
+        margin-bottom: 32px;
+    }
 `;
 
 const Text = styled.span`
     margin-bottom: 48px;
-    width: 820px;
+    width: 820px; 
+    @media (max-width: 768px) {
+        margin-bottom: 40px;
+        width: 320px;
+    }
 `;
 
 function NavigationButton({ className, handler }) {
     return (
         <div className={className}>
-            <Arrow handle={handler.left} />
-            <Arrow handle={handler.right} right />
+            <Arrow startLearning handle={handler.left} />
+            <Arrow startLearning handle={handler.right} right />
         </div>
     )
 }
@@ -99,7 +121,11 @@ const StyledNavigationButton = styled(NavigationButton)`
     position: absolute;
     z-index: 1;
     top: 0px;
+    @media (max-width: 768px) {
+        top: 156px;
+    }
     right: 0px;
+    
 `;
 
 const Stages = styled.div`
@@ -107,7 +133,7 @@ const Stages = styled.div`
     align-items: flex-start;
     align-content: flex-start;
     position: relative;
-    transform: ${ ({offset}) => `translateX(${offset}px)` } ;
+    transform: ${({ offset }) => `translateX(${offset}px)`} ;
     transition: transform 800ms;
 `;
 
@@ -115,17 +141,32 @@ const StageContainer = styled.div`
 display: flex;
 justify-content: space-between;
 width: 1668px;
+@media (max-width: 768px) {
+    width: 320px;
+}
 `;
 
-function Stage({setShow}) {
+
+const Image = styled.img`
+    width: 400px;
+    height: 600px;
+    border-radius: 50px;
+    @media (max-width: 768px) {
+        width: 193px;
+        height: 167px;
+        border-radius: 25px;
+    }
+`;
+
+function Stage({ setShow, isMobile }) {
     return (
         <StageContainer>
-            <Image src={map} />
+            {!isMobile && <Image src={map} />}
             <Information>
-                <StyledNavigation />
+                {isMobile && <StyledNavigation />}
                 <Heading>
                     <Font1920_h3>
-                        Узнайте свой уровень английского
+                        Пройдите тест на определение уровня
                     </Font1920_h3>
                 </Heading>
                 <Text>
@@ -135,15 +176,19 @@ function Stage({setShow}) {
                         ляляляляляля
                     </Font1920_p1>
                 </Text>
-                <Button title="пройти тест" handler={() => {setShow(true)}} />
+                <div className={isMobile && "center"}>
+                    <Button test title="пройти тест" handler={() => { setShow(true) }} />
+                </div>
             </Information>
         </StageContainer>
     )
 }
 
-export default function HowStartLearning({setShow}) {
+export default function HowStartLearning({ setShow }) {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+
     const [offset, setOffset] = useState(0);
-    
+
     function handlerLeft() {
         setOffset(offset + 1668);
     }
@@ -156,20 +201,25 @@ export default function HowStartLearning({setShow}) {
             <Container>
                 <Description>
                     <Font1920_h2>Как начать обучение?</Font1920_h2>
+                    {isMobile && <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />}
                 </Description>
-                <Content>
-                    <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
-                    <Stages offset={offset}>
-                        <Stage setShow={setShow}/>
-                        <Stage setShow={setShow}/>
-                        <Stage setShow={setShow}/>
-                        <Stage setShow={setShow}/>
-                        <Stage setShow={setShow}/>
-                        <Stage setShow={setShow}/>
-                        <Stage setShow={setShow}/>
-                        <Stage setShow={setShow}/>
-                    </Stages>
-                </Content>
+                {isMobile ?
+                    <>
+                        <CaruselMobile noNavigation>
+                            <Stage setShow={setShow} isMobile={isMobile} />
+                            <Stage setShow={setShow} isMobile={isMobile} />
+                        </CaruselMobile>
+                    </> :
+                    <>
+                        <Content>
+                            <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
+                            <Stages offset={offset}>
+                                <Stage setShow={setShow} />
+                                <Stage setShow={setShow} />
+                            </Stages>
+                        </Content>
+                    </>
+                }
             </Container>
         </>
     )
