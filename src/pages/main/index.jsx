@@ -12,38 +12,53 @@ import QuestionAnswer from "./QuestionAnswer";
 import Footer from "./../../components/Footer.jsx";
 import Test from '../../components/modal/test';
 import Entry from '../../components/modal/entry/index.jsx';
+import { useMediaQuery } from 'react-responsive';
+
+import H4 from "./../../components/fonts/desktop/1920_h4.jsx"
+import H2 from "./../../components/fonts/desktop/1920_h2.jsx"
+
+import MobileMakesUsSpecial from './MobileMakesUsSpecial.jsx';
+import MobileAdvantagesOnlineClasses from './MobileAdvantagesOnlineClasses.jsx';
 
 const Container = styled.div`
     display: flex;
     padding: 168px 0 0 0;
+    @media (max-width: 768px) {
+        padding: 0px;
+    }
     flex-direction: column;
     align-items: flex-start;
     row-gap: 168px;
+    @media (max-width: 768px) {
+        row-gap: 0px;
+    }
 `;
 
 export default function Main() {
     const [showTest, setShowTest] = useState(false)
     const [showEntry, setShowEntry] = useState(false)
 
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
     return (
         <>
-            <Test show={showTest} setShow={setShowTest}/>
+            <Test show={showTest} setShow={setShowTest} />
             <Entry show={showEntry} setShow={setShowEntry} />
 
-            {/* <NavBar
+            <NavBar
                 handlerEntry={() => setShowEntry(true)}
-                courses={["B1 (Intermediate Level)","B1 (Intermediate Level)","B1 (Intermediate Level)", "B2 (Upper-Intermediate Level)", "C1 (Intermediate Level)", "C2 (Upper-Intermediate Level)"]}
+                courses={["B1 (Intermediate Level)", "B1 (Intermediate Level)", "B1 (Intermediate Level)", "B2 (Upper-Intermediate Level)", "C1 (Intermediate Level)", "C2 (Upper-Intermediate Level)"]}
             />
-            <Header /> */}
+            <Header />
             <Container>
-                {/* <MakesUsSpecial />
-                <AdvantagesOnlineClasses />
+                {isMobile ? <MobileMakesUsSpecial /> : <MakesUsSpecial />}
+                {isMobile ? <MobileAdvantagesOnlineClasses /> : <AdvantagesOnlineClasses />}
+                {isMobile ? <MobileAdvantagesOnlineClasses /> : <AdvantagesOnlineClasses />}
                 <ListCourses />
-                <ListTeacher /> */}
+                <ListTeacher />
                 <EnglishLevelTest setShow={setShowTest} />
-                {/* <HowStartLearning setShow={setShowTest} />
+                <HowStartLearning setShow={setShowTest} />
                 <QuestionAnswer />
-                <Footer /> */}
+                <Footer />
             </Container>
         </>
     )

@@ -20,24 +20,28 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   width: 1664px;
+  @media (max-width: 768px) {
+    width: 320px;
+  }
   gap: 64px;
 `;
 
 const Wordsimg = styled.img`
   height: 807px;
   width: 1664px;
+  @media (max-width: 768px) {
+    width: 320px;
+  }
   border-bottom: 2px solid rgba(255, 255, 255, 0.50);
 `;
-
-// const Words = styled.div`
-//   height: 807px;
-//   border-bottom: 2px solid rgba(255, 255, 255, 0.50);
-// `;
 
 const Info = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const CompanyInformation = styled.div`
