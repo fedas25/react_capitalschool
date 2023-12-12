@@ -12,16 +12,17 @@ import { useMediaQuery } from 'react-responsive';
         font-weight: 500;
         line-height: 120%;
         color: ${(props) => (props.gray == true) ? "#757575" :
-                            (props.violet == true) ? "#6B73C2" : "#1C1C1C"};
+                            (props.violet == true) ? "#6B73C2" :
+                            (props.white == true) ? "#FFF" : "#1C1C1C"};
         font-variant-numeric: lining-nums tabular-nums;
         font-feature-settings: 'case' on;
     `
 
-export default function StyledText({ children, gray = null, violet = null, handler = null, test = null, className = null, teacher = null}) {
+export default function StyledText({ children, white = null, gray = null, violet = null, handler = null, test = null, className = null, teacher = null}) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
     return (
-        <SpanStyled isMobile={isMobile} teacher={teacher} onClick={handler} gray={+gray} violet={+violet} test={+test} className={className}>
+        <SpanStyled isMobile={isMobile} teacher={teacher} onClick={handler} gray={+gray} violet={+violet} white={+white} test={+test} className={className}>
             {children}
         </SpanStyled>
     );
