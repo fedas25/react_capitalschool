@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
+import { useMediaQuery } from 'react-responsive';
 import Font1920_h2 from "./../../components/fonts/desktop/1920_h2"
 import Font1920_h4 from "./../../components/fonts/desktop/1920_h4"
 import Font1920_p1 from "./../../components/fonts/desktop/1920_p1"
@@ -62,8 +63,15 @@ const Text = styled.p`
 `
 
 function Question({ handler, className, children, show }) {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+
+    function handlerMobile(e) {
+        handler();
+        e.stopPropagation();
+    }
+
     return (
-        <div className={className}>
+        <div className={className} onClickCapture={isMobile ? handlerMobile : () => {}}>
             <Text>
                 <Font1920_h4 black question>
                     {children}
@@ -83,9 +91,13 @@ const StyledQuestion = styled(Question)`
 
 const Answer = styled.div`
 width: 1100px;
+margin-left: 24px;
 @media (max-width: 768px) {
     width: 320px;
+    margin-left: auto;
 }
+
+
 margin-top: ${(props) => props.show == false ? "0px" : "32px"};
 max-height: ${(props) => props.show == false ? "0px" : "350px"};
 overflow: hidden;
@@ -106,10 +118,11 @@ const Cell = styled.div`
 `;
 
 function QuestionCell({ question, answer }) {
+
     const [show, setShow] = useState(false)
 
     function handler() {
-        setShow(!show)
+        setShow(!show);
     }
 
     return (
