@@ -8,7 +8,7 @@ module.exports = {
     target: "web",
     entry: ["@babel/polyfill", "./src/index.jsx"],
     output: {
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, "build"),
         filename: "[name].[hash].js",
         clean: true,
     },
