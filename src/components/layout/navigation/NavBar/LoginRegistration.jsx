@@ -42,12 +42,12 @@ export default function Сourses({ handlerEntry, props }) {
     const isMobile = useMediaQuery({query: '(max-width: 768px)'})
 
     return (
-        <Container onClick={handlerEntry}>
+        <Container>
             <ProfileIconStyled />
             {isMobile && <Burger src={burger} alt='drop-down menu' />}
             {!isMobile &&
             <Pointer>
-                <Font1920h6 white={+true}>Вход / регистрация</Font1920h6>
+                <Font1920h6 onClick={handlerEntry} white={+true}>Вход / регистрация</Font1920h6>
             </Pointer>
             }
         </Container>
