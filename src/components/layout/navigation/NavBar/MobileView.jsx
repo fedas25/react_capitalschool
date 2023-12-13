@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import CrossExit from "./../../../../assets/CrossExit.svg"
 import profileIcon from './../../../../assets/profileIcon.png';
@@ -19,7 +19,7 @@ const Container = styled.div`
     z-index: 1;
     background-color: #6B73C2;
     display: grid;
-    grid-template-rows: repeat(8, auto);
+    grid-template-rows: repeat(7, auto);
     grid-template-columns: 90vw;
     row-gap: 24px;
     justify-content: center;
@@ -40,13 +40,13 @@ const Container = styled.div`
             height: 56px;
         }
     }
-    .courses {
+    .container-courses{
         display: flex;
-        align-items: center;
-        gap: 12px;
-        img {
-            width: 48px;
-            height: 48px;
+        flex-direction: column;
+        .courses {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
     }
     .social-networks{
@@ -54,7 +54,37 @@ const Container = styled.div`
     }
 `
 
+const Arrow = styled.img`
+    width: 48px;
+    height: 48px;
+    transform: ${(props) => props.show == false ? "rotate(0)" : "rotate(180deg)"};
+    transition: transform 300ms linear;
+`;
+
+const DropDownListCourses = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+    margin: ${(props) => props.show == false ? "0" : "28px 0 32px 0"}; /*max-height вычисляется по кол-ву курсов */
+    max-height: ${(props) => props.show == false ? "0px" : props.maxHeight + "px"};
+    transition: max-height 300ms ease-in-out, margin 300ms ease-in-out;
+`;
+
 export default function ({ handler, isShown }) {
+    const [isListShow, setIsListShow] = useState(false);
+
+    function changeListShow() {
+        setIsListShow(!isListShow);
+    }
+
+    const courses = ["A1 (Beginner Level)", "A1 (Beginner Level)", "A1 (Beginner Level)", "A1 (Beginner Level)", "A2 (Elementary Level)", "B2 (Upper-Intermediate Level)", "ЕГЭ", "ОГЭ"]
+
+    const listСourses = courses.map((courseName) => <H5 teacher white>{courseName}</H5>)
+
+    const maxHeightDropDownListCourses = (28 * courses.length) + ((courses.length - 1) * 20);
+
     return (
         <Container>
             <img src={CrossExit} alt="alt" className='cross-exit' />
@@ -63,9 +93,14 @@ export default function ({ handler, isShown }) {
                 <H5 teacher white>Вход / регистрация</H5>
             </div>
             <H4 white>О нас</H4>
-            <div className='courses'>
-                <H4 white>Курсы</H4>
-                <img src={downArrow} alt="downArrow" />
+            <div className='container-courses'>
+                <div className='courses' onClick={changeListShow}>
+                    <H4 white>Курсы</H4>
+                    <Arrow show={+isListShow} src={downArrow} alt="downArrow" />
+                </div>
+                <DropDownListCourses show={+isListShow} maxHeight={maxHeightDropDownListCourses}>
+                    {listСourses}
+                </DropDownListCourses>
             </div>
             <P1 teacher>ООО «Lorem ipsum»</P1>
             <P1 teacher>+7 499 727-38-38 / info@fitsharing.ru</P1>
