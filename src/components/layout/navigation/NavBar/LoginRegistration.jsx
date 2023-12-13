@@ -38,13 +38,13 @@ const Pointer = styled.span`
 cursor: pointer;
 `;
 
-export default function Сourses({ handlerEntry, props }) {
+export default function Сourses({ handlerEntry, handlershowMenu }) {
     const isMobile = useMediaQuery({query: '(max-width: 768px)'})
 
     return (
         <Container>
             <ProfileIconStyled />
-            {isMobile && <Burger src={burger} alt='drop-down menu' />}
+            {isMobile && <Burger onClick={handlershowMenu} src={burger} alt='drop-down menu' />}
             {!isMobile &&
             <Pointer>
                 <Font1920h6 onClick={handlerEntry} white={+true}>Вход / регистрация</Font1920h6>

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import AboutUs from './AboutUs';
 import Courses from './Сourses';
 import Contacts from "./Contacts";
 import LoginRegistration from "./LoginRegistration"
+import MobileView from './MobileView';
 import { useMediaQuery } from 'react-responsive';
 
 const NavBar = styled.div`
@@ -18,8 +19,15 @@ const NavBar = styled.div`
 export default function MenuItems({ handle, handlerEntry, showCourses }) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
+    const [isShowMenu, setIsShowMenu] = useState(false);
+
+    function changeListShow() {
+        setIsShowMenu(!isShowMenu);
+    }
+
     return (
         <NavBar>
+            <MobileView isShown={isShowMenu} handlerClosures={changeListShow}/>
             {!isMobile &&
                 <>
                     <AboutUs />
@@ -27,7 +35,7 @@ export default function MenuItems({ handle, handlerEntry, showCourses }) {
                     <Contacts />
                 </>
             }
-            <LoginRegistration handlerEntry={handlerEntry} />
+            <LoginRegistration handlerEntry={handlerEntry} handlershowMenu={changeListShow}/>
         </NavBar>
     );
 }

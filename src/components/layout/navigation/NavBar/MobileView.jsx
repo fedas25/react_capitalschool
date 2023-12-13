@@ -14,6 +14,8 @@ const Container = styled.div`
     position: absolute;
     right: 0px;
     top: 0px;
+    top: ${(props) => props.isShown == false ? "0px" : "-590px"};
+    transition: top 400ms;
     width: 100%;
     padding: 32px 0 72px 0;
     z-index: 1;
@@ -72,7 +74,7 @@ const DropDownListCourses = styled.div`
     transition: max-height 300ms ease-in-out, margin 300ms ease-in-out;
 `;
 
-export default function ({ handler, isShown }) {
+export default function ({ handlerClosures, isShown }) {
     const [isListShow, setIsListShow] = useState(false);
 
     function changeListShow() {
@@ -83,11 +85,13 @@ export default function ({ handler, isShown }) {
 
     const listСourses = courses.map((courseName) => <H5 teacher white>{courseName}</H5>)
 
-    const maxHeightDropDownListCourses = (28 * courses.length) + ((courses.length - 1) * 20);
+    const maxHeightDropDownListCourses = (28 * courses.length) + ((courses.length - 1) * 20) +28;
+    // сделать добавление max-height при длинных названиях курсов 28px за каждый длинный курс
+    // который идёт в 2 строчки
 
     return (
-        <Container>
-            <img src={CrossExit} alt="alt" className='cross-exit' />
+        <Container isShown={isShown}>
+            <img src={CrossExit} onClick={handlerClosures} alt="alt" className='cross-exit' />
             <div className='login-registration'>
                 <img src={profileIcon} alt="profileIcon" />
                 <H5 teacher white>Вход / регистрация</H5>

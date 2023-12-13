@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import styled from "styled-components";
 import logo from './../../../../assets/logo.svg';
-import Menu from "./menuItems";
+import Menu from "./MenuItems";
 import H4 from "./../../../fonts/desktop/1920_h4"
 
 const Contaier = styled.div`
@@ -63,7 +63,7 @@ const StyledH4 = styled(H4)`
 
 export default function NavBar({ courses, handlerEntry }) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
-    
+
     const [show, setShow] = useState(true);
     function animationHandler() {
         setShow(!show)
@@ -82,13 +82,11 @@ export default function NavBar({ courses, handlerEntry }) {
                 <Menu showCourses={show} handle={animationHandler} handlerEntry={handlerEntry} />
             </Contaier>
             {!isMobile &&
-                <>
-                    <ContainerlistCourses showCourses={show}>
-                        <List>
-                            {listCourses}
-                        </List>
-                    </ContainerlistCourses>
-                </>
+                <ContainerlistCourses showCourses={show}>
+                    <List>
+                        {listCourses}
+                    </List>
+                </ContainerlistCourses>
             }
         </>
     );
