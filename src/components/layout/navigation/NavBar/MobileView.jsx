@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import CrossExit from "./../../../../assets/CrossExit.svg"
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import CrossExit from "./../../../../assets/CrossExit.svg";
 import profileIcon from './../../../../assets/profileIcon.png';
 import downArrow from './../../../../assets/downArrow.png';
 import whatsapp from './../../../../assets/whatsapp.png';
@@ -74,7 +74,7 @@ const DropDownListCourses = styled.div`
     transition: max-height 300ms ease-in-out, margin 300ms ease-in-out;
 `;
 
-export default function ({ handlerClosures, isShown }) {
+export default function ({ handlerClosures, handlerEntry, isShown }) {
     const [isListShow, setIsListShow] = useState(false);
 
     function changeListShow() {
@@ -85,16 +85,21 @@ export default function ({ handlerClosures, isShown }) {
 
     const listСourses = courses.map((courseName) => <H5 teacher white>{courseName}</H5>)
 
-    const maxHeightDropDownListCourses = (28 * courses.length) + ((courses.length - 1) * 20) +28;
+    const maxHeightDropDownListCourses = (28 * courses.length) + ((courses.length - 1) * 20) + 28;
     // сделать добавление max-height при длинных названиях курсов 28px за каждый длинный курс
     // который идёт в 2 строчки
 
     return (
         <Container isShown={isShown}>
-            <img src={CrossExit} onClick={handlerClosures} alt="alt" className='cross-exit' />
+            <img
+                src={CrossExit}
+                onClick={() => { handlerClosures(); setIsListShow(false) }}
+                alt="alt"
+                className='cross-exit'
+            />
             <div className='login-registration'>
                 <img src={profileIcon} alt="profileIcon" />
-                <H5 teacher white>Вход / регистрация</H5>
+                <H5 teacher white handler={handlerEntry}>Вход / регистрация</H5>
             </div>
             <H4 white>О нас</H4>
             <div className='container-courses'>

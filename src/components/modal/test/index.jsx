@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from "styled-components"
+import { useMediaQuery } from 'react-responsive';
 import Font1920_h3 from "../../fonts/desktop/1920_h3"
 import Font1920_h4 from "../../fonts/desktop/1920_h4"
 import Font1920_h5 from "../../fonts/desktop/1920_h5"
@@ -12,13 +13,19 @@ import topStars from "./../../../assets/topStars.svg"
 import lowerStars from "./../../../assets/lowerStars.svg"
 
 const CrossExit = styled.img`
+  position: absolute;
   width: 80px;
   height: 80px;
-  position: absolute;
   right: -40px;
   top: -100px;
+  @media (max-width: 769px) {
+    width: 56px;
+    height: 56px;
+    right: -2px;
+    top: -62px;
+  }
   cursor: pointer;
-  z-index: 12;
+  z-index: 2;
 `;
 
 const StyledFont1920_h5 = styled(Font1920_h5)`
@@ -29,7 +36,7 @@ function Question({ handler, btn = false, handlerResult = null }) {
     return (
         <CardQuestion>
             <StyledNavigation />
-            <StyledFont1920_h5 test>Сколько букв в английском алфавите?</StyledFont1920_h5>
+            <StyledFont1920_h5 test teacher>Сколько букв в английском алфавите?</StyledFont1920_h5>
             <ResponseOptions>
                 <Options>
                     <StyledInput />
@@ -75,14 +82,26 @@ function Question({ handler, btn = false, handlerResult = null }) {
 
 const Container = styled.div`
     background-color: #fff;
+
     padding: 64px 32px 128px 32px;
-    top: 10%;
-    left: 50%;
-    margin-left: -400px;
-    position: fixed;
     border-radius: 50px;
-    z-index: 2;
-    display: ${(props) => props.show == false ? "none" : "block"} ;
+
+    margin-left: -400px;
+    @media (max-width: 768px) {
+        margin-left: 0px;
+        bottom: 0px;
+        width: 100vw;
+        border-radius: 40px 40px 0px 0px;
+        padding: 64px 0px 128px 0px;
+    }
+    @media (min-width: 769px) {
+        top: 10%;
+        left: 50%;
+    }
+    position: fixed;
+    z-index: 4;
+    display: ${(props) => props.show == false ? "none" : "flex"} ;
+    justify-content: center;
     
     .topStars {
         pointer-events: none;
@@ -103,17 +122,24 @@ const Container = styled.div`
 const Content = styled.div`
     display: flex;
     width: ${({ result }) => result ? "746px" : "800px"} ;
+    @media (max-width: 768px) {
+        width: 320px;
+    }
     position: relative;
     overflow: hidden;
 `;
 
 export default function Test({ show, setShow }) {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+
+    const scrollingStep = isMobile ? 320 : 800;
+
     const [offset, setOffset] = useState(0);
     function handlerLeft() {
-        setOffset(offset + 800);
+        setOffset(offset + scrollingStep);
     }
     function handlerRight() {
-        setOffset(offset - 800);
+        setOffset(offset - scrollingStep);
     }
 
     const [isResult, setisResult] = useState(0);
@@ -136,7 +162,7 @@ export default function Test({ show, setShow }) {
                         {isResult ?
                             <Result>
                                 <p>
-                                    <Font1920_h3>
+                                    <Font1920_h3 result>
                                         Ваш уровень английского — B2
                                     </Font1920_h3>
                                 </p>
@@ -144,7 +170,7 @@ export default function Test({ show, setShow }) {
                                     Развивайте свой англиский вместе с нами. Благодаря нашим онлайн-курсам ваш уровень английского достигнет новых высот. Присоединяйтесь к нам и сделайте английский вашим надежном и верным другом в любой ситуации.
                                 </Font1920_p1>
                                 <div>
-                                    <Button title="Записаться на пробное занятие" />
+                                    <Button test result title="Записаться на пробное занятие"/>
                                 </div>
                             </Result>
                             :
@@ -171,7 +197,10 @@ flex-direction: column;
 justify-content: center;
 gap: 48px;
     p {
-        width: 622px; 
+        width: 622px;
+        @media (max-width: 768px) {
+            width: 320px;
+        }
     }
     div {
         display: flex;
@@ -227,6 +256,9 @@ function Navigation({ className }) {
 
 const CardQuestion = styled.div`
     width: 800px;
+    @media (max-width: 768px) {
+        width: 320px;
+    }
     display: flex;
     flex-direction: column;
 `
@@ -234,6 +266,10 @@ const CardQuestion = styled.div`
 const StyledNavigation = styled(Navigation)`
       width: 800px;
       height: 100px;
+      @media (max-width: 768px) {
+        width: 320px;
+        height: auto;
+    }
       margin-bottom: 64px;
       display: flex;
       align-items: center;
@@ -266,8 +302,8 @@ const StyledInput = styled(Input)`
 function NavigationButton({ className, handler }) {
     return (
         <div className={className}>
-            <Arrow handle={handler.left} />
-            <Arrow handle={handler.right} right />
+            <Arrow handle={handler.left} startLearning/>
+            <Arrow handle={handler.right} right startLearning/>
         </div>
     )
 }
@@ -276,5 +312,8 @@ const StyledNavigationButton = styled(NavigationButton)`
       position: absolute;
       z-index: 1;
       top: 64px;
+      @media (max-width: 768px) {
+        top: 51px;
+      }
       right: 32px;
   `;

@@ -7,7 +7,7 @@ const Button = styled.div`
     padding: 18px 28px 20px 28px;
     @media (max-width: 768px) {
         padding: 14px 12px 16px 12px;
-        ${ (props) => { return props.test ? "padding: 16px 20px;" : "" }}
+        ${ (props) => { return (props.test && !props.result) ? "padding: 16px 20px;" : "" }}
     }
     justify-content: center;
     align-items: center;
@@ -21,10 +21,10 @@ const Button = styled.div`
     transition: background-color 2000ms;
     `;
 
-export default function Main({ title, color = null, btnColor = null, handler = null, test = null, className = null}) {
+export default function Main({ title, color = null, btnColor = null, handler = null, test = null, result = null, className = null}) {
     return (
-        <Button test={test} color={btnColor} onClick={handler} className={className}>
-            <FontButton color={color} test={test }>{title}</FontButton>
+        <Button test={test} color={btnColor} onClick={handler} className={className} result={result}>
+            <FontButton color={color} test={test} result={result}>{title}</FontButton>
         </Button>
     );
 }

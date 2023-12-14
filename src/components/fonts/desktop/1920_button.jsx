@@ -7,6 +7,7 @@ import { useMediaQuery } from 'react-responsive';
         font-size: 24px;
         @media (max-width: 768px) {
             font-size: ${(props) => (props.test === true && props.isMobile == true) ? "21px" : "16px"};
+            font-size: ${(props) => (props.result) ? "17px" : ""};
         }
         font-style: normal;
         font-weight: 500;
@@ -17,11 +18,11 @@ import { useMediaQuery } from 'react-responsive';
         transition: color 200ms;
     `
 
-export default function StyledText({ children, color = null, test = null }) {
+export default function StyledText({ children, color = null, test = null, result = null }) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
     return (
-        <SpanStyled color={color} isMobile={isMobile} test={test}>
+        <SpanStyled color={color} isMobile={isMobile} test={test} result={result}>
             {children}
         </SpanStyled>
     );

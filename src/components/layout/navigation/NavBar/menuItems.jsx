@@ -19,7 +19,7 @@ const NavBar = styled.div`
 export default function MenuItems({ handle, handlerEntry, showCourses }) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
-    const [isShowMenu, setIsShowMenu] = useState(false);
+    const [isShowMenu, setIsShowMenu] = useState(true);
 
     function changeListShow() {
         setIsShowMenu(!isShowMenu);
@@ -27,7 +27,7 @@ export default function MenuItems({ handle, handlerEntry, showCourses }) {
 
     return (
         <NavBar>
-            <MobileView isShown={isShowMenu} handlerClosures={changeListShow}/>
+            <MobileView isShown={isShowMenu} handlerClosures={changeListShow} handlerEntry={handlerEntry}/>
             {!isMobile &&
                 <>
                     <AboutUs />

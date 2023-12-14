@@ -8,7 +8,7 @@ const Container = styled.div`
     background-color: rgba(55,61,66,.5019607843137255);
     left: -1px;
     top: -1px;
-    z-index: 1;
+    z-index: 2;
 `;
 
 export default function DarkenedBackground({ children, show = true }) {
