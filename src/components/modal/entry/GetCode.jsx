@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from "styled-components"
-import crossExit from "./../../../assets/CrossExit.svg"
 import H4 from "../../fonts/desktop/1920_h4"
 import InputText from '../../Form/InputText';
 import Button from "../../Button"
 import MainContainer from './MainContainer';
+import CrossExit from './CrossExit';
 
 const ContainerTypeSelection = styled.div`
   width: 100%;
@@ -26,21 +26,6 @@ function TypeSelection() {
 
 
 
-
-
-
-const CrossExit = styled.img`
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  right: -40px;
-  top: -80px;
-  cursor: pointer;
-`;
-
-
-
-
 const ContainerInputs = styled.div`
 width: 100%;
 display: flex;
@@ -49,10 +34,10 @@ gap: 12px;
 margin-bottom: 47px;
 `;
 
-export default function GetCode({ handlerButton }) {
+export default function GetCode({ handlerButton, handlerExit }) {
   return (
     <MainContainer>
-      <CrossExit src={crossExit} />
+      <CrossExit handler={handlerExit}/>
       <TypeSelection />
       <ContainerInputs>
         <InputText placeholder="Введите код подтверждения" width="100%" />

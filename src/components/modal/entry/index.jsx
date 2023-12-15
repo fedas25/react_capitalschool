@@ -50,7 +50,7 @@ export default function Entry({ show, setShow }) {
       case 0:
         return <Registration handlerNav={{ SetAutorisition: SetAutorisition, SetRegistrition: SetRegistrition }} handlerButton={SetNextStage} handlerExit={() => { setShow(false) }} />;
       case 1:
-        return <GetCode handlerButton={SetNextStage} />;
+        return <GetCode handlerButton={SetNextStage} handlerExit={() => { setShow(false) }} />;
       case 2: // close handler
         return <ActivityBeenCompleted title="Регистрация прошла успешно" handlerButton={() => { SetNextStage(); setShow(false) }} />;
       default:
@@ -58,7 +58,7 @@ export default function Entry({ show, setShow }) {
     }
   };
 
-  const formAuthorization = (stage) => {
+  const formAuthorization = (stage) => { // после успешного восстановления кода автоматически войдёт на страницу
     switch (stage) {
       case 0:
         return <Authoris handlerNav={{ SetAutorisition: SetAutorisition, SetRegistrition: SetRegistrition }} handlerButton={SetNextStage} handlerExit={() => setShow(false)} />;
