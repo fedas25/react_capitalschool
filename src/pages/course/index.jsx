@@ -5,6 +5,7 @@ import Footer from "../../components/Footer";
 import Header from "./Header";
 import CourseDescription from "./CourseDescription";
 import ListTeacher from "../../components/widget/ListTeacher";
+import { useMediaQuery } from "react-responsive";
 
 export default function Course() {
 
@@ -14,12 +15,15 @@ export default function Course() {
         flex-direction: column;
         align-items: flex-start;
         row-gap: 168px;
+        @media (max-width: 768px) {
+            row-gap: 80px;
+        }
     `;
 
     return (
         <>
             <NavBar
-            courses={["B1 (Intermediate Level)", "B2 (Upper-Intermediate Level)", "C1 (Intermediate Level)", "C2 (Upper-Intermediate Level)"]}
+                courses={["B1 (Intermediate Level)", "B2 (Upper-Intermediate Level)", "C1 (Intermediate Level)", "C2 (Upper-Intermediate Level)"]}
             />
             <Header />
             <Container>

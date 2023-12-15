@@ -14,6 +14,7 @@ import H5 from "./../../components/fonts/desktop/1920_h5"
 import openingCross from "../../assets/openingCross.png"
 import Button from '../../components/Button'
 import Recording from '../../components/modal/recording'
+import { useMediaQuery } from 'react-responsive'
 
 const Container = styled.div`
     width: 100%;
@@ -30,6 +31,10 @@ const Content = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    @media (max-width: 768px) {
+        align-items: center;
+        width: 100%;
+    }
     gap: 72px;
 `;
 
@@ -37,14 +42,23 @@ const GeneralInformationContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 138px;
+    @media (max-width: 768px) {
+            flex-direction: column-reverse;
+            width: 100%;
+            gap: 48px;
+    }
 `;
 
 const GeneralInformation = styled.div`
     width: 679px;
+    padding: 64px 28px;
+    @media (max-width: 768px) {
+            width: 100%;
+            padding: 64px 16px;
+    }
     border-radius: 50px;
     background-color: #FFF;
     display: flex;
-    padding: 64px 28px;
     flex-direction: column;
     align-items: flex-start;
 `;
@@ -57,6 +71,9 @@ const Heading = styled.div`
 
 const TextContainer = styled.div`
     width: 844px;
+    @media (max-width: 768px) {
+            width: 320px;
+    }
 `;
 
 const Icon = styled.img`
@@ -161,6 +178,10 @@ const StyledPerHour = styled(perHour)`
 display: flex;
 flex-direction: column;
 justify-content: space-between;
+@media (max-width: 768px) {
+    justify-content: start;
+    gap: 32px;
+}
 `
 
 
@@ -227,6 +248,10 @@ const StyledPerCourse = styled(PerCourse)`
 display: flex;
 flex-direction: column;
 justify-content: space-between;
+@media (max-width: 768px) {
+    justify-content: start;
+    gap: 32px;
+}
 `
 
 
@@ -268,6 +293,11 @@ margin: 48px 0 64px 0;
 height: 147px;
 display: flex;
 gap: 42px;
+@media (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+    gap: 24px;
+    }
 `;
 
 
@@ -293,10 +323,16 @@ const CourseProgramContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 138px;
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 `;
 
 const TextContainerCourseProgram = styled.div`
     width: 538px;
+    @media (max-width: 768px) {
+        width: 320px;
+    }
 `;
 
 
@@ -305,15 +341,19 @@ const TextContainerCourseProgram = styled.div`
 
 
 const ContainerQuestionAnswer = styled.div`
-display: flex;
 width: 961px;
 padding: 64px 28px;
+display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 border-radius: 50px;
 background-color: #FFF;
 border-top: 2px solid #E4E4E7;
+@media (max-width: 768px) {
+        width: 100vw;
+        padding: 64px 16px;
+    }
 `;
 
 const ContentFAQ = styled.div`
@@ -323,8 +363,10 @@ const ContentFAQ = styled.div`
     align-items: flex-start;
     border-bottom: 2px solid #E4E4E7;
     width: 905px;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
-
 
 
 
@@ -343,6 +385,10 @@ const Text = styled.div`
 const OpeningCross = styled.img`
     width: 96px;
     height: 96px;
+    @media (max-width: 768px) {
+        width: 56px;
+        height: 56px;
+    }
     cursor: pointer;
     transform: ${(props) => props.show == false ? "rotate(0)" : "rotate(-45deg)"};
     /* padding-bottom: ${(props) => props.show == false ? "0" : "40px"}; */
@@ -373,6 +419,9 @@ const StyledQuestion = styled(Question)`
 
 const Answer = styled.div`
 width: 905px;
+@media (max-width: 768px) {
+    width: 100%;
+}
 /* margin-top: ${(props) => props.show == false ? "0px" : "32px"}; */
 max-height: ${(props) => props.show == false ? "0px" : "300px"};
 padding-bottom: ${(props) => props.show == false ? "0" : "40px"};
@@ -389,10 +438,16 @@ function QuestionAnswer() {
     function handler() {
         setShow(!show)
     }
+    
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+
+    const handlerMobile = isMobile ? handler : undefined;
+    const handlerDesktop = !isMobile ? handler : undefined;
+
     return (
         <>
-            <ContentFAQ>
-                <StyledQuestion handler={handler} show={show}> Этап 1 </StyledQuestion>
+            <ContentFAQ onClick={handlerMobile}>
+                <StyledQuestion handler={handlerDesktop} show={show}> Этап 1 </StyledQuestion>
                 <Answer show={+show}>
                     <Font1920_p1 gray>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo suscipit mollitia in laudantium voluptates! Explicabo, sit voluptas. Consectetur ipsam pariatur tempore aut, eligendi alias sapiente excepturi in facilis officiis earum.
@@ -416,6 +471,8 @@ export default function CourseDescription() {
     const [IsDisplayRecord, setIsDisplayInformation] = useState(false)
     function hideFullRecord() { setIsDisplayInformation(false) }
     function ShowFullRecord() { setIsDisplayInformation(true) }
+
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
     return (
         <>
@@ -451,7 +508,6 @@ export default function CourseDescription() {
                             <QuestionAnswer />
                             <QuestionAnswer />
                         </ContainerQuestionAnswer>
-
 
                     </CourseProgramContainer>
                 </Content>
