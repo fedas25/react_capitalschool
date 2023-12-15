@@ -4,8 +4,9 @@ import crossExit from "./../../../assets/CrossExit.svg"
 import H4 from "../../fonts/desktop/1920_h4"
 import InputText from '../../Form/InputText';
 import Button from "../../Button"
+import MainContainer from './MainContainer';
 
-const Containerr = styled.div`
+const ContainerTypeSelection = styled.div`
   width: 100%;
   margin-bottom: 64px;
   padding-bottom: 12px;
@@ -16,27 +17,17 @@ const Containerr = styled.div`
 
 function TypeSelection() {
   return (
-    <Containerr>
+    <ContainerTypeSelection>
       <H4 violet>Регистрация</H4>
       <H4 gray>Авторизация</H4>
-    </Containerr>
+    </ContainerTypeSelection>
   )
 }
 
-const Container = styled.div`
-  background-color: #fff;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 650px;
-  border-radius: 50px;
-  top:12%;
-  left: 50%;
-  margin-left: -325px;
-  padding: 112px 32px 128px;
-  z-index: 1;
-`;
+
+
+
+
 
 const CrossExit = styled.img`
   width: 80px;
@@ -47,6 +38,9 @@ const CrossExit = styled.img`
   cursor: pointer;
 `;
 
+
+
+
 const ContainerInputs = styled.div`
 width: 100%;
 display: flex;
@@ -55,15 +49,15 @@ gap: 12px;
 margin-bottom: 47px;
 `;
 
-export default function GetCode({handlerButton}) {
+export default function GetCode({ handlerButton }) {
   return (
-    <Container>
+    <MainContainer>
       <CrossExit src={crossExit} />
       <TypeSelection />
       <ContainerInputs>
         <InputText placeholder="Введите код подтверждения" width="100%" />
       </ContainerInputs>
-      <Button title="Отправить" handler={handlerButton}/>
-    </Container>
+      <Button title="Отправить" handler={handlerButton} />
+    </MainContainer>
   )
 }

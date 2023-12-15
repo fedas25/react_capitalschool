@@ -4,6 +4,8 @@ import crossExit from "./../../../assets/CrossExit.svg"
 import H4 from "../../fonts/desktop/1920_h4"
 import InputText from '../../Form/InputText'
 import Button from "../../Button"
+import MainContainer from './MainContainer';
+
 
 const Containerr = styled.div`
   width: 100%;
@@ -37,20 +39,20 @@ function TypeSelection({handlerNav}) {
 
 
 // вынести !!!
-const Container = styled.div`
-  background-color: #fff;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 650px;
-  border-radius: 50px;
-  top:12%;
-  left: 50%;
-  margin-left: -325px;
-  padding: 112px 32px 128px;
-  z-index: 1;
-`;
+// const Container = styled.div`
+//   background-color: #fff;
+//   position: fixed;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   width: 650px;
+//   border-radius: 50px;
+//   top:12%;
+//   left: 50%;
+//   margin-left: -325px;
+//   padding: 112px 32px 128px;
+//   z-index: 1;
+// `;
 
 
 
@@ -80,7 +82,7 @@ margin-bottom: 47px;
 
 export default function Registration( {handlerButton, handlerNav, handlerExit} ) {
   return (
-    <Container>
+    <MainContainer>
       <CrossExit src={crossExit} onClick={handlerExit}/>
       <TypeSelection handlerNav={handlerNav}/>
       <ContainerInputs>
@@ -89,6 +91,6 @@ export default function Registration( {handlerButton, handlerNav, handlerExit} )
         <InputText placeholder="Отчество" width="100%" />
       </ContainerInputs>
       <Button handler={handlerButton} title="Зарегестрироваться"/>
-    </Container>
+    </MainContainer>
   )
 }
