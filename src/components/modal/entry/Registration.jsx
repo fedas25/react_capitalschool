@@ -6,7 +6,6 @@ import Button from "../../Button"
 import MainContainer from './MainContainer';
 import CrossExit from './CrossExit';
 
-
 const Container = styled.div`
   width: 100%;
   margin-bottom: 64px;
@@ -16,11 +15,13 @@ const Container = styled.div`
   border-bottom: 2px solid var(--srt, #E4E4E7);
 `;
 
+// вынести TypeSelection !!!
+
 function TypeSelection({ handlerNav }) {
   return (
     <Container>
-      <Pointer> <H4 violet handler={handlerNav.SetRegistrition}>Регистрация</H4> </Pointer>
-      <Pointer> <H4 gray handler={handlerNav.SetAutorisition}>Авторизация</H4> </Pointer>
+      <Pointer> <H4 question violet handler={handlerNav.SetRegistrition}>Регистрация</H4> </Pointer>
+      <Pointer> <H4 question gray handler={handlerNav.SetAutorisition}>Авторизация</H4> </Pointer>
     </Container>
   )
 }
@@ -31,6 +32,7 @@ const Pointer = styled.span`
 `;
 
 
+// вынести
 const ContainerInputs = styled.div`
 width: 100%;
 display: flex;

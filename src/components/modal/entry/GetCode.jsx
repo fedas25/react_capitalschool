@@ -14,12 +14,12 @@ const ContainerTypeSelection = styled.div`
   justify-content: space-between;
   border-bottom: 2px solid var(--srt, #E4E4E7);
 `;
-
+// вынести !!!
 function TypeSelection() {
   return (
     <ContainerTypeSelection>
-      <H4 violet>Регистрация</H4>
-      <H4 gray>Авторизация</H4>
+      <H4 violet question>Регистрация</H4>
+      <H4 gray question>Авторизация</H4>
     </ContainerTypeSelection>
   )
 }

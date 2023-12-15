@@ -14,11 +14,11 @@ const SpanStyled = styled.span`
     color: ${(props) => (props.white == true) ? "#FFF" : "#757575"};
 `
 
-export default function StyledText({ children, white = null, className = null, teacher = null }) {
+export default function StyledText({ children, white = null, className = null, teacher = null, handler = () => {} }) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
     return (
-        <SpanStyled isMobile={isMobile} white={+white} className={className} teacher={teacher}>
+        <SpanStyled onClick={handler} isMobile={isMobile} white={+white} className={className} teacher={teacher}>
             {children}
         </SpanStyled>
     );

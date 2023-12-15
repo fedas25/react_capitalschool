@@ -8,6 +8,12 @@ const StyledCrossExit = styled.img`
   position: absolute;
   right: -40px;
   top: -80px;
+  @media (max-width: 768px) {
+    width: 56px;
+    height: 56px;
+    right: 0px;
+    top: -62px;
+  }
   cursor: pointer;
 `;
 

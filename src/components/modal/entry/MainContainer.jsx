@@ -15,6 +15,15 @@ const Container = styled.div`
   top:12%;
   left: 50%;
   margin-left: -325px;
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 64px 24px 128px;
+    border-radius: 40px 40px 0px 0px;
+    left: 0px;
+    top: auto;
+    margin-left: 0px;
+    bottom: 0px;
+  }
   z-index: 1;
 `;
 

@@ -7,6 +7,7 @@ import { useMediaQuery } from 'react-responsive';
         font-size: ${(props) => props.test ? "32px" : "28px"} ;
         @media (max-width: 768px) {
             font-size: ${(props) => (props.teacher === true && props.isMobile == true) ? "23px" : "25px"} ;
+            ${(props) => (props.authoriz && props.isMobile == true) ? "font-size: 20px;" : ""} ;
         }
         font-style: normal;
         font-weight: 500;
@@ -18,11 +19,11 @@ import { useMediaQuery } from 'react-responsive';
         font-feature-settings: 'case' on;
     `
 
-export default function StyledText({ children, white = null, gray = null, violet = null, handler = null, test = null, className = null, teacher = null}) {
+export default function StyledText({ children, white = null, gray = null, violet = null, handler = null, test = null, className = null, authoriz = null, teacher = null}) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
     return (
-        <SpanStyled isMobile={isMobile} teacher={teacher} onClick={handler} gray={+gray} violet={+violet} white={+white} test={+test} className={className}>
+        <SpanStyled isMobile={isMobile} teacher={teacher} onClick={handler} gray={+gray} violet={+violet} white={+white} test={+test} authoriz={+authoriz} className={className}>
             {children}
         </SpanStyled>
     );

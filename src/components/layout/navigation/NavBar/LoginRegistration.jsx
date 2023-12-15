@@ -47,7 +47,7 @@ export default function Сourses({ handlerEntry, handlershowMenu }) {
             {isMobile && <Burger onClick={handlershowMenu} src={burger} alt='drop-down menu' />}
             {!isMobile &&
             <Pointer>
-                <Font1920h6 onClick={handlerEntry} white={+true}>Вход / регистрация</Font1920h6>
+                <Font1920h6 handler={handlerEntry} white={+true}>Вход / регистрация</Font1920h6>
             </Pointer>
             }
         </Container>

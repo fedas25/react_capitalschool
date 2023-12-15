@@ -5,6 +5,8 @@ import H4 from "../../fonts/desktop/1920_h4"
 import H5 from "../../fonts/desktop/1920_h5"
 import InputText from '../../Form/InputText';
 import Button from "../../Button"
+import MainContainer from './MainContainer';
+import CrossExit from './CrossExit';
 
 const Containerr = styled.div`
   width: 100%;
@@ -22,36 +24,37 @@ cursor: pointer;
 function TypeSelection({handlerNav}) {
   return (
     <Containerr>
-      <Pointer> <H4 gray handler={handlerNav.SetRegistrition}>Регистрация</H4> </Pointer>
-      <Pointer> <H4 violet handler={handlerNav.SetAutorisition}>Авторизация</H4> </Pointer>
+      <Pointer> <H4 gray question handler={handlerNav.SetRegistrition}>Регистрация</H4> </Pointer>
+      <Pointer> <H4 violet question handler={handlerNav.SetAutorisition}>Авторизация</H4> </Pointer>
     </Containerr>
   )
 }
 
-const Container = styled.div`
-  background-color: #fff;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 650px;
-  border-radius: 50px;
-  top:12%;
-  left: 50%;
-  margin-left: -325px;
-  padding: 112px 32px 128px;
-  z-index: 1;
-`;
+// const Container = styled.div`
+//   background-color: #fff;
+//   position: fixed;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   width: 650px;
+//   border-radius: 50px;
+//   top:12%;
+//   left: 50%;
+//   margin-left: -325px;
+//   padding: 112px 32px 128px;
+//   z-index: 1;
+// `;
 
-const CrossExit = styled.img`
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  right: -40px;
-  top: -80px;
-  cursor: pointer;
-`;
+// const CrossExit = styled.img`
+//   width: 80px;
+//   height: 80px;
+//   position: absolute;
+//   right: -40px;
+//   top: -80px;
+//   cursor: pointer;
+// `;
 
+// вынести
 const ContainerInputs = styled.div`
 width: 100%;
 display: flex;
@@ -68,17 +71,17 @@ const ForgotPassword = styled.p`
 
 export default function Authoris({ handlerButton, handlerNav, handlerExit }) {
   return (
-    <Container>
-      <CrossExit src={crossExit} onClick={handlerExit}/>
+    <MainContainer>
+      <CrossExit handler={handlerExit} />
       <TypeSelection handlerNav={handlerNav}/>
       <ContainerInputs>
         <InputText placeholder="Email" width="100%" />
         <InputText placeholder="Password" width="100%" />
       </ContainerInputs>
-      <Button handler={handlerButton} title="Войти" />
+      <Button authoriz handler={handlerButton} title="Войти" />
       <ForgotPassword>
-        <H5 violet handler={handlerButton}>Забыли пароль ?</H5>
+        <H5 authoriz violet handler={handlerButton}>Забыли пароль ?</H5>
       </ForgotPassword>
-    </Container>
+    </MainContainer>
   )
 }

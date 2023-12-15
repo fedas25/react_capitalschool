@@ -9,6 +9,10 @@ border: none;
 background-color: #EFEEF4;
 font-family: "Montserrat-Medium-500";
 font-size: 24px;
+@media (max-width: 768px) {
+  font-size: 18px;
+  padding: 16px 24px;
+}
 font-style: normal;
 font-weight: 500;
 line-height: normal;
