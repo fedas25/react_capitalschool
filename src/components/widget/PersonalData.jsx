@@ -1,14 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useMediaQuery } from 'react-responsive'
 import H2 from "../fonts/desktop/1920_h2"
 import H5 from "../fonts/desktop/1920_h5"
 import Font1920_h6 from "../fonts/desktop/1920_h6"
 import avatar from "./../../assets/avatar.svg"
+import iconOut from "./../../assets/iconOut.png"
 import InputText from '../Form/InputText'
 import BadgeCource from '../BadgeCource'
 
 const Container = styled.div`
-    width: 100%;
+    width: 100vw;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -20,16 +22,27 @@ const Content = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 80px;
+    @media (max-width: 768px) {
+        width: 80%;
+        gap: 48px;
+    }
 `;
 
 const Description = styled.p`
     max-width: 1664px;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
     font-size: 65px;
     color: black;
 `;
 
 const Data = styled.div`
     display: flex;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        width: 100%;
+    }
     padding: 64px 0px;
     align-items: flex-start;
     align-content: flex-start;
@@ -49,6 +62,10 @@ const StyledAvatar = styled(Avatar)`
 display: flex;
 width: 258px;
 height: 366px;
+@media (max-width: 768px) {
+    width: 130px;
+    height: 184px;
+}
 justify-content: center;
 align-items: center;
 border-radius: 30px;
@@ -60,6 +77,9 @@ display: flex;
 flex-direction: column;
 align-items: flex-start;
 gap: 12px;
+@media (max-width: 768px) {
+    width: 100%;
+}
 `;
 
 function Authentication({ className }) {
@@ -81,6 +101,10 @@ flex-direction: column;
 align-items: flex-start;
 gap: 32px;
 margin-left: 24px;
+@media (max-width: 768px) {
+    margin-left: 0px;
+    width: 100%;
+}
 `;
 
 const ContainerInputsFullName = styled.div`
@@ -88,6 +112,9 @@ display: flex;
 flex-direction: column;
 align-items: flex-start;
 gap: 12px;
+@media (max-width: 768px) {
+    width: 100%;
+}
 `;
 
 function FullName({ className }) {
@@ -110,16 +137,26 @@ flex-direction: column;
 align-items: flex-start;
 gap: 32px;
 margin-left: 48px;
+@media (max-width: 768px) {
+    margin-left: 0px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    width: 100%;
+}
 `;
 
 const DivFlexColum = styled.div`
    display: flex;
    flex-direction: column;
    gap: 64px;
+   width: 100%;
    `
 
 const DivFlex = styled.div`
    display: flex;
+   @media (max-width: 768px) {
+        flex-direction: column;
+    }
 `
 
 const ListСourses = styled.div`
@@ -151,9 +188,29 @@ const StyledMyСourses = styled(MyСourses)`
     flex-direction: column;
     gap: 32px;
     margin-left: 48px;
+    @media (max-width: 768px) {
+        margin-left: 0px;
+    }  
 `
 
+
+const Out = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 12px;
+    img {
+        width: 56px;
+        height: 56px;
+    }
+`
+
+
+
 export default function PersonalData({teacher}) {
+    const isMobile = useMediaQuery({query: '(max-width: 768px)'})
+
     return (
         <Container>
             <Content>
@@ -168,6 +225,12 @@ export default function PersonalData({teacher}) {
                             <StyledAuthentication />
                         </DivFlex>
                         {teacher && <StyledMyСourses/>}
+                        {isMobile && 
+                            <Out>
+                                <img src={iconOut} alt="iconOut" />
+                                <Font1920_h6>Выйти</Font1920_h6>
+                            </Out> 
+                        }
                     </DivFlexColum>
                 </Data>
             </Content>

@@ -12,6 +12,7 @@ font-size: 24px;
 @media (max-width: 768px) {
   font-size: 18px;
   padding: 16px 24px;
+  width: 100%;
 }
 font-style: normal;
 font-weight: 500;

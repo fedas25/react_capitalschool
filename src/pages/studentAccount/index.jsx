@@ -19,6 +19,10 @@ const Container = styled.div`
         flex-direction: column;
         align-items: flex-start;
         row-gap: 168px;
+        @media (max-width: 768px) {
+            row-gap: 40px;
+            padding: 40px 0 0 0;
+        }
     `;
 
 export default function Main() {
@@ -48,11 +52,11 @@ export default function Main() {
             <Container>
                 <PersonalData />
                 <ContainerWorkingArea>
-                    {/* модалки */}
+
                     {IsDisplayRecord ? <Recording handlerClick={hideFullRecord} /> : null}
                     {IsDisplayRecordInformation ? <InformationAboutDay handlerClick={hideFullRecordInformation} /> : null}
                     {IsBuyingClasses ? <BuyingClasses handlerClick={hideBuyingClasses} /> : null}
-                    {/* модалки */}
+
                     <NavBarUserAccount student/>
                     <Routes>
                         <Route path="/" element={<WorkingAreaCourse handlerShowBuyingClasses={ShowBuyingClasses} handlerDay={ShowFullRecordInformation} handlerRecord={ShowFullRecord} />} />
@@ -60,7 +64,7 @@ export default function Main() {
                         <Route path="/passed" element={<WorkingAreaPassed handlerShowBuyingClasses={ShowBuyingClasses}/>} />
                     </Routes>
                 </ContainerWorkingArea>
-                <Footer />
+                {/* <Footer /> */}
             </Container>
         </>
     )

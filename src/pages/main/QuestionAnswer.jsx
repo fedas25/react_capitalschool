@@ -96,8 +96,6 @@ margin-left: 24px;
     width: 320px;
     margin-left: auto;
 }
-
-
 margin-top: ${(props) => props.show == false ? "0px" : "32px"};
 max-height: ${(props) => props.show == false ? "0px" : "350px"};
 overflow: hidden;
@@ -119,7 +117,7 @@ const Cell = styled.div`
 
 function QuestionCell({ question, answer }) {
 
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(false);
 
     function handler() {
         setShow(!show);

@@ -7,6 +7,9 @@ const StyledCardCourseContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
+  @media (max-width: 768px) {
+    align-items: flex-start;
+  }
   gap: 48px;
   display: flex;
   border-bottom: 2px solid var(--srt, #E4E4E7);

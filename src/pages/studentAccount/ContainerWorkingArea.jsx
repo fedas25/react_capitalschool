@@ -14,6 +14,10 @@ const Content = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 96px;
+    @media (max-width: 768px) {
+        width: 80%;
+        gap: 60px;
+    }
 `;
 
 export default function ContainerArea({children}) {

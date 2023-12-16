@@ -11,6 +11,7 @@ import InformationAboutCourses from './InformationAboutCourses'
 import ContainerCardCourse from './ContainerCourse'
 import jackdaw from "./../../assets/jackdaw.png";
 import testArrow from "./../../assets/testArrow.svg";
+import { useMediaQuery } from 'react-responsive'
 
 function Statistics({ className, description, count }) {
     return (
@@ -39,6 +40,10 @@ function PassingStatistics({ className }) {
 const StyledPassingStatistics = styled(PassingStatistics)`
     display: flex;
     gap: 40px;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 12px;
+    }
 `;
 
 const Action = styled.div`
@@ -58,18 +63,30 @@ const Secondary = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    @media (max-width: 768px) {
+        flex-direction: column-reverse;
+        gap: 36px;
+    }
 `;
 
 const Img = styled.img`
     height: 64px;
     width: 64px;
     margin-right: 32px;
+    @media (max-width: 768px) {
+        width: 48px;
+        height: 48px;
+        margin-right: 0px;
+    }
 `;
 
 const Date = styled.div`
     display: flex;
     gap: 12px;
     margin-right: 24px;
+    @media (max-width: 768px) {
+        margin-right: 0px;
+    }
 `;
 
 function TypeRecord({ trial }) {
@@ -100,7 +117,7 @@ const InfoContainer = styled.div`
     align-items: center;
 `;
 
-function InformationAboutRecord({ className, passed = null }) {
+function InformationAboutRecord({ className, passed = null, isMobile }) {
     return (
         <div className={className}>
             {passed ? (
@@ -113,11 +130,15 @@ function InformationAboutRecord({ className, passed = null }) {
                 </Date>
                 <TypeRecord trial />
             </InfoContainer>
-            {passed ? null : (
-                <LinkToSession>
-                    <BTN color="violet">ссылка на трансляцию</BTN>
-                </LinkToSession>
-            )}
+            {!isMobile &&
+                (
+                    passed ? null : (
+                        <LinkToSession>
+                            <BTN color="violet">ссылка на трансляцию</BTN>
+                        </LinkToSession>
+                    )
+                )
+            }
         </div>
     )
 }
@@ -127,8 +148,12 @@ const StyledInformationAboutRecord = styled(InformationAboutRecord)`
     display: flex;
     ${(props) => props.record ? "justify-content: space-between;" : null}
     align-items: center;
+    @media (max-width: 768px) {
+        justify-content: space-between;
+    }
 `;
 
+{/*  */}
 
 const PassTest = styled.div`
     cursor: pointer;
@@ -141,42 +166,69 @@ const PassTest = styled.div`
     }
 `;
 
+const ContainerLink = styled.div`
+    @media (max-width: 768px) {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
+`;
+
 
 
 export default function CardMyCourse({ type = null, testOpening = null, testFinal = null, handle = null, handlerRecord = null, handlerShowBuyingClasses }) {
-        
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+
     return (
         <ContainerCardCourse>
             {(testOpening || testFinal) ? (
                 <PassTest onClick={handle}>
                     <img src={testArrow} alt="arrow right" />
-                    <BTN color="gray">Пройти {testOpening == true ? "вступительный" : "итоговый"} тест</BTN>
+                    {isMobile ?
+                        <BTN color="gray" result>Пройти {testOpening == true ? "вступительный" : "итоговый"} тест</BTN> :
+                        <BTN color="gray">Пройти {testOpening == true ? "вступительный" : "итоговый"} тест</BTN>
+                    }
                 </PassTest>) :
                 null
             }
 
-            {type === "record" ? <StyledInformationAboutRecord record={+true} /> :
-                type === "passed" ? <StyledInformationAboutRecord passed /> :
-                    null}
+            {isMobile &&
+                type === "record" ? (
+                <Date>
+                    <H4 violet>13 марта</H4>
+                    <H4 violet>16:00</H4>
+                </Date>
+            ) : null
+            }
+
+            {/* ссылка на трансляцию */}
+            {!isMobile &&
+                type === "record" ? <StyledInformationAboutRecord record={+true} isMobile={isMobile} /> :
+                type === "passed" ? <StyledInformationAboutRecord passed isMobile={isMobile} /> :
+                    null
+            }
+
+
             <Main type={type}>
                 <InformationAboutCourses
-                    teacherName="Куликова"
+                    teacherName="Куликова Вика Дарьевна"
                     nameCourse="Losos"
                     colorCourse="#59C4E5"
                     srcTeacher={teacher}
                 />
-
-                {type == null ? (
+                {!isMobile &&
+                    type == null ? (
                     <Action>
-                        <Button title="Оплатить" handler={handlerShowBuyingClasses}/>
-                        <Button title="Записаться" btnColor="violet" handler={handlerRecord}/>
+                        <Button title="Оплатить" handler={handlerShowBuyingClasses} />
+                        <Button title="Записаться" btnColor="violet" handler={handlerRecord} />
                     </Action>
                 ) : null}
-                {type === "passed" ? (
+                {!isMobile && type === "passed" ? (
                     <Action>
                         <Button handler={handle} title="Записаться" />
                     </Action>
-                ) : null}
+                ) : null
+                }
 
             </Main>
 
@@ -186,6 +238,34 @@ export default function CardMyCourse({ type = null, testOpening = null, testFina
                     <StyledPassingStatistics />
                 </Secondary>
             )}
+            {isMobile &&
+                type == null ? (
+                <Action>
+                    <Button authoriz title="Оплатить" handler={handlerShowBuyingClasses} />
+                    <Button authoriz title="Записаться" btnColor="violet" handler={handlerRecord} />
+                </Action>
+            ) : null}
+
+
+            {/* чтобы местами менять кнопку записаться */}
+            {isMobile && type === "passed" ? (
+                <Action>
+                    <Button authoriz handler={handle} title="Записаться и оплатить курс" />
+                </Action>
+            ) : null
+            }
+
+
+            {isMobile &&
+                type === "record" ? (
+                <ContainerLink>
+                    <LinkToSession>
+                        <BTN color="violet">ссылка на трансляцию</BTN>
+                    </LinkToSession>
+                </ContainerLink>
+            ) : null
+            }
+
         </ContainerCardCourse>
     )
 }

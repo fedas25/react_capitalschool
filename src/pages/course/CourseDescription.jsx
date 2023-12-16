@@ -43,9 +43,9 @@ const GeneralInformationContainer = styled.div`
     align-items: center;
     gap: 138px;
     @media (max-width: 768px) {
-            flex-direction: column-reverse;
-            width: 100%;
-            gap: 48px;
+        flex-direction: column-reverse;
+        width: 100%;
+        gap: 48px;
     }
 `;
 
@@ -53,8 +53,8 @@ const GeneralInformation = styled.div`
     width: 679px;
     padding: 64px 28px;
     @media (max-width: 768px) {
-            width: 100%;
-            padding: 64px 16px;
+        width: 100%;
+        padding: 64px 16px;
     }
     border-radius: 50px;
     background-color: #FFF;
@@ -72,7 +72,7 @@ const Heading = styled.div`
 const TextContainer = styled.div`
     width: 844px;
     @media (max-width: 768px) {
-            width: 320px;
+        width: 320px;
     }
 `;
 
@@ -90,9 +90,9 @@ const Jackdaw = styled.img`
 
 const ListQualifications = styled.div`
     display: flex;
-flex-direction: column;
-align-items: flex-start;
-gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
 `;
 
 function Qualification({ className, children }) {
@@ -351,9 +351,9 @@ border-radius: 50px;
 background-color: #FFF;
 border-top: 2px solid #E4E4E7;
 @media (max-width: 768px) {
-        width: 100vw;
-        padding: 64px 16px;
-    }
+    width: 100vw;
+    padding: 64px 16px;
+}
 `;
 
 const ContentFAQ = styled.div`
