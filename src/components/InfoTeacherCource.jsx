@@ -12,13 +12,20 @@ const Container = styled.div`
 const PhotoTeacher = styled.img`
     width: 130px;
     height: 170px;
-    border-radius: 30px; 
+    border-radius: 30px;
+    @media (max-width: 768px) {
+        ${ ({payment}) => payment ? `
+            width: 110px;
+            height: 146px;
+            border-radius: 25px;` : null        
+        }
+    }
 `;
 
-function InfoCourse({ className, teacherName, nameCourse, colorCourse }) {
+function InfoCourse({ className, teacherName, nameCourse, colorCourse, payment }) {
     return (
         <div className={className}>
-            <H5>{teacherName}</H5>
+            {payment ? <H5 teacher>{teacherName}</H5> : <H5>{teacherName}</H5>} 
             <BadgeCource color={colorCourse}>
                 <Font1920_h6 white>{nameCourse}</Font1920_h6>
             </BadgeCource>
@@ -29,6 +36,12 @@ function InfoCourse({ className, teacherName, nameCourse, colorCourse }) {
 const StyledInfoCourse = styled(InfoCourse)`
     min-width: 460px;
     height: 150px;
+    @media (max-width: 768px) {
+        ${ ({payment}) => payment ? `
+            min-width: 20px;
+            width: auto;` : null        
+        }
+    }
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,11 +49,11 @@ const StyledInfoCourse = styled(InfoCourse)`
     gap: 12px;
 `;
 
-export default function InformationAboutCourses({ teacherName, nameCourse, colorCourse, srcTeacher, className = null }) {
+export default function InformationAboutCourses({ teacherName, nameCourse, colorCourse, srcTeacher, payment = false, className = null }) {
     return (
         <Container className={className}>
-            <PhotoTeacher src={srcTeacher} />
-            <StyledInfoCourse teacherName={teacherName} colorCourse={colorCourse} nameCourse={nameCourse}/>
+            <PhotoTeacher src={srcTeacher} payment={+payment}/>
+            <StyledInfoCourse payment={+payment} teacherName={teacherName} colorCourse={colorCourse} nameCourse={nameCourse}/>
         </Container>
     )
 }

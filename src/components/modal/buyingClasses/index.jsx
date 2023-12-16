@@ -15,16 +15,25 @@ import Button from "./../../Button"
 import DarkenedBackground from '../../DarkenedBackground'
 
 const Container = styled.div`
+background: #ffff;
 position: fixed;
-top: 10%;
-left: 50%;
 margin-left: -344px;
 width: 788px;
 border-radius: 50px;
-background: #ffff;
+padding: 64px 32px;
+@media (max-width: 768px) {
+    padding: 32px 16px;
+    border-radius: 40px 40px 0px 0px;
+    width: 100vw;
+    bottom: 0px;
+    margin-left: 0px;
+}
+@media (min-width: 769px) {
+    top: 10%;
+    left: 50%;
+}
 z-index: 1;
 display: grid;
-padding: 64px 32px;
 grid-template-columns: auto auto;
 grid-template-rows: auto auto auto auto auto;
 grid-template-areas:
@@ -33,6 +42,17 @@ grid-template-areas:
     "discountCondition discountCondition"
     "pricePerHour pricePerCourse"
     "btn btn";
+@media (max-width: 768px) {
+    align-items: start;
+    grid-template-rows: auto auto auto auto auto auto;
+    grid-template-areas:
+    "infoTeacherCource infoTeacherCource"
+    "paymentType paymentType"
+    "discountCondition discountCondition"
+    "pricePerHour ."
+    "pricePerCourse ."
+    "btn btn";
+}
 `;
 
 
@@ -43,7 +63,14 @@ height: 80px;
 position: absolute;
 right: -40px;
 top: -80px;
+@media (max-width: 769px) {
+    width: 56px;
+    height: 56px;
+    right: -2px;
+    top: -62px;
+  }
 cursor: pointer;
+z-index: 2;
 `;
 
 
@@ -56,6 +83,9 @@ grid-area: infoTeacherCource;
 const PaymentType = styled.div`
 grid-area: paymentType;
 margin: 48px 0;
+@media (max-width: 768px) {
+    margin: 0px 0;
+}
 `;
 
 const DiscountCondition = styled.div`
@@ -88,6 +118,10 @@ gap: 12px;
 const StyledOpenCroos = styled.img`
 height: 56px;
 width: 56px;
+@media (max-width: 768px) {
+    width: 48px;
+    height: 48px;
+}
 cursor: pointer;
 `;
 
@@ -114,6 +148,13 @@ grid-area: pricePerHour;
 justify-self: left;
 height: 216px;
 padding: 40px 32px;
+@media (max-width: 768px) {
+    padding: 32px 20px;
+    height: auto;
+    gap: 12px;
+    min-width: 245px;
+    margin-bottom: 12px;
+}
 border: ${(promps) => promps.active ? "2px solid var(--hoverButton, #323232)" : "2px solid var(--srt, #E4E4E7)"};
 cursor: ${(promps) => promps.active ? "default" : "pointer"};
 border-radius: 50px;
@@ -166,6 +207,9 @@ const StyledFont1920_h6 = styled.div`
     display: flex;
     align-items: center;
     height: 56px;
+    @media (max-width: 768px) {
+        height: auto;
+    }
 `
 
 function PerCourse({ className, handlerActive }) {
@@ -194,10 +238,13 @@ const StyledPerCourse = styled(PerCourse)`
 grid-area: pricePerCourse;
 justify-self: right;
 padding: 40px 32px;
-
+@media (max-width: 768px) {
+    padding: 32px 20px;
+    gap: 12px;
+    min-width: 260px;
+}
 border: ${(promps) => promps.active ? "2px solid var(--srt, #E4E4E7)" : "2px solid var(--hoverButton, #323232)"};
 cursor: ${(promps) => promps.active ? "pointer" : "default"};
-
 border-radius: 40px;
 display: flex;
 flex-direction: column;
@@ -212,6 +259,9 @@ const ContainerButton = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 48px;
+    @media (max-width: 768px) {
+        margin-top: 26px;
+    }
 `
 
 
@@ -229,7 +279,7 @@ export default function BuyingClasses({ handlerClick }) {
         <DarkenedBackground>
             <Container>
                 <CrossExit src={crossExit} onClick={handlerClick} />
-                <StyledInfoTeacherCource teacherName="Гай Юлий Цезарь" nameCourse="Военное дело" srcTeacher={teacher} />
+                <StyledInfoTeacherCource payment teacherName="Гай Юлий Цезарь" nameCourse="Военное дело" srcTeacher={teacher} />
                 <PaymentType>
                     <H5 gray>Выберете тип оплаты</H5>
                 </PaymentType>
@@ -241,7 +291,7 @@ export default function BuyingClasses({ handlerClick }) {
                 <StyledPerCourse active={+isHourActive} handlerActive={() => setisHourActive(false)} />
 
                 <ContainerButton>
-                    <Button title="Оплатить" handler={handlerClick} />
+                    <Button authoriz title="Оплатить" handler={handlerClick} />
                 </ContainerButton>
             </Container>
         </DarkenedBackground>
