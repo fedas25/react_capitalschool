@@ -71,7 +71,7 @@ function Question({ handler, btn = false, handlerResult = null }) {
             </ResponseOptions>
             {btn ?
                 <ButtonContainer>
-                    <Button title="отправить" handler={handlerResult} />
+                    <Button test title="отправить" handler={handlerResult} />
                 </ButtonContainer>
                 : null}
         </CardQuestion>
@@ -82,17 +82,16 @@ function Question({ handler, btn = false, handlerResult = null }) {
 
 const Container = styled.div`
     background-color: #fff;
-
     padding: 64px 32px 128px 32px;
     border-radius: 50px;
-
     margin-left: -400px;
+    /* может быть когда-нибудь */
+    /* padding: ${({ account }) => account ? "90px 32px 90px 32px" : "0px"} ; */
     @media (max-width: 768px) {
         margin-left: 0px;
         bottom: 0px;
         width: 100vw;
         border-radius: 40px 40px 0px 0px;
-        padding: 64px 0px 128px 0px;
     }
     @media (min-width: 769px) {
         top: 10%;
@@ -129,7 +128,32 @@ const Content = styled.div`
     overflow: hidden;
 `;
 
-export default function Test({ show, setShow }) {
+
+function FinalScreen({ isAccount }) {
+    return (
+        <Result>
+            {isAccount ?
+                <Font1920_h3 result>Вы набрали 12 баллов из 72</Font1920_h3>
+                :
+                <>
+                    <p>
+                        <Font1920_h3 result>
+                            Ваш уровень английского — B2
+                        </Font1920_h3>
+                    </p>
+                    <Font1920_p1 gray>
+                        Развивайте свой англиский вместе с нами. Благодаря нашим онлайн-курсам ваш уровень английского достигнет новых высот. Присоединяйтесь к нам и сделайте английский вашим надежном и верным другом в любой ситуации.
+                    </Font1920_p1>
+                    <div>
+                        <Button test result title="Записаться на пробное занятие" />
+                    </div>
+                </>
+            }
+        </Result>
+    )
+}
+
+export default function Test({ show, setShow, isAccount = false }) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
     const scrollingStep = isMobile ? 320 : 800;
@@ -141,14 +165,14 @@ export default function Test({ show, setShow }) {
     function handlerRight() {
         setOffset(offset - scrollingStep);
     }
-
-    const [isResult, setisResult] = useState(0);
+ 
+    const [isResult, setisResult] = useState(false);
 
     return (
         <>
             <DarkenedBackground show={+show}>
                 <Container show={+show}>
-                    <CrossExit src={crossExit} onClick={() => { setShow(false); setisResult(0); setOffset(0) }} />
+                    <CrossExit src={crossExit} onClick={() => { setShow(false); setisResult(false); setOffset(0) }} />
                     {isResult ?
                         <>
                             <img src={topStars} className='topStars' alt="topStars" />
@@ -159,27 +183,14 @@ export default function Test({ show, setShow }) {
                     }
 
                     <Content result={isResult}>
-                        {isResult ?
-                            <Result>
-                                <p>
-                                    <Font1920_h3 result>
-                                        Ваш уровень английского — B2
-                                    </Font1920_h3>
-                                </p>
-                                <Font1920_p1 gray>
-                                    Развивайте свой англиский вместе с нами. Благодаря нашим онлайн-курсам ваш уровень английского достигнет новых высот. Присоединяйтесь к нам и сделайте английский вашим надежном и верным другом в любой ситуации.
-                                </Font1920_p1>
-                                <div>
-                                    <Button test result title="Записаться на пробное занятие"/>
-                                </div>
-                            </Result>
+                        {isResult ? <FinalScreen isAccount/>
                             :
                             <ListCards offset={offset}>
                                 <Question handler={() => { setShow(false) }} />
                                 <Question handler={() => { setShow(false) }} />
                                 <Question handler={() => { setShow(false) }} />
                                 <Question handler={() => { setShow(false) }} />
-                                <Question btn handlerResult={() => { setisResult(1) }} handler={() => { setShow(false); setOffset(0) }} />
+                                <Question btn handlerResult={() => { setisResult(true) }} handler={() => { setShow(false); setOffset(0) }} />
                             </ListCards>
                         }
                     </Content>
@@ -302,8 +313,8 @@ const StyledInput = styled(Input)`
 function NavigationButton({ className, handler }) {
     return (
         <div className={className}>
-            <Arrow handle={handler.left} startLearning/>
-            <Arrow handle={handler.right} right startLearning/>
+            <Arrow handle={handler.left} startLearning />
+            <Arrow handle={handler.right} right startLearning />
         </div>
     )
 }
