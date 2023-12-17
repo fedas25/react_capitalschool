@@ -5,16 +5,21 @@ import H4 from "../../fonts/desktop/1920_h4"
 import teacher from "./../../../assets/teacher.jpg";
 import jackdaw from "./../../../assets/jackdaw.png";
 import crossExit from "./../../../assets/CrossExit.svg"
+import arrowExit from "./../../../assets/arrowExit.svg"
 
 import H5 from "../../fonts/desktop/1920_h5"
 import BTN from "../../fonts/desktop/1920_button"
 import Font1920_h6 from "../../fonts/desktop/1920_h6"
 import BadgeCource from '../../BadgeCource'
 import DarkenedBackground from '../../DarkenedBackground';
+import { useMediaQuery } from 'react-responsive';
 
 const StyledCardCourseContainer = styled.div`
   width: 100%;
   padding: 64px 0px;
+  @media (max-width: 768px) {
+    padding: 40px 0px;
+  }
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
@@ -39,6 +44,10 @@ const Container = styled.div`
 const PhotoTeacher = styled.img`
     width: 130px;
     height: 170px;
+    @media (max-width: 768px) {
+        width: 110px;
+        height: 146px;
+    }
     border-radius: 30px; 
 `;
 
@@ -61,6 +70,12 @@ const StyledInfoCourse = styled(InfoCourse)`
     justify-content: center;
     align-items: flex-start;
     gap: 12px;
+    @media (max-width: 768px) {
+        min-width: 40px;
+        height: 146px;
+        gap: 0px;
+        justify-content: space-between;
+    }
 `;
 
 function InformationAboutCourses({ teacherName, nameCourse, colorCourse, srcTeacher }) {
@@ -117,9 +132,16 @@ const LinkToSession = styled.div`
 const InfoContainer = styled.div`
     display: flex;
     align-items: center;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: start;
+        gap: 12px;
+    }
 `;
 
 function InformationAboutRecord({ className, passed }) {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+
     return (
         <div className={className}>
             {passed ? (
@@ -132,10 +154,13 @@ function InformationAboutRecord({ className, passed }) {
                 </Date>
                 <TypeRecord trial />
             </InfoContainer>
-            <LinkToSession>
-                <BTN color="violet">ссылка на трансляцию</BTN>
-            </LinkToSession>
-        </div>
+            {!isMobile ?
+                < LinkToSession >
+                    <BTN color="violet">ссылка на трансляцию</BTN>
+                </LinkToSession>
+                : null
+            }
+        </div >
     )
 }
 
@@ -153,37 +178,68 @@ background-color: white;
 width: 1140px;
 padding: 64px 32px;
 border-radius: 50px;
-  position: fixed;
-  top:12%;
-  left: 50%;
-  margin-left: -560px;
-  z-index: 1;
+position: fixed;
+@media (min-width: 768px) {
+    top:12%;
+}
+left: 50%;
+margin-left: -560px;
+z-index: 1;
+@media (max-width: 768px) {
+    width: 100vw;
+    padding: 40px 16px;
+    border-radius: 40px 40px 0px 0px;
+    margin-left: 0px;
+    bottom: 0px;
+    left: 0px;
+}
 `
 
 const CrossExit = styled.img`
+  position: absolute;
   width: 80px;
   height: 80px;
-  position: absolute;
   right: -40px;
   top: -80px;
   cursor: pointer;
+  @media (max-width: 768px) {
+    width: 48px;
+    height: 48px;
+    right: 0px;
+    top: -56px;
+}
+`;
+
+const ArrowExit = styled.img`
+    width: 48px;
+    height: 48px;
+    margin-right: auto;
 `;
 
 export default function InformationAboutDay({ type = null, handlerClick = null }) {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+
     return (
         <DarkenedBackground>
             <ModalContainer>
                 <CrossExit src={crossExit} onClick={handlerClick} />
+                {isMobile ? <ArrowExit src={arrowExit} alt='ArrowExit'/> : null }
                 <ContainerCardCourse>
                     <StyledInformationAboutRecord record={+true} />
                     <Main type={type}>
                         <InformationAboutCourses
-                            teacherName="Куликова"
+                            teacherName="Кузин Федор Александрович"
                             nameCourse="Losos"
                             colorCourse="#59C4E5"
                             srcTeacher={teacher}
                         />
                     </Main>
+                    {isMobile ?
+                        < LinkToSession >
+                            <BTN color="violet">ссылка на трансляцию</BTN>
+                        </LinkToSession>
+                        : null
+                    }
                 </ContainerCardCourse>
             </ModalContainer>
         </DarkenedBackground>
