@@ -12,6 +12,7 @@ import ContainerWorkingArea from "./ContainerWorkingArea";
 import InformationAboutDay from "./../../components/modal/informationAboutDay"
 import Recording from "./../../components/modal/recording"
 import BuyingClasses from "./../../components/modal/buyingClasses"
+import MobileCalendar from "../../components/MobileCalendar.jsx";
 
 const Container = styled.div`
         display: flex;
@@ -38,6 +39,10 @@ export default function Main() {
     function hideBuyingClasses() { setIsBuyingClasses(false) }
     function ShowBuyingClasses() { setIsBuyingClasses(true) }
 
+    const [isViewRecords, setIsViewRecords] = useState(true)
+    function hideViewRecords() { setIsViewRecords(false) }
+    function ShowViewRecords() { setIsViewRecords(true) }
+
     return (
         <>
             <NavBar
@@ -53,9 +58,10 @@ export default function Main() {
                 <PersonalData />
                 <ContainerWorkingArea>
 
-                    {IsDisplayRecord ? <Recording handlerClick={hideFullRecord} /> : null}
+                    {/* {IsDisplayRecord ? <Recording handlerClick={hideFullRecord} /> : null}
                     {IsDisplayRecordInformation ? <InformationAboutDay handlerClick={hideFullRecordInformation} /> : null}
-                    {IsBuyingClasses ? <BuyingClasses handlerClick={hideBuyingClasses} /> : null}
+                    {IsBuyingClasses ? <BuyingClasses handlerClick={hideBuyingClasses} /> : null} */}
+                    {isViewRecords ? <MobileCalendar /> : null}
 
                     <NavBarUserAccount student/>
                     <Routes>

@@ -6,9 +6,9 @@ import Course from "./pages/course"
 
 export default function App() {
   return (
-    // <StudentAccount />
+    <StudentAccount />
     // <Main />
-    <Course />
+    // <Course />
     // <TeacherAccount />
   )
 }
