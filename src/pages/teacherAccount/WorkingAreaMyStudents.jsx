@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import NavBarUserAccount from "../../components/layout/navigation/NavBarUserAccount"
+import { useMediaQuery } from 'react-responsive'
 import Calendar from '../../components/Calendar'
-import AddCourse from './AddCourse'
+import iconCalendar from "../../assets/calendarMobile.png"
 import CardMyCourse from './CardAccount'
 
 const ContainerContent = styled.div`
@@ -25,17 +25,42 @@ const ListCard = styled.div`
     flex-direction: column;
 `;
 
+function ManagingCourses({ className, isMobile }) {
+    
+    return (
+        <div className={className}>
+            {isMobile &&
+                <div className='icons-setting'>
+                    <img src={iconCalendar} alt="iconCalendar" />
+                </div>
+            }
+        </div>
+    )
+}
+
+const StyledManagingCourses = styled(ManagingCourses)`
+    width: 100%;
+    display: flex;
+`;
+
+
+
 export default function PersonalData({handlerDay}) {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+
     return (
         <ContainerContent>
             <ListCardAccount>
+            <StyledManagingCourses isMobile={isMobile} />
                 <ListCard>
+                    <CardMyCourse type="student" />
+                    <CardMyCourse type="student" />
+                    <CardMyCourse type="student" />
                     <CardMyCourse type="student" />
                     <CardMyCourse type="student" />
                 </ListCard>
             </ListCardAccount>
-            {/* <Calendar /> */}
-            <Calendar handlerDay={handlerDay} main/>
+            {!isMobile && <Calendar handlerDay={handlerDay} main/>}
         </ContainerContent>
     )
 }

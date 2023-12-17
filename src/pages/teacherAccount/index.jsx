@@ -18,6 +18,9 @@ const Container = styled.div`
         flex-direction: column;
         align-items: flex-start;
         row-gap: 168px;
+        @media (max-width: 768px) {
+            padding: 80px 0 0 0;
+        }
     `;
 
 export default function Main() {

@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useMediaQuery } from 'react-responsive'
 import Calendar from '../../components/Calendar'
 import CardMyCourse from './CardAccount'
 import sorting from "../../assets/sorting.svg"
+import iconCalendar from "../../assets/calendarMobile.png"
+import settings from "../../assets/settings.png"
 import FontButton from "../../components/fonts/desktop/1920_button"
 
 const ContainerContent = styled.div`
@@ -17,6 +20,9 @@ const ListCardAccount = styled.div`
     display: flex;
     flex-direction: column;
     gap: 32px;
+        @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const ListCard = styled.div`
@@ -26,16 +32,22 @@ const ListCard = styled.div`
 `;
 
 
-
 const Img = styled.img`
     height: 48px;
     width: 48px;
+    @media (max-width: 768px) {
+        height: 32px;
+        width: 32px;
+    }
 `;
 
 const SortTime = styled.div`
     display: flex;
     align-items: center;
     gap: 12px;
+    @media (max-width: 768px) {
+        gap: 4px;
+    }
 `;
 
 const Type = styled.div`
@@ -56,23 +68,32 @@ const Radiocell = styled.div`
 `;
 
 
-function ManagingCourses({ className }) {
+function ManagingCourses({ className, isMobile }) {
     return (
         <div className={className}>
             <SortTime >
                 <Img src={sorting} alt="" />
                 <FontButton color="black">Сначала старые</FontButton>
             </SortTime>
-            <Type>
-                <Radiocell>
-                    <Radio type="checkbox" />
-                    <FontButton color="black">Учебное занятие</FontButton>
-                </Radiocell>
-                <Radiocell>
-                    <Radio type="checkbox" />
-                    <FontButton color="black">Пробное занятие</FontButton>
-                </Radiocell>
-            </Type>
+
+            {isMobile &&
+                <div className='icons-setting'>
+                    <img src={iconCalendar} alt="iconCalendar" />
+                    <img src={settings} alt="settings" />
+                </div>
+            }
+
+            {!isMobile &&
+                <Type>
+                    <Radiocell>
+                        <Radio type="checkbox" />
+                        <FontButton color="black">Учебное занятие</FontButton>
+                    </Radiocell>
+                    <Radiocell>
+                        <Radio type="checkbox" />
+                        <FontButton color="black">Пробное занятие</FontButton>
+                    </Radiocell>
+                </Type>}
         </div>
     )
 }
@@ -83,22 +104,28 @@ const StyledManagingCourses = styled(ManagingCourses)`
     justify-content: space-between;
     align-items: center;
     gap: 12px;
+    .icons-setting {
+        display: flex;
+        gap: 8px;
+    }
+    @media (max-width: 768px) {
+        flex-direction: row-reverse;
+        gap: 0px;
+    }
 `;
 
-export default function PersonalData({handler}) {
+export default function PersonalData({ handler }) {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+
     return (
-        <>
-            <ContainerContent>
-                <ListCardAccount>
-                    <StyledManagingCourses />
-                    <ListCard>
-                        <CardMyCourse type="passed" handler={handler}/>
-                        <CardMyCourse type="passed" handler={handler}/>
-                        <CardMyCourse type="passed" handler={handler}/>
-                    </ListCard>
-                </ListCardAccount>
-                <Calendar />
-            </ContainerContent>
-        </>
+        <ContainerContent>
+            <ListCardAccount>
+                <StyledManagingCourses isMobile={isMobile} />
+                <ListCard>
+                    <CardMyCourse type="passed" handler={handler} />
+                </ListCard>
+            </ListCardAccount>
+            {!isMobile && <Calendar />}
+        </ContainerContent>
     )
 }

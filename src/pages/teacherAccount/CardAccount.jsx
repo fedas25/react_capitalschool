@@ -9,6 +9,7 @@ import PricePerHour from '../../components/PricePerHour'
 import InformationAboutCourses from './InformationAboutCourses'
 import ContainerCardCourse from './ContainerCourse'
 import jackdaw from "./../../assets/jackdaw.png";
+import { useMediaQuery } from 'react-responsive'
 
 function Statistics({ className, description, count }) {
     return (
@@ -48,6 +49,10 @@ const Main = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 48px;
+    }
 `;
 
 const Secondary = styled.div`
@@ -60,6 +65,11 @@ const Img = styled.img`
     height: 64px;
     width: 64px;
     margin-right: 32px;
+    @media (max-width: 768px) {
+        height: 48px;
+        width: 48px;
+        margin-right: 0px;
+    }
 `;
 
 const Date = styled.div`
@@ -94,7 +104,7 @@ function InformationAboutRecord({ className, passed }) {
                     <H4 violet>13 марта</H4>
                     <H4 violet>16:00</H4>
                 </Date>
-                <TypeRecord trial />
+                {/* <TypeRecord trial /> */}
             </InfoContainer>
         </div>
     )
@@ -105,6 +115,9 @@ const StyledInformationAboutRecord = styled(InformationAboutRecord)`
     display: flex;
     ${(props) => props.record ? "justify-content: space-between;" : null}
     align-items: center;
+    @media (max-width: 768px) {
+        justify-content: space-between;
+    }
 `;
 
 const StudentStatistics = styled.div`
@@ -133,20 +146,33 @@ function Status({ marked, status, handler }) {
         <>
             {marked ? (
                 <H5 gray>{status}</H5>
-            ):(
-                <Button title="Отметить посещение" handler={handler}/>
+            ) : (
+                <Button title="Отметить посещение" handler={handler} />
             )}
         </>
     )
 }
 
-export default function CardMyCourse({ type = null, handler = () => {} }) {
+
+const ContainerButton = styled.div`
+    @media (max-width: 768px) {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
+`;
+
+export default function CardMyCourse({ type = null, handler = () => { } }) {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+
     return (
         <ContainerCardCourse>
             {type === "record" ? <StyledInformationAboutRecord record={+true} /> :
                 type === "passed" ? <StyledInformationAboutRecord passed /> :
                     null}
+
             <Main type={type}>
+
                 <InformationAboutCourses
                     teacherName="Куликова Анастасия"
                     nameCourse="Losos"
@@ -154,16 +180,16 @@ export default function CardMyCourse({ type = null, handler = () => {} }) {
                     srcTeacher={teacher}
                 />
 
-                {type === "record" ? (
+                {!isMobile && type === "record" ? (
                     <Action>
-                        <Button handler={handler} title="Перенести"/>
+                        <Button handler={handler} title="Перенести" />
                     </Action>
                 ) : null}
 
 
-                {type === "passed" ? (
+                {!isMobile && type === "passed" ? (
                     <Action below="+0">
-                        <Status status="не был" handler={handler}/>
+                        <Status status="не был" handler={handler} />
                     </Action>
                 ) : null}
 
@@ -184,6 +210,21 @@ export default function CardMyCourse({ type = null, handler = () => {} }) {
                 ) : null}
 
             </Main>
+
+            {isMobile && type === "record" ? (
+                <ContainerButton>
+                    <Action>
+                        <Button authoriz handler={handler} title="Перенести" />
+                    </Action>
+                </ContainerButton>
+            ) : null
+            }
+
+            {isMobile && type === "passed" ? (
+                <Action below="+0">
+                    <Status status="не был" handler={handler} />
+                </Action>
+            ) : null}
 
             {type ? null : (
                 <Secondary>

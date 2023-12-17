@@ -29,6 +29,10 @@ function InfoCourse({ className, teacherName, nameCourse, colorCourse }) {
 const StyledInfoCourse = styled(InfoCourse)`
     min-width: 460px;
     height: 150px;
+    @media (max-width: 768px) {
+        min-width: 100px;
+        width: 100%;
+    }
     display: flex;
     flex-direction: column;
     justify-content: center;
