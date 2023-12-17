@@ -40,10 +40,12 @@ const AdditionalActions = styled.div`
     }
 `;
 
-export default function PersonalData({ handlerDay, handlerRecord, handlerShowBuyingClasses }) {
+export default function PersonalData({ handlerDay, handlerRecord, handlerCalendar, handlerShowBuyingClasses }) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
-    const [showTest, setShowTest] = useState(false)
+    const [showTest, setShowTest] = useState(false);
+
+    console.log(handlerCalendar);
 
     return (
         <>
@@ -52,7 +54,7 @@ export default function PersonalData({ handlerDay, handlerRecord, handlerShowBuy
             <ContainerContent>
                 <ListCardAccount>
                     <AdditionalActions>
-                        {isMobile && <img src={iconCalendar} alt="iconCalendar"/>} 
+                        {isMobile && <img src={iconCalendar} alt="iconCalendar" onClick={handlerCalendar}/>} 
                         <AddCourse />
                     </AdditionalActions>
 

@@ -27,21 +27,25 @@ const Container = styled.div`
     `;
 
 export default function Main() {
-    const [IsDisplayRecordInformation, setIsDisplayRecordInformation] = useState(false)
-    function hideFullRecordInformation() { setIsDisplayRecordInformation(false) }
-    function ShowFullRecordInformation() { setIsDisplayRecordInformation(true) }
-
+    
     const [IsDisplayRecord, setIsDisplayInformation] = useState(false)
     function hideFullRecord() { setIsDisplayInformation(false) }
     function ShowFullRecord() { setIsDisplayInformation(true) }
-
+    
     const [IsBuyingClasses, setIsBuyingClasses] = useState(false)
     function hideBuyingClasses() { setIsBuyingClasses(false) }
     function ShowBuyingClasses() { setIsBuyingClasses(true) }
 
-    const [isViewRecords, setIsViewRecords] = useState(true)
-    function hideViewRecords() { setIsViewRecords(false) }
-    function ShowViewRecords() { setIsViewRecords(true) }
+
+
+
+    const [IsDisplayRecordInformation, setIsDisplayRecordInformation] = useState(false)
+    function hideFullRecordInformation() { setIsDisplayRecordInformation(false) }
+    function ShowFullRecordInformation() { setIsDisplayRecordInformation(true) }
+
+    const [isViewRecordsCalendar, setIsViewRecordsCalendar] = useState(false)
+    function hideViewRecordsCalendar() { setIsViewRecordsCalendar(false) }
+    function showViewRecordsCalendar() { setIsViewRecordsCalendar(true) }
 
     return (
         <>
@@ -59,13 +63,14 @@ export default function Main() {
                 <ContainerWorkingArea>
 
                     {/* {IsDisplayRecord ? <Recording handlerClick={hideFullRecord} /> : null}
+                    {IsBuyingClasses ? <BuyingClasses handlerClick={hideBuyingClasses} /> : null}
+                     */}
                     {IsDisplayRecordInformation ? <InformationAboutDay handlerClick={hideFullRecordInformation} /> : null}
-                    {IsBuyingClasses ? <BuyingClasses handlerClick={hideBuyingClasses} /> : null} */}
-                    {isViewRecords ? <MobileCalendar /> : null}
+                    {isViewRecordsCalendar ? <MobileCalendar main viewingDetails handlerDay={() => alert("я пятница синяя")} outputHandler={hideViewRecordsCalendar} /> : null}
 
                     <NavBarUserAccount student/>
                     <Routes>
-                        <Route path="/" element={<WorkingAreaCourse handlerShowBuyingClasses={ShowBuyingClasses} handlerDay={ShowFullRecordInformation} handlerRecord={ShowFullRecord} />} />
+                        <Route path="/" element={<WorkingAreaCourse handlerCalendar={showViewRecordsCalendar} handlerShowBuyingClasses={ShowBuyingClasses} handlerDay={ShowFullRecordInformation} handlerRecord={ShowFullRecord} />} />
                         <Route path="/record" element={<WorkingAreaRecord />} />
                         <Route path="/passed" element={<WorkingAreaPassed handlerShowBuyingClasses={ShowBuyingClasses}/>} />
                     </Routes>

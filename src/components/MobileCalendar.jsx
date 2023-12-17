@@ -1,14 +1,17 @@
 import React from 'react'
-import styled from 'styled-components';
 import { useState } from 'react';
+import styled from 'styled-components';
+import {format} from "date-fns"
+import {ru} from "date-fns/locale"
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import arrow from "../assets/arrowCalendar.png"
+import crossExit from "./../assets/CrossExit.svg"
 import DarkenedBackground from './DarkenedBackground';
 
 const CalendarContainer = styled.div`
   background-color: #fff;
-  padding: 10px;
+  padding: 40px 24px;
   width: 100vw;
   bottom: 0px;
   border-radius: 40px 40px 0px 0px;
@@ -21,7 +24,6 @@ const CalendarContainer = styled.div`
   
   .react-calendar {
     width: 100%;
-    height: 550px;
     background: white;
     border: none;
     line-height: 1;
@@ -105,17 +107,17 @@ const CalendarContainer = styled.div`
   color: #1C1C1C;
 }
 
-.react-calendar__tile--active:enabled:hover,
-.react-calendar__tile--active:enabled:focus {
-  background-color: transparent;
-}
 
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: transparent;
 }
-  .react-calendar__navigation button:disabled {
-    background-color: transparent;
+.react-calendar__navigation button:disabled {
+  background-color: transparent;
 }
+
+
+
+
 
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
@@ -133,10 +135,6 @@ const CalendarContainer = styled.div`
   background-color: transparent;
 }
 
-.react-calendar__navigation button:enabled:hover,
-.react-calendar__navigation button:enabled:focus {
-  background-color: transparent;
-}
 
 abbr[title] {
   text-decoration: none;
@@ -172,38 +170,45 @@ abbr[title] {
 
 .react-calendar__month-view__weekdays__weekday {
   color: var(--text, #757575);
-font-variant-numeric: lining-nums tabular-nums;
-font-feature-settings: 'case' on;
-font-family:  "Montserrat-Medium-500";
-font-size: 21px;
-font-style: normal;
-font-weight: 500;
-line-height: 100%; /* 21px */
-color: #757575;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: 'case' on;
+  font-family:  "Montserrat-Medium-500";
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 21px */
+  color: #757575;
   padding: 0;
   text-transform: capitalize;
 }
 
 .react-calendar__month-view__days__day{
-  padding: 22.5px 12px;
+  padding: 15px 12px;
+  margin: 7.5px 0;
+}
+
+/* ВОТ ОНО АКТИВНЫЙ ЦВЕТ ПРИ НАЖАТИИ */
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background-color: transparent;
 }
 
 .losos {
     background-color: rgba(89, 196, 229, 0.10);
     color: #59C4E5;
-    border-radius: 40%;
+    border-radius: 100%;
 }
 
 .karp {
     background-color: rgba(107, 115, 194, 0.10);
     color: #6B73C2;
-    border-radius: 40%;
+    border-radius: 100%;
 }
 
 .okyn {
     background-color: rgba(255, 144, 144, 0.10);
     color: #FF9090;
-    border-radius: 40%;
+    border-radius: 100%;
 }
 
 
@@ -212,13 +217,13 @@ color: #757575;
 .pivas {
   background-color: rgba(215, 147, 227, 0.5); 
   color: #D793E3;
-  border-radius: 40%;
+  border-radius: 100%;
 }
 
 .pivas:enabled:focus {
     background-color: rgba(215, 147, 227, 0.5) !important; 
     color: #D793E3;
-    border-radius: 40%;
+    border-radius: 100%;
 }
 /* чтобы при нажатии цвет не исчезал */
 
@@ -227,8 +232,10 @@ color: #757575;
 }
 
 `;
+
+
 // разные календари для отображения записей/отображения свободных дней
-export default function MobileCalendar({ main = null, handlerDay = () => { }, className }) {
+export default function MobileCalendar({ main = null, handlerDay = () => { }, viewingDetails, outputHandler = () => { }, className }) {
 
     // сделать чтобы календарь просто получал данные и отображал их в днях
     // и имел 1 обработчик на нажатие на плитку дня 
@@ -238,9 +245,10 @@ export default function MobileCalendar({ main = null, handlerDay = () => { }, cl
     const [value, onChange] = useState(new Date());
 
     function formatSelectedDate({ activeStartDate, date, view }) {
-        const dateSessions = [{ date: "2023-11-04", color: "losos" },
-        { date: "2023-11-08", color: "karp" },
-        { date: "2023-11-12", color: "okyn" }];
+        const dateSessions = [
+        { date: "2023-12-13", color: "losos" },
+        { date: "2023-12-01", color: "karp" },
+        { date: "2023-12-22", color: "okyn" }];
 
         const formatDateSessions = dateSessions.map((dateSessions) => new Date(dateSessions.date).toDateString());
 
@@ -255,7 +263,7 @@ export default function MobileCalendar({ main = null, handlerDay = () => { }, cl
     }
 
     function formatSelectedDateTeacher({ activeStartDate, date, view }) {
-        const dateSessions = ["2023-11-04", "2023-11-08", "2023-11-12"];
+        const dateSessions = ["2023-12-04", "2023-12-08", "2023-12-12"];
 
         const formatDateSessions = dateSessions.map((date) => new Date(date).toDateString());
 
@@ -272,10 +280,12 @@ export default function MobileCalendar({ main = null, handlerDay = () => { }, cl
         return "locked"
     }
 
+
+
     function ViewMoreDetails(value, event) {
         const dateDay = new Date(value);
 
-        const dateSessions = ["2023-11-04", "2023-11-08", "2023-11-12"];
+        const dateSessions = ["2023-12-01"];
         const formatDateSessions = dateSessions.map((date) => new Date(date).toDateString());
 
         const indexDay = formatDateSessions.indexOf(dateDay.toDateString());
@@ -304,13 +314,16 @@ export default function MobileCalendar({ main = null, handlerDay = () => { }, cl
     return (
         <DarkenedBackground>
             <CalendarContainer className={className}>
+            <CrossExit src={crossExit} onClick={outputHandler}/>
                 <Calendar
                     onChange={onChange}
                     value={value}
                     tileContent={({ date, view }) => ('')}
-                    onClickDay={record}
+                    onClickDay={viewingDetails ? ViewMoreDetails : record}
                     tileClassName={main ? formatSelectedDate : formatSelectedDateTeacher}
-                    // formatYear={(locale, date) => ""}
+
+                    formatMonthYear={ (locale, date) => format(date, "LLLL", {locale: ru}) }
+
                     view="month"
                     prev2Label={null}
                     next2Label={null}
@@ -323,8 +336,16 @@ export default function MobileCalendar({ main = null, handlerDay = () => { }, cl
 }
 
 const Img = styled.img`
-  height: 64px;
-  width: 64px;
+  height: 48px;
+  width: 48px;
   cursor: pointer;
   ${props => props.left ? "transform: rotate(180deg);" : null}
+`;
+
+const CrossExit = styled.img`
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  right: 0px;
+  top: -56px;
 `;
