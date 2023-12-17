@@ -8,16 +8,25 @@ import photo from "./../../../assets/teacher.jpg"
 import crossExit from "./../../../assets/CrossExit.svg"
 import Button from "./../../Button"
 import DarkenedBackground from '../../DarkenedBackground';
+import { useMediaQuery } from 'react-responsive';
 
 const Container = styled.div`
                 z-index: 1;
                 position: fixed;
-                top: 10%;
-                left: 50%;
-                margin-left: -350px;
-                width: 700px;
                 border-radius: 50px;
-                background: #ffff;
+                background-color: #fff;
+                @media (min-width: 768px) {
+                    top: 10%;
+                    left: 50%;
+                    margin-left: -350px;
+                    width: 700px;
+                }
+                @media (max-width: 768px) {
+                    padding: 40px 24px;
+                    width: 100vw;
+                    bottom: 0px;
+                    border-radius: 40px 40px 0px 0px;
+                }
                 display: grid;
                 padding: 64px 32px;
                 grid-template-columns: auto;
@@ -33,6 +42,9 @@ const Container = styled.div`
 const StyledInfoTeacherCource = styled(InfoTeacherCource)`
             grid-area: InfoTeacherCource;
             margin: 48px 0 38px 0;
+            @media (max-width: 768px) {
+                margin: 32px 0;
+            }
             `;
 
 const InformationRecording = styled.div`
@@ -42,6 +54,11 @@ const InformationRecording = styled.div`
             display: flex;
             align-items: center;
             gap: 10px;
+            @media (max-width: 768px) {
+                flex-direction: column;
+                border-bottom: none;
+                align-items: start;
+            }
             `;
 
 const ContainerButton = styled.div`
@@ -70,6 +87,12 @@ position: absolute;
 right: -40px;
 top: -80px;
 cursor: pointer;
+@media (max-width: 768px) {
+    width: 48px;
+    height: 48px;
+    right: 0px;
+    top: -56px;
+}
 `;
 
 
@@ -84,17 +107,24 @@ const SelectionField = styled.div`
 
 const Radio = styled.input`
     transform: scale(2.85);
+    @media (max-width: 768px) {
+        transform: scale(2.48);
+    }
 `;
 
 const Radiocell = styled.div`
     display: flex;
     align-items: center;
     gap: 28px;
-    
+    @media (max-width: 768px) {
+        gap: 20px;
+    }
 `;
 
 
 export default function MarkVisit({ handler }) {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+
     return (
         <>
             <DarkenedBackground>
@@ -105,25 +135,30 @@ export default function MarkVisit({ handler }) {
                         <DateTimeRecord>
                             <H4 violet>13 марта</H4>
                             <H4 violet>16:00</H4>
-                            <H6>Учёбное занятие</H6>
+                            {!isMobile ? <H6>Учёбное занятие</H6> : null}
                         </DateTimeRecord>
+                        {isMobile ? <H6>Учёбное занятие</H6> : null}
                     </InformationRecording>
 
-                    <StyledInfoTeacherCource teacherName="Зубенко Михаил Петрович" nameCourse="Пивоварение" srcTeacher={photo} />
+                    <StyledInfoTeacherCource payment mark
+                        teacherName="Зубенко Михаил Петрович"
+                        nameCourse="Пивоварение"
+                        srcTeacher={photo}
+                    />
 
                     <SelectionField>
                         <Radiocell>
                             <Radio type="checkbox" />
-                            <FontButton color="black">Был</FontButton>
+                            <FontButton test color="black">Был</FontButton>
                         </Radiocell>
                         <Radiocell>
                             <Radio type="checkbox" />
-                            <FontButton color="black">Не был</FontButton>
+                            <FontButton test color="black">Не был</FontButton>
                         </Radiocell>
                     </SelectionField>
 
                     <ContainerButton>
-                        <Button title="Отметить" handler={handler} />
+                        <Button authoriz title="Отметить" handler={handler} />
                     </ContainerButton>
 
                 </Container>

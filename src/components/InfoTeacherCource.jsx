@@ -14,7 +14,7 @@ const PhotoTeacher = styled.img`
     height: 170px;
     border-radius: 30px;
     @media (max-width: 768px) {
-        ${ ({payment}) => payment ? `
+        ${ ({payment, mark}) => payment && !mark ? `
             width: 110px;
             height: 146px;
             border-radius: 25px;` : null        
@@ -49,10 +49,10 @@ const StyledInfoCourse = styled(InfoCourse)`
     gap: 12px;
 `;
 
-export default function InformationAboutCourses({ teacherName, nameCourse, colorCourse, srcTeacher, payment = false, className = null }) {
+export default function InformationAboutCourses({ teacherName, nameCourse, colorCourse, srcTeacher, mark = false, payment = false, className = null }) {
     return (
         <Container className={className}>
-            <PhotoTeacher src={srcTeacher} payment={+payment}/>
+            <PhotoTeacher src={srcTeacher} payment={+payment} mark={+mark}/>
             <StyledInfoCourse payment={+payment} teacherName={teacherName} colorCourse={colorCourse} nameCourse={nameCourse}/>
         </Container>
     )
