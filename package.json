@@ -1,13 +1,12 @@
 {
-  "homepage" : "https://fedas25.github.io/react_capitalschool",
+  "homepage": "https://fedas25.github.io/react_capitalschool",
   "name": "capitalschool",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d build",
-
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "webpack",
     "build-test": "webpack --mode production",
     "start": "webpack-dev-server --open",
@@ -30,6 +29,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@react-spring/web": "^9.7.3",
+    "date-fns": "^2.30.0",
     "events": "^3.3.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
