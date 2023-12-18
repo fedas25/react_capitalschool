@@ -35,7 +35,7 @@ function NavigationPoints({ numberOfCards, activeCard}) {
 const PageContainer = styled.div`
     display: flex;
     gap: 24px;
-    transform: ${({ offset }) => `translateX(${offset}px)`} ;
+    transform: ${({ offsetX }) => `translateX(${offsetX}px)`} ;
     transition: transform 400ms;
 `;
 
@@ -56,15 +56,15 @@ const Container = styled.div`
 `;
 
 
-export default function CaruselMobile({ children, externalShift = 0, noNavigation }) {
+export default function CaruselMobile({ children, noNavigation, externalHandlerLeft, externalHandlerRight, externalCardNumber, external = false}) {
     const [cardNumber, setCardNumber] = useState(0);
 
     function handlerLeft() {
-        setCardNumber(cardNumber - 1 + externalShift)
+        setCardNumber(cardNumber - 1)
     }
 
     function handlerRight() {
-        setCardNumber(cardNumber + 1 + externalShift)
+        setCardNumber(cardNumber + 1)
     }
 
 
@@ -82,11 +82,16 @@ export default function CaruselMobile({ children, externalShift = 0, noNavigatio
         const diff = touchPosition - currentTouch
 
         if (diff > 5) {
-            handlerRight()
+            if (external) {
+                externalHandlerRight()
+            } else handlerRight()
+                
         }
 
         if (diff < -5) {
-            handlerLeft()
+            if (external) {
+                externalHandlerLeft()
+            } else handlerLeft()
         }
 
         setTouchPosition(null)
@@ -100,12 +105,12 @@ export default function CaruselMobile({ children, externalShift = 0, noNavigatio
                     onTouchMove={handleTouchMove}
                 >
                     <PageContainer
-                        offset={cardNumber * -344}
+                        offsetX={ (external ? externalCardNumber : cardNumber) * (external ? 344 :-344) }
                     >
                         {children}
                     </PageContainer>
                 </Container>
-                {!noNavigation && <NavigationPoints numberOfCards={children.length} activeCard={cardNumber} />}
+                {!noNavigation && <NavigationPoints numberOfCards={children.length} activeCard={externalCardNumber ? externalCardNumber : cardNumber} />}
             </Center>
         </>
     )

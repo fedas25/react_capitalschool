@@ -190,12 +190,12 @@ export default function HowStartLearning({ setShow }) {
     const [offset, setOffset] = useState(0);
 
     function handlerLeft() {
-        setOffset(offset + 1668);
+        setOffset(offset + 1);
     }
     function handlerRight() {
-        setOffset(offset - 1668);
+        setOffset(offset - 1);
     }
-
+    
     return (
         <>
             <Container>
@@ -205,7 +205,9 @@ export default function HowStartLearning({ setShow }) {
                 </Description>
                 {isMobile ?
                     <>
-                        <CaruselMobile noNavigation>
+                        <CaruselMobile external noNavigation externalHandlerLeft={handlerLeft} externalHandlerRight={handlerRight} externalCardNumber={offset}>
+                            <Stage setShow={setShow} isMobile={isMobile} />
+                            <Stage setShow={setShow} isMobile={isMobile} />
                             <Stage setShow={setShow} isMobile={isMobile} />
                             <Stage setShow={setShow} isMobile={isMobile} />
                         </CaruselMobile>
@@ -213,7 +215,7 @@ export default function HowStartLearning({ setShow }) {
                     <>
                         <Content>
                             <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
-                            <Stages offset={offset}>
+                            <Stages offset={offset * 1668}>
                                 <Stage setShow={setShow} />
                                 <Stage setShow={setShow} />
                             </Stages>
