@@ -76,17 +76,57 @@ const Radiocell = styled.div`
 `;
 
 
+
+function CettingsForm({ className }) {
+    return (
+        <div className={className}>
+            <div>
+                <input type="radio" name='losos'/>
+                <FontButton color="black">Учебное занятие</FontButton>
+            </div>
+            <div>
+                <input type="radio" name='losos'/>
+                <FontButton color="black">Пробное занятие</FontButton>
+            </div>
+        </div>
+    )
+}
+const StyledCettingsForm = styled(CettingsForm)`
+        position: absolute;
+        top: 64px;
+        padding: 40px 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        z-index: 4;
+        background-color: #fff;
+        border-radius: 50px;
+        border: 2px solid #E4E4E7;
+        div {
+            display: flex;
+            gap: 14px;
+            min-width: max-content;
+            input {
+                transform: scale(2.2);
+            }
+        }
+    `;
+
+
 function ManagingCourses({ className, isMobile }) {
+    const [showSettings, setShowSettings] = useState(false);
+
     return (
         <div className={className}>
             <SortTime >
-                <Img src={sorting} alt="" />
+                <Img src={sorting} alt="iconSorting" />
                 <FontButton color="black">Сначала старые</FontButton>
             </SortTime>
             {isMobile &&
                 <div className='icons-setting'>
+                    {showSettings ? <StyledCettingsForm /> : null}
                     <img src={iconCalendar} alt="iconCalendar" />
-                    <img src={settings} alt="settings" />
+                    <img onClick={() => {setShowSettings(!showSettings)}} src={settings} alt="settings" />
                 </div>
             }
             {!isMobile &&
@@ -114,6 +154,7 @@ const StyledManagingCourses = styled(ManagingCourses)`
     .icons-setting {
         display: flex;
         gap: 8px;
+        position: relative;
     }
     @media (max-width: 768px) {
         flex-direction: row-reverse;
