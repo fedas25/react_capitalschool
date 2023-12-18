@@ -6,23 +6,34 @@ import H4 from "./../../fonts/desktop/1920_h4"
 import InfoTeacherCource from "./../../InfoTeacherCource"
 import photo from "./../../../assets/teacher.jpg"
 import crossExit from "./../../../assets/CrossExit.svg"
+import arrowExit from "./../../../assets/arrowExit.svg"
 import Button from "./../../Button"
 import longArrow from "./../../../assets/longArrow.svg"
 import Calendar from "./../../Calendar"
 import DarkenedBackground from '../../DarkenedBackground';
+import MobileCalendar from '../../MobileCalendar';
+import { useMediaQuery } from 'react-responsive';
 
 const Container = styled.div`
                 position: fixed;
-                top: 10%;
-                left: 50%;
                 z-index: 1;
-                margin-left: -815px;
                 width: 1630px;
                 width: ${(props) => props.type === "resultRecord" ? "756px" : "1630px"};
                 border-radius: 50px;
                 background: #ffff;
                 display: grid;
                 padding: 64px 32px;
+                @media (min-width: 768px) {
+                    top: 10%;
+                    left: 50%;
+                    margin-left: -815px;
+                }
+                @media (max-width: 768px) {
+                    width: 100vw;
+	                padding: 40px 16px;
+                    border-radius: 40px 40px 0px 0px;
+                    bottom: 0px;
+                }
                 grid-template-columns: ${(props) => props.type === "resultRecord" ? "auto" : "auto auto"};
                 grid-template-rows: auto auto auto auto auto;
                 grid-template-areas:
@@ -49,6 +60,9 @@ const StyledCalendar = styled(Calendar)`
 const StyledInfoTeacherCource = styled(InfoTeacherCource)`
             grid-area: InfoTeacherCource;
             margin: 48px 0 21px 0;
+            @media (max-width: 768px) {
+                margin: 48px 0 40px 0;
+            }
             `;
 
 const InformationRecording = styled.div`
@@ -58,6 +72,12 @@ const InformationRecording = styled.div`
             display: flex;
             align-items: center;
             gap: 10px;
+            @media (max-width: 768px) {
+                flex-direction: column;
+                align-items: start;
+                gap: 10px;
+                border-bottom: none;
+            }
             `;
 
 const TimeRecording = styled.div`
@@ -65,6 +85,9 @@ const TimeRecording = styled.div`
             grid-area: TimeRecording;
             display: flex;
             gap: 12px;
+            @media (max-width: 768px) {
+                padding-top: 0px;
+            }
             `;
 
 const ContainerButton = styled.div`
@@ -86,10 +109,15 @@ const DateTimeRecord = styled.div`
 const TypeRecord = styled(H6)`
             grid-area: typeRecord;
             margin-bottom: 32px;
+            @media (max-width: 768px) {
+                margin-bottom: 24px;
+                display: flex;
+                flex-direction: column;
+                gap: 48px;
+            }
             `
 
 const Notification = styled(H5)`
-            
             grid-area: notification;
             display: block;
             margin-top: 21px;
@@ -104,80 +132,123 @@ position: absolute;
 right: -40px;
 top: -80px;
 cursor: pointer;
+cursor: pointer;
+  @media (max-width: 768px) {
+    width: 48px;
+    height: 48px;
+    right: 0px;
+    top: -56px;
+}
 `;
 
 
-export default function TransferRecord({ handler = () => { } }) {
+
+const TransferArrow = styled.img`
+width: 64px;
+height: 64px;
+  @media (max-width: 768px) {
+    width: 48px;
+    height: 48px;
+}
+`;
+
+const ArrowExit = styled.img`
+    width: 48px;
+    height: 48px;
+`;
+
+
+
+
+
+export default function TransferRecord({ test, handler = () => { } }) {
     const [stage, setStage] = useState(0);
 
     function SetNextStage() {
         setStage(stage != 4 ? (stage + 1) : 0)
     }
+    function SetPreviousStage() {
+        setStage(stage - 1)
+    }
+
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
     return (
         <>
-            <DarkenedBackground>
-                <Container type={stage === 3 ? "resultRecord" : ""}>
-                    <CrossExit src={crossExit} onClick={handler} />
+            {isMobile && (stage === 0) ?
+                <MobileCalendar handlerDay={(date) => { console.log(date); setStage(1); }} />
+                :
+                <DarkenedBackground>
+                    <Container type={stage === 3 ? "resultRecord" : ""}>
+                        <CrossExit src={crossExit} onClick={handler} />
+                        <TypeRecord>
+                        {(isMobile &&  stage != 3) ? <ArrowExit src={arrowExit} onClick={SetPreviousStage}/> : null}
+                            {test ? "Пробное" : "Учёбное"} занятие
+                        </TypeRecord>
 
-                    <TypeRecord>
-                        Учёбное занятие
-                    </TypeRecord>
-
-                    <InformationRecording>
-                        <DateTimeRecord>
-                            <H4 violet>13 марта</H4>
-                            <H4 violet>16:00</H4>
-                        </DateTimeRecord>
-
-                        <img src={longArrow} alt="longArrow" />
-
-                        <DateTimeRecord>
-                            {stage === 2 || stage === 3 ? (
+                        <InformationRecording>
+                            <DateTimeRecord>
                                 <H4 violet>13 марта</H4>
-                            ) : null}
-
-                            {stage === 2 || stage === 3 ? (
                                 <H4 violet>16:00</H4>
-                            ) : null}
-                        </DateTimeRecord>
+                                {isMobile ? <TransferArrow src={longArrow} alt="tansferArrow" /> : null}
+                            </DateTimeRecord>
 
-                    </InformationRecording>
+                            {!isMobile ? <TransferArrow src={longArrow} alt="tansferArrow" /> : null}
 
-                    <StyledInfoTeacherCource teacherName="Зубенко Михаил Петрович" nameCourse="Пивоварение" srcTeacher={photo} />
+                            <DateTimeRecord>
+                                {stage === 2 || stage === 3 ? (
+                                    <H4 violet>13 марта</H4>
+                                ) : null}
 
-                    {(stage === 1 || stage === 2) ? (
-                        <TimeRecording>
-                            <H5 gray>13:00</H5>
-                            <H5 gray>14:00</H5>
+                                {stage === 2 || stage === 3 ? (
+                                    <H4 violet>16:00</H4>
+                                ) : null}
+                            </DateTimeRecord>
 
-                            {stage === 2 ? (
-                                <H5>15:00</H5>
-                            ) : stage === 1 ? (
-                                <H5 gray handler={SetNextStage}>16:00</H5>
-                            ) : null}
+                        </InformationRecording>
 
-                        </TimeRecording>
-                    ) : null}
+                        <StyledInfoTeacherCource payment teacherName="Зубенко Михаил Петрович" nameCourse="Пивоварение" srcTeacher={photo} />
 
-                    {stage === 2 ? (
-                        <ContainerButton>
-                            <Button handler={SetNextStage} title="Перенести" />
-                        </ContainerButton>
-                    ) : null}
+                        {(stage === 1 || stage === 2) ? (
+                            <TimeRecording>
+                                <H5 gray>13:00</H5>
+                                <H5 gray>14:00</H5>
 
-                    {stage === 3 ? (
-                        <Notification gray>
-                            Запись успешно перенесена
-                        </Notification>
-                    ) : null}
+                                {stage === 2 ? (
+                                    <H5>15:00</H5>
+                                ) : stage === 1 ? (
+                                    <H5 gray handler={SetNextStage}>16:00</H5>
+                                ) : null}
 
-                    {stage != 3 ? (
-                        <StyledCalendar type="record" handlerDay={SetNextStage} />
-                    ) : null}
+                            </TimeRecording>
+                        ) : null}
 
-                </Container>
-            </DarkenedBackground>
+                        {stage === 2 ? (
+                            <ContainerButton>
+                                <Button test handler={SetNextStage} title="Перенести" />
+                            </ContainerButton>
+                        ) : null}
+
+                        {stage === 3 ? (
+                            <Notification gray>
+                                Запись успешно перенесена
+                            </Notification>
+                        ) : null}
+
+                        {!isMobile ?
+                            <>
+                                {stage != 3 ? (
+                                    <StyledCalendar type="record" handlerDay={SetNextStage} />
+                                ) : null}
+                            </>
+                            : null
+                        }
+
+
+
+                    </Container>
+                </DarkenedBackground>
+            }
         </>
     )
 }
