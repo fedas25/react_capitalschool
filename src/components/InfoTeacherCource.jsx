@@ -35,6 +35,9 @@ function InfoCourse({ className, teacherName, nameCourse, colorCourse, payment }
 
 const StyledInfoCourse = styled(InfoCourse)`
     min-width: 460px;
+    @media (max-width: 768px) {
+        min-width: 20px;
+    }
     height: 150px;
     @media (max-width: 768px) {
         ${ ({payment}) => payment ? `

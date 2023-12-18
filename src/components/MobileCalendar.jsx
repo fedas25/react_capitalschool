@@ -305,7 +305,7 @@ export default function MobileCalendar({ main = null, handlerDay = () => { }, vi
     function record(value, event) {
         setIsSelectedDay(new Date(value))
 
-        handlerDay();
+        handlerDay(new Date(value));
 
         // setIsSelectedDay(true);
 
@@ -342,6 +342,8 @@ const Img = styled.img`
   ${props => props.left ? "transform: rotate(180deg);" : null}
 `;
 
+
+// вынести
 const CrossExit = styled.img`
   position: absolute;
   width: 48px;
