@@ -26,7 +26,7 @@ const Container = styled.div`
 
 const Content = styled.div`
     width: 1664px;
-    padding: 168px 0;
+    padding: 80px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -325,6 +325,7 @@ const CourseProgramContainer = styled.div`
     gap: 138px;
     @media (max-width: 768px) {
         flex-direction: column;
+        gap: 48px;
     }
 `;
 

@@ -3,12 +3,14 @@ import TeacherAccount from "./pages/teacherAccount"
 import StudentAccount from "./pages/studentAccount"
 import Main from "./pages/main"
 import Course from "./pages/course"
+import Admin from "./pages/admin"
 
 export default function App() {
   return (
-    <StudentAccount />
-    // <Main />
+    <Main />
     // <Course />
+    // <StudentAccount />
     // <TeacherAccount />
+    // <Admin />
   )
 }

@@ -4,7 +4,7 @@ import H2 from "./../../components/fonts/desktop/1920_h2.jsx"
 import H4 from "./../../components/fonts/desktop/1920_h4.jsx"
 import CaruselMobile from "./../../components/CaruselMobile.jsx"
 import CardMobileAdvantages from './CardMobileAdvantages.jsx';
-
+import usr from "./../../assets/uuser.svg"
 const StyledH2 = styled(H2)`
         width: 320px;
 `
@@ -39,7 +39,7 @@ export default function MobileMakesUsSpecial() {
     return (
         <>
             <Discription>
-                <StyledH2>Что делает нас особенным?</StyledH2>
+                <StyledH2>Что делает нас особенными?</StyledH2>
             </Discription>
             <Container>
                 <StyledH4>Удобный, доступный и эффективный английский</StyledH4>
@@ -48,9 +48,9 @@ export default function MobileMakesUsSpecial() {
             </Container>
 
             <CaruselMobile>
-                <CardMobileAdvantages />
-                <CardMobileAdvantages />
-                <CardMobileAdvantages />
+                <CardMobileAdvantages src={usr} title={"Индивидуальный подход"} mainText={"Мы заботимся о том, чтобы каждый ученик получил индивидуальное внимание и поддержку в своих учебных усилиях. Ведь для нас каждый ученик уникален и важен."}/>
+                <CardMobileAdvantages src={usr} title={"Индивидуальный подход"} mainText={"Мы заботимся о том, чтобы каждый ученик получил индивидуальное внимание и поддержку в своих учебных усилиях. Ведь для нас каждый ученик уникален и важен."}/>
+                <CardMobileAdvantages src={usr} title={"Индивидуальный подход"} mainText={"Мы заботимся о том, чтобы каждый ученик получил индивидуальное внимание и поддержку в своих учебных усилиях. Ведь для нас каждый ученик уникален и важен."}/>
             </CaruselMobile>
 
         </>

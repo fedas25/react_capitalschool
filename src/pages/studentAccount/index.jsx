@@ -13,6 +13,8 @@ import InformationAboutDay from "./../../components/modal/informationAboutDay"
 import Recording from "./../../components/modal/recording"
 import BuyingClasses from "./../../components/modal/buyingClasses"
 import MobileCalendar from "../../components/MobileCalendar.jsx";
+import MobileCalendarrr from "../../components/MobileCalendarMobile.jsx";
+import MobileFlowingModal from "../../components/MobileFlowingModal.jsx";
 
 const Container = styled.div`
         display: flex;
@@ -27,11 +29,11 @@ const Container = styled.div`
     `;
 
 export default function Main() {
-    
+
     const [IsDisplayRecord, setIsDisplayInformation] = useState(false)
     function hideFullRecord() { setIsDisplayInformation(false) }
     function ShowFullRecord() { setIsDisplayInformation(true) }
-    
+
     const [IsBuyingClasses, setIsBuyingClasses] = useState(false)
     function hideBuyingClasses() { setIsBuyingClasses(false) }
     function ShowBuyingClasses() { setIsBuyingClasses(true) }
@@ -62,17 +64,22 @@ export default function Main() {
                 <PersonalData />
                 <ContainerWorkingArea>
 
-                    {/* {IsDisplayRecord ? <Recording handlerClick={hideFullRecord} /> : null}
+                    {IsDisplayRecord ? <Recording handlerClick={hideFullRecord} /> : null}
                     {IsBuyingClasses ? <BuyingClasses handlerClick={hideBuyingClasses} /> : null}
-                     */}
-                    {IsDisplayRecordInformation ? <InformationAboutDay handlerClick={hideFullRecordInformation} /> : null}
-                    {isViewRecordsCalendar ? <MobileCalendar main viewingDetails handlerDay={() => alert("я пятница синяя")} outputHandler={hideViewRecordsCalendar} /> : null}
+                    
+                    
+                    {IsDisplayRecordInformation ? <InformationAboutDay handlerClickBack={() => {showViewRecordsCalendar(), hideFullRecordInformation()}} handlerClick={hideFullRecordInformation} /> : null}
+                    
+                    {/* {isViewRecordsCalendar ? <MobileCalendar main viewingDetails handlerDay={() => alert("я пятница синяя")} outputHandler={hideViewRecordsCalendar} /> : null} */}
+                    <MobileFlowingModal show={isViewRecordsCalendar}>
+                        <MobileCalendarrr main viewingDetails handlerDay={() => {hideViewRecordsCalendar(), ShowFullRecordInformation() }} outputHandler={hideViewRecordsCalendar} />
+                    </MobileFlowingModal>
 
-                    <NavBarUserAccount student/>
+                    <NavBarUserAccount student />
                     <Routes>
                         <Route path="/" element={<WorkingAreaCourse handlerCalendar={showViewRecordsCalendar} handlerShowBuyingClasses={ShowBuyingClasses} handlerDay={ShowFullRecordInformation} handlerRecord={ShowFullRecord} />} />
                         <Route path="/record" element={<WorkingAreaRecord />} />
-                        <Route path="/passed" element={<WorkingAreaPassed handlerShowBuyingClasses={ShowBuyingClasses}/>} />
+                        <Route path="/passed" element={<WorkingAreaPassed handlerShowBuyingClasses={ShowBuyingClasses} />} />
                     </Routes>
                 </ContainerWorkingArea>
                 {/* <Footer /> */}

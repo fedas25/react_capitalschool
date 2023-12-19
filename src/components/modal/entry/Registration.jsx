@@ -51,7 +51,7 @@ export default function Registration({ handlerButton, handlerNav, handlerExit })
         <InputText placeholder="Фамилия" width="100%" />
         <InputText placeholder="Отчество" width="100%" />
       </ContainerInputs>
-      <Button handler={handlerButton} title="Зарегестрироваться" />
+      <Button handler={handlerButton} title="Зарегистрироваться" />
     </MainContainer>
   )
 }

@@ -17,6 +17,7 @@ export default function Course() {
         row-gap: 168px;
         @media (max-width: 768px) {
             row-gap: 80px;
+            padding: 0 0 0 0;
         }
     `;
 

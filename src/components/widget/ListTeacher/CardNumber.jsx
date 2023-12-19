@@ -15,7 +15,7 @@ function cardNumberr({ className, cardNumber, numberOfCards }) {
         </span>
     )
 }
-
+// добавить в компонент шрифта цвет
 const StyledCardNumber = styled(cardNumberr)`
         color: #BCBCC5;
         font-feature-settings: 'case' on;

@@ -28,6 +28,11 @@
 
 
 
+img {
+  object-fit: cover;
+}
+
+
 
 
 ::placeholder { 

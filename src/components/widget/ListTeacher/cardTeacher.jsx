@@ -5,10 +5,12 @@ import Font1920_h5 from "./../../fonts/desktop/1920_h5"
 import Font1920_h6 from "./../../fonts/desktop/1920_h6"
 import Font1920_p1 from "./../../fonts/desktop/1920_p1"
 import jackdaw from "./../../../assets/jackdaw.png"
-import teacher from "./../../../assets/teacher.jpg"
 import Button from "./../../Button.jsx"
 import CardNumber from "./CardNumber.jsx"
 import Arrow from "./../../Arrow"
+
+import pleerStart from "./../../../assets/pleerStart.svg"
+import pleerPalka from "./../../../assets/pleerPalka.svg"
 
 const Info = styled.div`
         display: flex;
@@ -19,19 +21,6 @@ const Info = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-    `;
-
-const AudioPleer = styled.div`
-        height: 56px;
-        width: 337px;
-        border-radius: 282.5px;
-        border: 3px solid var(--srt, #E4E4E7);
-        margin-bottom: 18px;
-        @media (max-width: 768px) {
-            margin-bottom: 12px;
-            height: 38px;
-            width: 86px;
-        }
     `;
 
 const Name = styled.div`
@@ -191,17 +180,32 @@ const StyledNavigationButton = styled(NavigationButton)`
     right: 0px;
 `;
 
+const AudioPleer = styled.div`
+        height: 56px;
+        width: 337px;
+        border-radius: 282.5px;
+        border: 1.5px solid var(--srt, #E4E4E7);
+        margin-bottom: 18px;
+        @media (max-width: 768px) {
+            margin-bottom: 12px;
+            height: 38px;
+            width: 86px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+    `;
 
-
-export default function Cartochka({ course }) {
+export default function Cartochka({ course, src }) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
     return (
         <Card>
-            {!isMobile && <Photo src={teacher} />}
+            {!isMobile && <Photo src={src} />}
             <MainPart>
                 <Orientation2>
-                    {isMobile && <Photo src={teacher} />}
+                    {isMobile && <Photo src={src} />}
                     {/* {isMobile && <StyledNavigationButton /> } */}
                     <CardNumber />
                 </Orientation2>
@@ -210,7 +214,10 @@ export default function Cartochka({ course }) {
                         <Name>
                             <Font1920_h5 teacher>Куликова Анастасия Николаевна</Font1920_h5>
                         </Name>
-                        <AudioPleer />
+                        <AudioPleer>
+                            <img src={pleerStart} alt="" />
+                            <img src={pleerPalka} alt="" />
+                        </AudioPleer>
                     </Orientation>
                     <Courses>
                         <Course>

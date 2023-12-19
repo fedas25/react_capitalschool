@@ -160,7 +160,7 @@ cursor: pointer;
 const ArrowExit = styled.img`
     width: 48px;
     height: 48px;
-    margin-bottom: 36px;
+    margin-bottom:28px;
 `;
 
 
@@ -189,13 +189,13 @@ export default function Recording({ handlerClick, test = null }) {
     return (
         <>
             {isMobile && (stage === 0) ?
-                <MobileCalendar handlerDay={(date) => { console.log(date); setStage(1); }} />
+                <MobileCalendar outputHandler={handlerClick} handlerDay={(date) => { console.log(date); setStage(1); }} />
                 :
                 <DarkenedBackground>
                     <Container type={stage === 3 ? "resultRecord" : ""}>
                         <CrossExit src={crossExit} onClick={handlerClick} />
                         <InformationRecording>
-                            {isMobile ? <ArrowExit src={arrowExit} onClick={SetPreviousStage}/> : null}
+                            {(isMobile && stage != 3) ? <ArrowExit src={arrowExit} onClick={SetPreviousStage}/> : null}
                             <DateTimeRecord>
                                 {stage === 1 || stage === 2 || stage === 3 ? (
                                     <H4 violet>13 марта</H4>
@@ -208,7 +208,7 @@ export default function Recording({ handlerClick, test = null }) {
 
                             <H6>{test ? "Пробное" : "Учёбное"} занятие</H6>
                         </InformationRecording>
-                        <StyledInfoTeacherCource teacherName="Зубенко Михаил Петрович" nameCourse="Пивоварение" srcTeacher={photo} />
+                        <StyledInfoTeacherCource payment teacherName="Зубенко Михаил Петрович" nameCourse="Пивоварение" srcTeacher={photo} />
 
                         {(stage === 1 || stage === 2) ? (
                             <TimeRecording>

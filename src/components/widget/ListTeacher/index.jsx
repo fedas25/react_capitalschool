@@ -6,6 +6,11 @@ import Arrow from "./../../Arrow"
 import CaruselMobile from "./../../CaruselMobile.jsx"
 import CardTeacher from "./cardTeacher.jsx"
 
+import teacher from "./../../../assets/teacher.jpg"
+import teacher1 from "./../../../assets/teacher1.jpg"
+import teacher2 from "./../../../assets/teacher2.jpeg"
+import teacher3 from "./../../../assets/teacher3.jpg"
+
 const Container = styled.div`
     position: relative;
     width: 100%;
@@ -49,24 +54,24 @@ const Cards = styled.div`
     transition: transform 400ms;
     `;
 
-    function NavigationButton({ className, handler }) {
-        return (
-            <div className={className}>
-                <Arrow startLearning handle={handler.left} />
-                <Arrow startLearning handle={handler.right} right />
-            </div>
-        )
-    }
-    
+function NavigationButton({ className, handler }) {
+    return (
+        <div className={className}>
+            <Arrow startLearning handle={handler.left} />
+            <Arrow startLearning handle={handler.right} right />
+        </div>
+    )
+}
+
 const StyledNavigationButton = styled(NavigationButton)`
     position: absolute;
     z-index: 2;
     top: 0px;
     right: 0px;
-    ${({mobile}) => mobile ? `
+    ${({ mobile }) => mobile ? `
         top: 268px;
         right: 11vw;`
-    : null}
+        : null}
 `;
 
 
@@ -90,11 +95,13 @@ export default function ListTeacher({ course }) {
 
                 {isMobile ?
                     <>
-                        <StyledNavigationButton mobile={+true} handler={{ left: handlerLeft, right: handlerRight }}/>
+                        <StyledNavigationButton mobile={+true} handler={{ left: handlerLeft, right: handlerRight }} />
                         <CaruselMobile noNavigation externalHandlerLeft={handlerLeft} externalHandlerRight={handlerRight} externalCardNumber={offset} external>
-                            <CardTeacher course={course} />
-                            <CardTeacher course={course} />
-                            <CardTeacher course={course} />
+                        <CardTeacher course={course} src={teacher} />
+                                <CardTeacher course={course} src={teacher1} />
+                                <CardTeacher course={course} src={teacher2} />
+                                <CardTeacher course={course} src={teacher3} />
+                                <CardTeacher course={course} src={teacher3} />
                         </CaruselMobile>
                     </>
                     :
@@ -102,8 +109,11 @@ export default function ListTeacher({ course }) {
                         <List>
                             <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
                             <Cards offset={offset * 1664}>
-                                <CardTeacher course={course} />
-                                <CardTeacher course={course} />
+                                <CardTeacher course={course} src={teacher} />
+                                <CardTeacher course={course} src={teacher1} />
+                                <CardTeacher course={course} src={teacher2} />
+                                <CardTeacher course={course} src={teacher3} />
+                                <CardTeacher course={course} src={teacher3} />
                             </Cards>
                         </List>
                     </>

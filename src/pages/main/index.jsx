@@ -12,13 +12,9 @@ import QuestionAnswer from "./QuestionAnswer";
 import Footer from "./../../components/Footer.jsx";
 import Test from '../../components/modal/test';
 import Entry from '../../components/modal/entry/index.jsx';
-import { useMediaQuery } from 'react-responsive';
-
-import H4 from "./../../components/fonts/desktop/1920_h4.jsx"
-import H2 from "./../../components/fonts/desktop/1920_h2.jsx"
-
 import MobileMakesUsSpecial from './MobileMakesUsSpecial.jsx';
 import MobileAdvantagesOnlineClasses from './MobileAdvantagesOnlineClasses.jsx';
+import { useMediaQuery } from 'react-responsive';
 
 const Container = styled.div`
     display: flex;
@@ -51,7 +47,6 @@ export default function Main() {
             <Header />
             <Container>
                 {isMobile ? <MobileMakesUsSpecial /> : <MakesUsSpecial />}
-                {isMobile ? <MobileAdvantagesOnlineClasses /> : <AdvantagesOnlineClasses />}
                 {isMobile ? <MobileAdvantagesOnlineClasses /> : <AdvantagesOnlineClasses />}
                 <ListCourses />
                 <ListTeacher />

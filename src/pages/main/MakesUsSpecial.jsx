@@ -87,7 +87,7 @@ export default function Header() {
         <>
             <Container>
                 <Description>
-                    <Font1920_h2>Что делает нас особенным?</Font1920_h2>
+                    <Font1920_h2>Что делает нас особенными ?</Font1920_h2>
                 </Description>
                 <Content>
                     <Left>

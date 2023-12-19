@@ -12,6 +12,8 @@ import NavBarUserAccount from "../../components/layout/navigation/NavBarUserAcco
 import TransferRecord from "./../../components/modal/transferRecord"
 import MarkVisit from "./../../components/modal/markVisit"
 
+import Recording from "./../../components/modal/recording"
+
 const Container = styled.div`
         display: flex;
         padding: 168px 0 0 0;
@@ -32,6 +34,12 @@ export default function Main() {
     function hideMarkVisit() { setIsDisplayMarkVisit(false) }
     function ShowMarkVisit() { setIsDisplayMarkVisit(true) }
 
+
+    // const [IsDisplayRecord, setIsDisplayInformation] = useState(false)
+    // function hideFullRecord() { setIsDisplayInformation(false) }
+    // function ShowFullRecord() { setIsDisplayInformation(true) }
+
+
     return (
         <>
             <NavBar
@@ -39,6 +47,10 @@ export default function Main() {
             />
             {IsDisplayTransferRecord ? <TransferRecord handler={hideFullRecordInformation} /> : null}
             {IsDisplayMarkVisit ? <MarkVisit handler={hideMarkVisit} /> : null}
+
+
+            {/* {IsDisplayRecord ? <Recording handlerClick={hideFullRecord} /> : null} */}
+
             <Container>
                 <PersonalData teacher />
                 <ContainerWorkingArea>

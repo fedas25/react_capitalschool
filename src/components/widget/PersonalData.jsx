@@ -87,8 +87,8 @@ function Authentication({ className }) {
         <div className={className}>
             <H5>Личные данные</H5>
             <ContainerAuthentication>
-                <InputText password value="123456" />
-                <InputText value="uasily.lol@yandex.ru" />
+                <InputText placeholder="Pass" password value="123456" />
+                <InputText placeholder="Email" value="uasily.lol@yandex.ru" />
             </ContainerAuthentication>
         </div>
     )

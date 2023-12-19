@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import H4 from "./../../components/fonts/desktop/1920_h4.jsx"
 import P2 from "./../../components/fonts/desktop/1920_p2"
-import calendar from "./../../assets/calendar.svg"
 
 const CardMobileMakesUsSpecial = styled.div`
     width: 320px;
@@ -19,18 +18,18 @@ const CardMobileMakesUsSpecial = styled.div`
     }
 `;
 
-export default function CardMobileAdvantages() {
+export default function CardMobileAdvantages({ src, title, mainText }) {
     return (
         <CardMobileMakesUsSpecial>
             <div>
-                <img src={calendar} alt="calendar" />
+                <img src={src} alt="calendar" />
             </div>
             <div>
-                <H4>Гибкий график</H4>
+                <H4 black>{title}</H4>
             </div>
             <div>
                 <P2>
-                    Вы сами определяете удобное для себя время для занятий. Мы предлагаем гибкость в расписании, чтобы адаптироваться к вашим занятостям и обстоятельствам
+                    {mainText}
                 </P2>
             </div>
         </CardMobileMakesUsSpecial>

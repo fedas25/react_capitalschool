@@ -216,14 +216,14 @@ const ArrowExit = styled.img`
     margin-right: auto;
 `;
 
-export default function InformationAboutDay({ type = null, handlerClick = null }) {
+export default function InformationAboutDay({ type = null, handlerClick = null, handlerClickBack }) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
     return (
         <DarkenedBackground>
             <ModalContainer>
                 <CrossExit src={crossExit} onClick={handlerClick} />
-                {isMobile ? <ArrowExit src={arrowExit} alt='ArrowExit'/> : null }
+                {isMobile ? <ArrowExit src={arrowExit} alt='ArrowExit' onClick={handlerClickBack}/> : null }
                 <ContainerCardCourse>
                     <StyledInformationAboutRecord record={+true} />
                     <Main type={type}>

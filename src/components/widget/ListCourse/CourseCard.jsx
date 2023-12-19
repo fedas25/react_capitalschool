@@ -89,7 +89,6 @@ function DescriptionCource({ className }) {
                 <StyledCharacteristic />
                 <StyledCharacteristic />
                 <StyledCharacteristic />
-                <StyledCharacteristic />
             </Specifications>
             <StyledPrices />
         </div>
