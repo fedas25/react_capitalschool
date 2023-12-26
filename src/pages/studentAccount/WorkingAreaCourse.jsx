@@ -6,6 +6,7 @@ import CardMyCourse from './CardAccount'
 import Test from '../../components/modal/test';
 import iconCalendar from "./../../assets/calendarMobile.png"
 import { useMediaQuery } from 'react-responsive'
+import useModalShow from '../../hooks/useModalShow'
 
 const ContainerContent = styled.div`
     width: 100%;
@@ -43,13 +44,13 @@ const AdditionalActions = styled.div`
 export default function PersonalData({ handlerDay, handlerRecord, handlerCalendar, handlerShowBuyingClasses }) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
-    const [showTest, setShowTest] = useState(false);
+    const [isShowTest, showTest, hideTest ] = useModalShow()
 
     console.log(handlerCalendar);
 
     return (
         <>
-            <Test show={showTest} setShow={setShowTest} isAccount/>
+            <Test show={isShowTest} hideTest={hideTest} isAccount/>
 
             <ContainerContent>
                 <ListCardAccount>
@@ -59,9 +60,9 @@ export default function PersonalData({ handlerDay, handlerRecord, handlerCalenda
                     </AdditionalActions>
 
                     <ListCard>
-                        <CardMyCourse testOpening handle={() => setShowTest(true)} handlerRecord={handlerRecord} handlerShowBuyingClasses={handlerShowBuyingClasses} />
-                        <CardMyCourse testFinal handle={() => setShowTest(true)} handlerRecord={handlerRecord} handlerShowBuyingClasses={handlerShowBuyingClasses}/>
-                        <CardMyCourse handle={() => setShowTest(true)} handlerRecord={handlerRecord} handlerShowBuyingClasses={handlerShowBuyingClasses}/>
+                        <CardMyCourse testOpening handle={showTest} handlerRecord={handlerRecord} handlerShowBuyingClasses={handlerShowBuyingClasses} />
+                        <CardMyCourse testFinal handle={showTest} handlerRecord={handlerRecord} handlerShowBuyingClasses={handlerShowBuyingClasses}/>
+                        <CardMyCourse handle={showTest} handlerRecord={handlerRecord} handlerShowBuyingClasses={handlerShowBuyingClasses}/>
                     </ListCard>
                 </ListCardAccount>
                 {!isMobile && <Calendar handlerDay={handlerDay} main />}

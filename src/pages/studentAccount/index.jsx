@@ -16,6 +16,8 @@ import MobileCalendar from "../../components/MobileCalendar.jsx";
 import MobileCalendarrr from "../../components/MobileCalendarMobile.jsx";
 import MobileFlowingModal from "../../components/MobileFlowingModal.jsx";
 
+import useModalShow from "../../hooks/useModalShow.jsx";
+
 const Container = styled.div`
         display: flex;
         padding: 168px 0 0 0;
@@ -29,25 +31,10 @@ const Container = styled.div`
     `;
 
 export default function Main() {
-
-    const [IsDisplayRecord, setIsDisplayInformation] = useState(false)
-    function hideFullRecord() { setIsDisplayInformation(false) }
-    function ShowFullRecord() { setIsDisplayInformation(true) }
-
-    const [IsBuyingClasses, setIsBuyingClasses] = useState(false)
-    function hideBuyingClasses() { setIsBuyingClasses(false) }
-    function ShowBuyingClasses() { setIsBuyingClasses(true) }
-
-
-
-
-    const [IsDisplayRecordInformation, setIsDisplayRecordInformation] = useState(false)
-    function hideFullRecordInformation() { setIsDisplayRecordInformation(false) }
-    function ShowFullRecordInformation() { setIsDisplayRecordInformation(true) }
-
-    const [isViewRecordsCalendar, setIsViewRecordsCalendar] = useState(false)
-    function hideViewRecordsCalendar() { setIsViewRecordsCalendar(false) }
-    function showViewRecordsCalendar() { setIsViewRecordsCalendar(true) }
+    const [IsDisplayRecord, ShowFullRecord, hideFullRecord ] = useModalShow()
+    const [IsBuyingClasses, ShowBuyingClasses, hideBuyingClasses ] = useModalShow()
+    const [IsDisplayRecordInformation, ShowFullRecordInformation, hideFullRecordInformation ] = useModalShow()
+    const [isViewRecordsCalendar, showViewRecordsCalendar, hideViewRecordsCalendar ] = useModalShow()
 
     return (
         <>
@@ -63,14 +50,11 @@ export default function Main() {
             <Container>
                 <PersonalData />
                 <ContainerWorkingArea>
-
                     {IsDisplayRecord ? <Recording handlerClick={hideFullRecord} /> : null}
                     {IsBuyingClasses ? <BuyingClasses handlerClick={hideBuyingClasses} /> : null}
-                    
-                    
                     {IsDisplayRecordInformation ? <InformationAboutDay handlerClickBack={() => {showViewRecordsCalendar(), hideFullRecordInformation()}} handlerClick={hideFullRecordInformation} /> : null}
+                    {isViewRecordsCalendar ? <MobileCalendar main viewingDetails handlerDay={() => alert("я пятница синяя")} outputHandler={hideViewRecordsCalendar} /> : null}
                     
-                    {/* {isViewRecordsCalendar ? <MobileCalendar main viewingDetails handlerDay={() => alert("я пятница синяя")} outputHandler={hideViewRecordsCalendar} /> : null} */}
                     <MobileFlowingModal show={isViewRecordsCalendar}>
                         <MobileCalendarrr main viewingDetails handlerDay={() => {hideViewRecordsCalendar(), ShowFullRecordInformation() }} outputHandler={hideViewRecordsCalendar} />
                     </MobileFlowingModal>
