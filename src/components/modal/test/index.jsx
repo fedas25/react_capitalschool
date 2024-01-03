@@ -82,7 +82,7 @@ function Question({ handler, btn = false, handlerResult = null }) {
 
 const Container = styled.div`
     background-color: #fff;
-    padding: 64px 32px 128px 32px;
+    padding: 64px 32px 72px 32px;
     border-radius: 50px;
     margin-left: -400px;
     /* может быть когда-нибудь */
@@ -153,7 +153,7 @@ function FinalScreen({ isAccount }) {
     )
 }
 
-export default function Test({ show, setShow, isAccount = false }) {
+export default function Test({ show, hideTest, isAccount = false }) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
     const scrollingStep = isMobile ? 320 : 800;
@@ -172,7 +172,7 @@ export default function Test({ show, setShow, isAccount = false }) {
         <>
             <DarkenedBackground show={+show}>
                 <Container show={+show}>
-                    <CrossExit src={crossExit} onClick={() => { setShow(false); setisResult(false); setOffset(0) }} />
+                    <CrossExit src={crossExit} onClick={() => { hideTest(); setisResult(false); setOffset(0) }} />
                     {isResult ?
                         <>
                             <img src={topStars} className='topStars' alt="topStars" />
@@ -186,11 +186,11 @@ export default function Test({ show, setShow, isAccount = false }) {
                         {isResult ? <FinalScreen isAccount/>
                             :
                             <ListCards offset={offset}>
-                                <Question handler={() => { setShow(false) }} />
-                                <Question handler={() => { setShow(false) }} />
-                                <Question handler={() => { setShow(false) }} />
-                                <Question handler={() => { setShow(false) }} />
-                                <Question btn handlerResult={() => { setisResult(true) }} handler={() => { setShow(false); setOffset(0) }} />
+                                <Question handler={hideTest} />
+                                <Question handler={hideTest} />
+                                <Question handler={hideTest} />
+                                <Question handler={hideTest} />
+                                <Question btn handlerResult={() => { setisResult(true) }} handler={() => { hideTest(); setOffset(0) }} />
                             </ListCards>
                         }
                     </Content>
@@ -230,7 +230,7 @@ const ListCards = styled.div`
 `
 
 const ButtonContainer = styled.div`
-margin-top: 48px;
+    margin-top: 28px;
     display: flex;
     justify-content: center;
 `
