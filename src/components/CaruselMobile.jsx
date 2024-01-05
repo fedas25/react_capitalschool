@@ -18,7 +18,7 @@ const Point = styled.div`
     transition: opacity 400ms;
     `
 
-function NavigationPoints({ numberOfCards, activeCard}) {
+function NavigationPoints({ numberOfCards, activeCard }) {
     const points = [];
     for (let i = 0; i < numberOfCards; i++) {
         points.push((i === activeCard) ? <Point active /> : <Point />)
@@ -56,15 +56,20 @@ const Container = styled.div`
 `;
 
 
-export default function CaruselMobile({ children, noNavigation, externalHandlerLeft, externalHandlerRight, externalCardNumber, external = false}) {
+export default function CaruselMobile({ children, noNavigation, externalHandlerLeft, externalHandlerRight, externalCardNumber, external = false }) {
     const [cardNumber, setCardNumber] = useState(0);
+    const numberOfCards = children.length;
 
     function handlerLeft() {
-        setCardNumber(cardNumber - 1)
+        if (cardNumber > 0) { // проверка на пролистование без карточки
+            setCardNumber(cardNumber - 1)
+        }
     }
 
     function handlerRight() {
-        setCardNumber(cardNumber + 1)
+        if (cardNumber < numberOfCards - 1) {  // проверка на пролистование без карточки
+            setCardNumber(cardNumber + 1)
+        }
     }
 
 
@@ -82,15 +87,17 @@ export default function CaruselMobile({ children, noNavigation, externalHandlerL
         const diff = touchPosition - currentTouch
 
         if (diff > 5) {
-            if (external) {
-                externalHandlerRight()
+            if (external) { 
+                // проверка на пролистование без карточки
+                if (externalCardNumber > ((numberOfCards - 1) * -1)) externalHandlerRight()
             } else handlerRight()
-                
+
         }
 
         if (diff < -5) {
             if (external) {
-                externalHandlerLeft()
+                // проверка на пролистование без карточки
+                if (externalCardNumber < 0) externalHandlerLeft()
             } else handlerLeft()
         }
 
@@ -105,12 +112,12 @@ export default function CaruselMobile({ children, noNavigation, externalHandlerL
                     onTouchMove={handleTouchMove}
                 >
                     <PageContainer
-                        offsetX={ (external ? externalCardNumber : cardNumber) * (external ? 344 :-344) }
+                        offsetX={(external ? externalCardNumber : cardNumber) * (external ? 344 : -344)}
                     >
                         {children}
                     </PageContainer>
                 </Container>
-                {!noNavigation && <NavigationPoints numberOfCards={children.length} activeCard={externalCardNumber ? externalCardNumber : cardNumber} />}
+                {!noNavigation && <NavigationPoints numberOfCards={numberOfCards} activeCard={externalCardNumber ? externalCardNumber : cardNumber} />}
             </Center>
         </>
     )
