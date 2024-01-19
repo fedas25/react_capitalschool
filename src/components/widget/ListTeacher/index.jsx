@@ -45,7 +45,7 @@ const List = styled.div`
 
 
 
-const Cards = styled.div`
+const CardsStyled = styled.div`
     display: flex;
     align-items: flex-start;
     align-content: flex-start;
@@ -53,6 +53,19 @@ const Cards = styled.div`
     transform: ${({ offset }) => `translateX(${offset}px)`} ;
     transition: transform 400ms;
     `;
+
+function Cards({ setCountCards, offset, children }) {
+    setCountCards(children.length)
+    
+    return (
+        <CardsStyled offset={offset}>
+            {children}
+        </CardsStyled>
+    )
+
+}
+
+
 
 function NavigationButton({ className, handler }) {
     return (
@@ -78,12 +91,19 @@ const StyledNavigationButton = styled(NavigationButton)`
 export default function ListTeacher({ course }) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
     const [offset, setOffset] = useState(0);
+    const [numberCards, setNumberCards] = useState(0);
 
-    function handlerLeft() {
-        setOffset(offset + 1);
+    function handlerLeft() { // проверка на выход за границу
+        if (offset != 0) setOffset(offset + 1)
     }
-    function handlerRight() {
-        setOffset(offset - 1);
+
+    function handlerRight() {// проверка на выход за границу
+        if (offset != (numberCards - 1) * (-1)) setOffset(offset - 1)
+        console.log(offset, numberCards);
+    }
+
+    function setCountCards(count) {
+        setNumberCards(count)
     }
 
     return (
@@ -96,19 +116,24 @@ export default function ListTeacher({ course }) {
                 {isMobile ?
                     <>
                         <StyledNavigationButton mobile={+true} handler={{ left: handlerLeft, right: handlerRight }} />
-                        <CaruselMobile noNavigation externalHandlerLeft={handlerLeft} externalHandlerRight={handlerRight} externalCardNumber={offset} external>
-                        <CardTeacher course={course} src={teacher} />
-                                <CardTeacher course={course} src={teacher1} />
-                                <CardTeacher course={course} src={teacher2} />
-                                <CardTeacher course={course} src={teacher3} />
-                                <CardTeacher course={course} src={teacher3} />
+                        <CaruselMobile
+                            noNavigation
+                            externalHandlerLeft={handlerLeft}
+                            externalHandlerRight={handlerRight}
+                            externalCardNumber={offset} external
+                        >
+                            <CardTeacher course={course} src={teacher} />
+                            <CardTeacher course={course} src={teacher1} />
+                            <CardTeacher course={course} src={teacher2} />
+                            <CardTeacher course={course} src={teacher3} />
+                            <CardTeacher course={course} src={teacher3} />
                         </CaruselMobile>
                     </>
                     :
                     <>
                         <List>
                             <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
-                            <Cards offset={offset * 1664}>
+                            <Cards offset={offset * 1664} setCountCards={setCountCards}>
                                 <CardTeacher course={course} src={teacher} />
                                 <CardTeacher course={course} src={teacher1} />
                                 <CardTeacher course={course} src={teacher2} />

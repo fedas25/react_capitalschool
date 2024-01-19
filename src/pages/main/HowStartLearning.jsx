@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { Children, useState } from "react"
 import styled from "styled-components"
 import Font1920_h2 from "./../../components/fonts/desktop/1920_h2"
 import Font1920_h3 from "./../../components/fonts/desktop/1920_h3"
@@ -128,7 +128,9 @@ const StyledNavigationButton = styled(NavigationButton)`
     
 `;
 
-const Stages = styled.div`
+
+
+const StagesCaruselStyled = styled.div`
     display: flex;
     align-items: flex-start;
     align-content: flex-start;
@@ -136,6 +138,22 @@ const Stages = styled.div`
     transform: ${({ offset }) => `translateX(${offset}px)`} ;
     transition: transform 800ms;
 `;
+
+
+
+// проблемма с несколькимы вызовами setCountStages на каждое отображение
+// карточки этапа ( нужно кол-во этапов получать один раз при отрисовке страницы )
+function StagesCarusel({ setCountStages, offset, children }) {
+    setCountStages(children.length)
+    return (
+        <StagesCaruselStyled offset={offset}>
+            {children}
+        </StagesCaruselStyled>
+    )
+
+}
+
+
 
 const StageContainer = styled.div`
 display: flex;
@@ -188,14 +206,24 @@ export default function HowStartLearning({ setShow }) {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
     const [offset, setOffset] = useState(0);
+    const [numberStages, setNumberStages] = useState(0);
 
     function handlerLeft() {
-        setOffset(offset + 1);
+        if (offset != 0) { // проверка на выход за границу
+            setOffset(offset + 1);
+        }
     }
-    function handlerRight() {
-        setOffset(offset - 1);
+
+    function handlerRight() { // проверка на выход за границу
+        if (offset != (numberStages - 1) * (-1)) {
+            setOffset(offset - 1);
+        }
     }
-    
+
+    function setCountStages(count) {
+        setNumberStages(count)
+    }
+
     return (
         <>
             <Container>
@@ -215,10 +243,10 @@ export default function HowStartLearning({ setShow }) {
                     <>
                         <Content>
                             <StyledNavigationButton handler={{ left: handlerLeft, right: handlerRight }} />
-                            <Stages offset={offset * 1668}>
+                            <StagesCarusel offset={offset * 1668} setCountStages={setCountStages}>
                                 <Stage setShow={setShow} />
                                 <Stage setShow={setShow} />
-                            </Stages>
+                            </StagesCarusel>
                         </Content>
                     </>
                 }
